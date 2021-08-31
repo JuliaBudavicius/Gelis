@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -8,6 +9,7 @@ html, body {
   text-decoration: none;
   background-color: black;
 }
+
 .destaque {
   height: auto;
   border-bottom: 3px solid #EE1E46;
@@ -26,9 +28,9 @@ html, body {
 
 .logo {
   float: left;
-  height: 45px;
-  width: 120px;
-  margin-left: 10px;
+  height: 60px;
+  width: 150px;
+  margin-left: 80px;
   margin-right: 0px;
   margin-top: 2.5px;
   margin-bottom: 2.5px;
@@ -44,7 +46,7 @@ ul li {
 
 ul li a {
   color: white;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 a:link {
@@ -70,10 +72,11 @@ ul li a:hover {
   background-color: #ffffff00;
   color: #ffffff;
   font-size: 16px;
-  height: 30px;
+  height: 35px;
   margin-top: -5px;
-  width: 70px;
+  width: 80px;
   cursor: pointer;
+  transition: 0.7s;
 }
 
 .login:hover {
@@ -134,7 +137,7 @@ ul li a:hover {
   color: white;
   font-weight: bold;
   margin: 0;
-  font-size: 1.7em;
+  font-size: 4em;
 }
 
 .subtitulo {
@@ -149,7 +152,7 @@ ul li a:hover {
 }
 
 .textos {
-  padding-top: 300px;
+  padding-top: 400px;
   padding-left: 20px;
   display: flex;
   flex-direction: column;
@@ -167,51 +170,68 @@ ul li a:hover {
   margin: 20px 0 0 0;
   cursor: pointer;
 }
+
 .btninfo:hover {
   transition: ease-in-out 0.5s;
   background-color: #EE1E46;
   color: #ffffff;
 }
+
 .divisor {
   position: absolute;
   background-color: #EE1E46;
-  width: 120px;
-  height: 20px;
+  width: 200px;
+  height: 30px;
   bottom: -10px;
   border-radius: 10px;
   left: calc(50% - 60px);
   z-index: 2;
 }
+
 .superior {
   justify-content: space-evenly;
   display: flex;
   margin-top: 100px;
 }
+
 .logosobre {
-  height: 160px;
+  height: 260px;
 }
+
+.gelis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .imagem {
-  height: 200px;
-  width: 400px;
+  height: 300px;
+  width: 500px;
 }
+
 .txt {
   color: #EE1E46;
   margin: 0 0 0 10px;
   font-size: 1.25em;
 }
+
 .tituloSobre {
   color: #EE1E46;
   margin: 0;
   font-size: 1.25em;
 }
+
 .esp {
   margin-right: 50px;
 }
+
 .textosobre {
   margin: 0 0 0 0;
   text-align: justify;
   color: #ffffff;
 }
+
 .textossobre {
   padding-top: 50px;
   margin: 0;
@@ -219,3 +239,4 @@ ul li a:hover {
   width: 85%;
   margin: auto;
 }
+

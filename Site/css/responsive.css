@@ -1,0 +1,55 @@
+@media screen and (max-width: 1400px) {
+
+    .textos {
+        padding-top: 300px;
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+    .titulo {
+        color: white;
+        font-weight: bold;
+        margin: 0;
+        font-size: 1.7em;
+    }
+
+    ul li a {
+        color: white;
+        font-size: 16px;
+    }
+
+    .logo {
+        float: left;
+        height: 45px;
+        width: 120px;
+        margin-left: 50px;
+        margin-right: 0px;
+        margin-top: 2.5px;
+        margin-bottom: 2.5px;
+        transition: 0.5s;
+    }
+
+    .login {
+        font-size: 16px;
+        height: 30px;
+        width: 70px;
+    }
+
+    .logosobre {
+        height: 160px;
+    }
+
+    .imagem {
+        height: 200px;
+        width: 400px;
+    }
+
+    .textosobre {
+        margin: 0 0 0 0;
+        text-align: justify;
+        color: #ffffff;
+    }
+
+}
