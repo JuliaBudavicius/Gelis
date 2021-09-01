@@ -1,25 +1,20 @@
 @media screen and (max-width: 1400px) {
-
     .textos {
         padding-top: 300px;
         padding-left: 20px;
         display: flex;
         flex-direction: column;
     }
-
-
     .titulo {
         color: white;
         font-weight: bold;
         margin: 0;
         font-size: 1.7em;
     }
-
     ul li a {
         color: white;
         font-size: 16px;
     }
-
     .logo {
         float: left;
         height: 45px;
@@ -30,26 +25,64 @@
         margin-bottom: 2.5px;
         transition: 0.5s;
     }
-
     .login {
         font-size: 16px;
         height: 30px;
         width: 70px;
     }
-
     .logosobre {
         height: 160px;
     }
-
     .imagem {
         height: 200px;
         width: 400px;
     }
-
     .textosobre {
         margin: 0 0 0 0;
         text-align: justify;
         color: #ffffff;
     }
+    .divisor {
+        position: absolute;
+        background-color: #EE1E46;
+        width: 140px;
+        height: 25px;
+        bottom: -12.5px;
+        border-radius: 10px;
+        left: calc(50% - 70px);
+        z-index: 2;
+    }
+}
 
+@media screen and (max-width: 820px) {
+    .superior {
+        display: grid;
+        margin: auto;
+        margin-top: 60px;
+    }
+    .textosobre {
+        margin: 0 0 0 0;
+        text-align: justify;
+        padding-bottom: 50px;
+        color: #ffffff;
+    }
+    .imagem {
+        height: 300px;
+        width: 300px;
+      }
+    .fundopreto {
+        border-top: 3px solid #EE1E46;
+        border-bottom: 3px solid #EE1E46;
+        min-height: 70vh;
+        width: 90vw;
+        margin: auto;
+        background-color: #000000b2;
+        z-index: 1;
+        display: grid;
+        justify-content: space-around;
+    }
+    .separador {
+        width: 90%;
+        margin: 0 auto;
+    }
 }
