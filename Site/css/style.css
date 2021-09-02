@@ -383,3 +383,93 @@ ul li a:hover {
 .txtslack a {
   color: #EE1E46;
 }
+.divverm {
+  height: 80px;
+  width: 50%;
+  background-color: #EE1E46;
+  text-align: center;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.divverm p {
+  color: #ffffff;
+  font-size: 2.0em;
+  margin: 0;
+  align-items: center;
+}
+
+.divfundocont {
+  height: 200px;
+  width: 100%;
+  margin-top: -10px;
+  background-color: #202020;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.divfundocont img {
+  height: 120px;
+}
+.aa {
+  display: flex;
+  flex-direction: row;
+}
+.horiz {
+  display: flex;
+  flex-direction: column;
+}
+.txtemail {
+  color: #F78097;
+  font-size: 2.0em;
+  margin: 0 0 30px 10px;
+}
+.txtduvid {
+  color: #ffffff;
+  font-size: 1.2em;
+  margin: -10px 0 0 10px;
+}
+.email {
+  color: #ffffff;
+  font-size: 1.3em;
+  margin: 0 0 0 10px;
+  font-weight: bold;
+}
+.centercont {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.txtredes {
+  color: #ffffff;
+  font-size: 1.4em;
+  margin: 30px 0 0 0;
+  padding-bottom: 10px;
+  text-align: center;
+  width: 400px;
+  border-bottom: 2px solid #EE1E46;
+  letter-spacing: .2em;
+}
+.divredes {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+  width: 400px;
+}
+.fa {
+  color: #ffffff;
+  transition: 0.5s color;
+  cursor: pointer;
+}
+.fa:hover {
+  color: #EE1E46;
+    transition-delay: .2s;
+}
