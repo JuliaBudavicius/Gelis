@@ -114,9 +114,24 @@
         display: grid;
         justify-content: space-around;
     }
-
+    .txtdownload {
+        font-weight: bold;
+        margin: 0;
+        font-size: 1.9em;
+        color: #ffffff;
+      }
     .separador {
         width: 90%;
         margin: 0 auto;
     }
+    .txtred {
+        letter-spacing: .4rem;
+        color: #EE1E46;
+        font-size: 0.8em;
+      }
+    .txtslack {
+        color: #ffffff;
+        margin: 20px 0 0 0;
+        font-size: 0.8em;
+      }
 }
