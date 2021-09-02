@@ -1,47 +1,64 @@
-@media screen and (max-width: 1400px) {
+/* Para Desktop Grande */
+@media screen and (min-width: 1382px) {
     .textos {
-        padding-top: 300px;
+        padding-top: 500px;
         padding-left: 20px;
         display: flex;
         flex-direction: column;
     }
+
     .titulo {
         color: white;
         font-weight: bold;
         margin: 0;
-        font-size: 1.7em;
+        font-size: 4em;
     }
+
     ul li a {
         color: white;
-        font-size: 16px;
+        font-size: 20px;
     }
+
     .logo {
         float: left;
-        height: 45px;
-        width: 120px;
-        margin-left: 50px;
+        height: 60px;
+        width: 150px;
+        margin-left: 80px;
         margin-right: 0px;
         margin-top: 2.5px;
         margin-bottom: 2.5px;
         transition: 0.5s;
     }
+
     .login {
-        font-size: 16px;
-        height: 30px;
-        width: 70px;
+        font-size: 19px;
+        height: 35px;
+        width: 90px;
     }
+
     .logosobre {
-        height: 160px;
+        height: 260px;
     }
+
     .imagem {
-        height: 200px;
-        width: 400px;
+        height: 300px;
+        width: 500px;
     }
+
     .textosobre {
         margin: 0 0 0 0;
         text-align: justify;
         color: #ffffff;
+        width: 90%;
+        margin: 0 100px;
+        font-size: 1.4rem;
     }
+
+    .tituloSobre {
+        margin: 0 100px;
+        font-size: 1.5rem;
+    }
+
     .divisor {
         position: absolute;
         background-color: #EE1E46;
@@ -52,6 +69,19 @@
         left: calc(50% - 70px);
         z-index: 2;
     }
+
+    .icons {
+        padding-top: 30px;
+        width: 230px;
+        height: 230px;
+    }
+
+    .textoservi {
+        font-size: 1.4rem;
+        color: #ffffff;
+        width: 100%;
+        text-align: justify;
+    }
 }
 
 @media screen and (max-width: 820px) {
@@ -60,16 +90,19 @@
         margin: auto;
         margin-top: 60px;
     }
+
     .textosobre {
         margin: 0 0 0 0;
         text-align: justify;
         padding-bottom: 50px;
         color: #ffffff;
     }
+
     .imagem {
         height: 300px;
         width: 300px;
-      }
+    }
+
     .fundopreto {
         border-top: 3px solid #EE1E46;
         border-bottom: 3px solid #EE1E46;
@@ -81,6 +114,7 @@
         display: grid;
         justify-content: space-around;
     }
+
     .separador {
         width: 90%;
         margin: 0 auto;
