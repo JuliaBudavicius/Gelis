@@ -134,4 +134,15 @@
         margin: 20px 0 0 0;
         font-size: 0.8em;
       }
+      .textossobre {
+        padding-top: 50px;
+        margin: 0;
+        display: grid;
+        width: 85%;
+        margin: auto;
+      }
+      .esp {
+        margin-right: 0px;
+      }
+      
 }
