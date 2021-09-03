@@ -146,6 +146,7 @@
     .imagem {
         height: 300px;
         width: 300px;
+        margin: 0 auto;
     }
 
     .fundopreto {
@@ -189,6 +190,9 @@
       .esp {
         margin-right: 0px;
       }
+      .divverm {
+        margin-top: 60px;
+      }
       .divverm p {
         color: #ffffff;
         font-size: 1.3em;
@@ -221,6 +225,12 @@
         margin-top: 20px;
         display: flex;
         justify-content: space-around;
+        width: 300px;
+      }
+      .aa {
+        display: flex;
+        flex-direction: row;
+        margin: auto;
         width: 300px;
       }
 }
