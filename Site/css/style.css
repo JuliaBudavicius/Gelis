@@ -212,8 +212,9 @@ ul li a:hover {
 
 .imagem {
   height: 300px;
-  width: 430px;
+  width: auto;
   margin-left: 57px;
+  border: 3px solid #EE1E46
 }
 
 .txt {
