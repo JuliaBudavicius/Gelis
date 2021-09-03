@@ -8,6 +8,8 @@
     <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet" href="css/responsive2.css">
+    <script src="js/validacao.js"></script>
+    <script src="js/endereco.js"></script>
 </head>
 <body>
     <a href="index.html"><img class="logo" src="img/logo.png" alt=""></a>
@@ -15,48 +17,48 @@
     <div class="caixa">
         <div class="caixa-item">
             <span>NOME DA EMPRESA</span>
-            <input class="media" type="text">
+            <input placeholder="EX: EMPRESA GELIS" onkeyup="validarnome()" id="idNomeEmpresa" class="media" type="text">
         </div>
         <div class="caixa-item">
             <span>CNPJ</span>
-            <input class="media" type="text">
+            <input placeholder="EX: 12.321.312/3123-23" onkeyup="validarcnpj()" id="idCNPJ" class="media" type="text">
         </div>
     </div>
 
     <div class="caixa2">
         <div class="caixa-item">
             <span>CEP</span>
-            <input class="pequeno" type="text">
+            <input placeholder="EX: 05257325" id="idCep" onblur="pesquisacep(this.value)" class="pequeno" type="text" maxlength="8"> 
         </div>
         <div class="caixa-item">
             <span>ESTADO</span>
-            <input class="pequeno" type="text">
+            <input placeholder="EX: SP" id="uf" class="pequeno" type="text">
         </div>
         <div class="caixa-item">
             <span>CIDADE</span>
-            <input class="pequeno" type="text">
+            <input placeholder="EX: SÃO PAULO" id="cidade" class="pequeno" type="text">
         </div>
     </div>
 
     <div class="caixa3">
         <div class="caixa-item">
             <span>LOGRADOURO</span>
-            <input class="grande" type="text">
+            <input placeholder="EX: AVENIDA HADDOCK LOBO" id="rua" class="grande" type="text">
         </div>
         <div class="caixa-item">
             <span>WHATSAPP</span>
-            <input placeholder="EX: (11) 981234432" class="pequeno" type="text">
+            <input onkeyup="validartelefone()" id="idTelefone" placeholder="EX: (11) 981234432" class="pequeno" type="text">
         </div>
     </div>
 
     <div class="caixa4">
         <div class="caixa-item">
             <span>EMAIL</span>
-            <input placeholder="EX: EMAIL@EMAIL.COM" class="media" type="text">
+            <input onkeyup="validaremail()" id="idEmail" placeholder="EX: EMAIL@EMAIL.COM" class="media" type="text">
         </div>
         <div class="caixa-item">
             <span>SENHA</span>
-            <input class="media" type="text">
+            <input placeholder="EX: SENHA" onkeyup="validaresenha()" id="idSenha" class="media" type="password">
         </div>
     </div>
 
