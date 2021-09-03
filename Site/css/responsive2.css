@@ -1,6 +1,7 @@
 /* Para Desktop Grande */
 @media screen and (min-width: 1382px) {
-    
+
+    /* Parte do Cadastro */
     .caixa {
         width: 60%;
         height: 100px;
@@ -44,4 +45,17 @@
         width: 11%;
     }
 
+    /* Parte do Login */
+
+}
+
+/* Para Mobile */
+@media only screen and (max-width: 480px) {
+
+    /* Parte do Login */
+    
+    body {
+        background-image: none;       
+        background-color: black;
+    }
 }

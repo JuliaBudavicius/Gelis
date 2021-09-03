@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+}
+
+body {
+    background-image: url(../img/wallpaper\ login.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.englobaTudo {
+    position: absolute;
+    right: 10%;
+    top: 20%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.englobaTudo a img {
+    width: 350px;
+    margin-bottom: 40px;
+}
+
+.titulo {
+    text-align: center;
+    letter-spacing: 10px;
+    margin-bottom: 50px;
+}
+
+.caixaLogin {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputTexto {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.inputTexto:last-child {
+    margin-left: 25px;
+}
+
+.inputTexto span {
+    margin-bottom: 20px;
+    letter-spacing: 5px;
+    font-weight: 500;
+}
+
+.inputTexto input {
+    background-color: #58585862;
+    border: none;
+    width: 100%;
+    height: 30px;
+    padding: 10px 7px;
+    color: white;
+    text-align: center;
+}
+
+.botaoLogin {
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+.botaoLogin a {
+    margin-top: 7%;
+    outline: none;
+    color: white;
+    letter-spacing: 2px;  
+    text-decoration: none; 
+    transition: .5s; 
+}
+
+.botaoLogin a:hover {
+    color: #EE1E46;
+}
+
+.traco {
+    margin-top: 10px;
+    background-color: white;
+    width: 80%;
+    height: 5px;
+}
+
+.botaoLogin button {
+    margin-top: 5%;
+    border: none;
+    background-color: #EE1E46;
+    color: white;
+    font-weight: 700;
+    padding: 15px 150px;
+    cursor: pointer;
+    letter-spacing: 3px;
+    width: 380px;
+    font-size: 1rem;
+    transition: .5s;
+}
+
+.botaoLogin button:hover {
+    border: 1px solid #EE1E46;
+    background-color: black;
+    letter-spacing: 5px;
+    padding: 15px 140px;
+}
