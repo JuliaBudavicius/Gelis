@@ -1,0 +1,102 @@
+@media screen and (min-width: 1382px) {
+    body {
+        background-color: black;
+        background-image: url(wallpaper\ cadastro.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+        font-family: sans-serif;
+    }
+
+    body img {
+        width: 15%;
+        margin-left: 2%;
+        margin-top: 1%;
+        cursor: pointer;
+    }
+
+    .box-cadastro {
+        text-align: center;
+        margin: 3% 10% 7% 10%;
+        position: relative;
+        /*width: 80%;
+        margin: auto;*/
+    }
+
+    .primeiro {
+        float: left;
+        margin-left: 2.7%;
+    }
+
+    .segundo {
+        float: right;
+    }
+
+    .input-padrao {
+        padding: 11px 185px;
+    }
+
+    .input-menor {
+        padding: 11px 90px;
+    }
+
+    .input-maior {
+        padding: 11px 280px;
+    }
+
+    .bt-cadastrar {
+        margin-top: 4%;
+        background-color: #EE1E46;
+        padding: 18px 100px;
+        border: none;
+        color: white;
+        font-weight: 500;
+        font-size: 20px;
+        letter-spacing: 2px;
+        cursor: pointer;
+    }
+
+    .bt-cadastrar:hover {
+        background-color: transparent;
+        border: 3px solid #EE1E46;
+        transition: 0.4s;
+        letter-spacing: 4px;
+    }
+
+    .text {
+        margin-bottom: 2%;
+        margin-top: 3%;
+        font-size: 14px;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+    .text2 {
+        margin-bottom: 4%;
+        margin-top: 6%;
+        font-size: 14px;
+        text-align: left;
+        letter-spacing: 2px;
+    }
+
+    .box-cadastro input {
+        background-color: #58585885;
+        border: none;
+        color: white;
+        text-align: left;
+    }
+
+    .box-cadastro input:focus {
+        outline-color: #EE1E46;
+        outline-style: outset;
+    }
+
+    .box-cadastro h1 {
+        font-weight: lighter;
+        letter-spacing: 10px;
+        color: #EE1E46;
+    }
+}
+
+
+
