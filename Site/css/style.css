@@ -211,8 +211,9 @@ ul li a:hover {
 }
 
 .imagem {
-  height: 200px;
-  width: 400px;
+  height: 300px;
+  width: 430px;
+  margin-left: 57px;
 }
 
 .txt {
