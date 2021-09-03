@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0%;
+    outline: none;
+    font-family: 'Nunito', sans-serif;
+}
+
+body {
+    background-image: url(../img/wallpaper\ cadastro.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* CAIXA 1 */
+.caixa {
+    display: flex;
+    /* background-color: royalblue; */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.caixa-item {
+    display: flex;
+    flex-direction: column;
+    /* margin-left: 40px; */
+    /* margin-right: 10px; */
+}
+
+/* CAIXA 2 */
+.caixa2 {
+    display: flex;
+    /* background-color: red; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.caixa3 {
+    display: flex;
+    /* background-color: green; */
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.caixa4 {
+    display: flex;
+    /* background-color: orange; */
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.caixa span, .caixa2 span, .caixa3 span, .caixa4 span {
+    margin-bottom: 0px;
+}
+
+.titulo {
+    font-weight: 600;
+    letter-spacing: 10px;
+    color: #EE1E46;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.grande {
+    width: 660px;
+    height: 30px;
+    padding: 0 20px;
+    background-color: #58585885;
+    border: none;
+}
+
+.media {
+    width: 480px;
+    height: 30px;
+    padding: 0 20px;
+    background-color: #58585885;
+    border: none;
+}
+
+.pequeno {
+    width: 300px;
+    height: 30px;
+    padding: 0 20px;
+    background-color: #58585885;
+    border: none;
+}
+
+.bt-cadastrar {
+    margin-top: 6%;
+    background-color: #EE1E46;
+    padding: 18px 80px;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: .5s;
+    position: absolute;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bt-cadastrar:hover {
+    background-color: transparent;
+    border: 3px solid #EE1E46;
+    transition: 0.4s;
+    letter-spacing: 4px;
+}
+
+.caixa input, .caixa2 input, .caixa3 input, .caixa4 input {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.logo {
+    padding: 10px 50px;
+    width: 8%;
+}
