@@ -249,8 +249,8 @@ ul li a:hover {
 .telainteira {
   display: flex;
   margin: 0 auto;
-  padding-top: 110px;
-  padding-bottom: 110px;
+
+
 }
 
 .fundopreto {
@@ -258,7 +258,7 @@ ul li a:hover {
   border-bottom: 3px solid #EE1E46;
   min-height: 70vh;
   width: 90vw;
-  margin: auto;
+  margin: 110px auto 0 auto;
   background-color: #000000b2;
   z-index: 1;
   display: flex;

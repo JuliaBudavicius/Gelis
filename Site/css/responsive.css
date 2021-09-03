@@ -154,7 +154,7 @@
         border-bottom: 3px solid #EE1E46;
         min-height: 70vh;
         width: 90vw;
-        margin: auto;
+        margin: 110px auto 110px auto;
         background-color: #000000b2;
         z-index: 1;
         display: grid;
