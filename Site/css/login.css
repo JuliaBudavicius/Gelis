@@ -14,6 +14,23 @@ body {
     background-size: cover;
 }
 
+.olhoAtivo {
+    position: absolute;
+    right: 3%;
+    top: 70%;
+    width: 20px;
+    cursor: pointer;
+}
+
+.olhoInativo {
+    position: absolute;
+    right: 2%;
+    top: 69%;
+    width: 30px;
+    cursor: pointer;
+    display: none;
+}
+
 .englobaTudo {
     position: absolute;
     right: 10%;

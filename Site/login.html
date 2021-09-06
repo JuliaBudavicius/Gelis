@@ -24,7 +24,7 @@
             </div>
             <div class="inputTexto">
                 <span>SENHA</span>
-                <input type="text">
+                <input id="senha" type="password">
             </div>
         </div>
         <div class="botaoLogin">
@@ -32,7 +32,26 @@
             <a href="cadastro.html">AINDA NÃO POSSUI CADASTRO?</a>
             <div class="traco"></div>
         </div>
+        <img onclick="ver()" id="olho" class="olhoAtivo" src="img/olhoAtivo.png" alt="">
     </div>
 </body>
 
 </html>
+
+<script>
+    var contador = 0;
+    function ver() {
+      
+        if (contador % 2 == 0) {
+            olho.src = 'img/olhoInativo.png';
+            senha.type = 'text';            
+        } else {
+            olho.src = 'img/olhoAtivo.png';
+            senha.type = 'password';
+            ativo = true;
+        }
+
+        contador++;
+    } 
+
+</script>
