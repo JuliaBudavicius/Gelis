@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -108,7 +107,7 @@ ul li a:hover {
   font-size: 16px;
   height: 30px;
   width: 70px;
-  font-family: 'Kulim Park';  
+  font-family: 'Kulim Park';
   float: right;
   border: 2px solid #ffffff;
   background-color: #ffffff00;
@@ -118,7 +117,7 @@ ul li a:hover {
   margin-top: -5px;
   position: relative;
   display: inline-block;
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 .login:hover {
@@ -127,10 +126,9 @@ ul li a:hover {
   border: 2px solid #be1b3c;
   color: #ffffff;
   background-color: #be1b3c;
-  box-shadow: 0 0 10px #be1b3c, 0 0 40px #be1b3c, 0 0 80px #be1b3c ;
-  transition-delay: .2s;  
+  box-shadow: 0 0 10px #be1b3c, 0 0 40px #be1b3c, 0 0 80px #be1b3c;
+  transition-delay: .2s;
 }
-
 
 .titulo {
   color: white;
@@ -170,7 +168,7 @@ ul li a:hover {
   cursor: pointer;
   position: relative;
   display: inline-block;
-  overflow: hidden; 
+  overflow: hidden;
   transition: .5s;
 }
 
@@ -178,7 +176,7 @@ ul li a:hover {
   border: 2px solid #EE1E46;
   color: #ffffff;
   background-color: #fa244f;
-  box-shadow: 0 0 10px #fa244f, 0 0 40px #fa244f, 0 0 80px #fa244f ;
+  box-shadow: 0 0 10px #fa244f, 0 0 40px #fa244f, 0 0 80px #fa244f;
   transition-delay: .2s;
 }
 
@@ -235,7 +233,6 @@ ul li a:hover {
 
 .textosobre {
   margin: 0 0 0 0;
-  text-align: justify;
   color: #ffffff;
 }
 
@@ -250,8 +247,6 @@ ul li a:hover {
 .telainteira {
   display: flex;
   margin: 0 auto;
-
-
 }
 
 .fundopreto {
@@ -279,18 +274,19 @@ ul li a:hover {
 .textoservi {
   color: #ffffff;
   width: 100%;
-  text-align: justify;
 }
 
 .a {
   text-align: center;
 }
+
 .center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
 .divfundo {
   height: 400px;
   width: 100%;
@@ -301,17 +297,20 @@ ul li a:hover {
   justify-content: center;
   align-items: center;
 }
+
 .txtdownload {
   font-weight: bold;
   margin: 0;
   font-size: 2.8em;
   color: #ffffff;
 }
+
 .txtred {
   letter-spacing: .4rem;
   color: #EE1E46;
   font-size: 1.2em;
 }
+
 .btndownload {
   background-color: #EE1E46;
   border-radius: 15px;
@@ -320,7 +319,7 @@ ul li a:hover {
   border: none;
   z-index: 1;
   font-family: 'Kulim Park';
-  position:relative;
+  position: relative;
   cursor: pointer;
   margin-top: 30px;
   position: relative;
@@ -329,7 +328,7 @@ ul li a:hover {
 
 .btndownload:hover {
   color: #ffffff;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .btndownload:before {
@@ -363,28 +362,33 @@ ul li a:hover {
   float: right;
   margin-left: -10px;
   margin-top: 25px;
-  position:relative;
+  position: relative;
   z-index: 2;
 }
+
 .btndownload p {
   color: #ffffff;
   margin: 0;
   font-weight: bold;
   font-size: 1.7em;
 }
+
 .btndownload a {
   color: #ffffff;
   margin: 0;
   font-size: 0.8em;
 }
+
 .txtslack {
   color: #ffffff;
   margin: 20px 0 0 0;
   font-size: 1.1em;
 }
+
 .txtslack a {
   color: #EE1E46;
 }
+
 .divverm {
   height: 80px;
   width: 50%;
@@ -415,33 +419,40 @@ ul li a:hover {
   justify-content: space-evenly;
   align-items: center;
 }
+
 .divfundocont img {
   height: 120px;
 }
+
 .aa {
   display: flex;
   flex-direction: row;
 }
+
 .horiz {
   display: flex;
   flex-direction: column;
 }
+
 .txtemail {
   color: #F78097;
   font-size: 2.0em;
   margin: 0 0 30px 10px;
 }
+
 .txtduvid {
   color: #ffffff;
   font-size: 1.2em;
   margin: -10px 0 0 10px;
 }
+
 .email {
   color: #ffffff;
   font-size: 1.3em;
   margin: 0 0 0 10px;
   font-weight: bold;
 }
+
 .centercont {
   display: flex;
   flex-direction: column;
@@ -460,18 +471,21 @@ ul li a:hover {
   border-bottom: 2px solid #EE1E46;
   letter-spacing: .2em;
 }
+
 .divredes {
   margin-top: 20px;
   display: flex;
   justify-content: space-around;
   width: 400px;
 }
+
 .fa {
   color: #ffffff;
   transition: 0.5s color;
   cursor: pointer;
 }
+
 .fa:hover {
   color: #EE1E46;
-    transition-delay: .2s;
+  transition-delay: .2s;
 }
