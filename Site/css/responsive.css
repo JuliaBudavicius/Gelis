@@ -127,6 +127,34 @@
         margin: 0 0 0 10px;
         font-weight: bold;
       }
+
+      /*
+      TESTE CSS THAIS CONTATO
+      .contato-box {
+        background-image: url(../img/fundo2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .contato-group {
+        background-color: #F78097;
+        color: white;
+      }
+
+      .contato-box div {
+        color: white;
+      }
+
+      .contato-text{
+        color: white;
+        background-color: #EE1E46;
+        text-align: center;
+        margin-left: 6%;
+        margin-right: 6%;
+        padding: 8px 5px;
+        font-size: 22px;
+      }
+      */
 }
 
 @media screen and (max-width: 820px) {
@@ -234,4 +262,6 @@
         margin: auto;
         width: 300px;
       }
+
+      
 }
