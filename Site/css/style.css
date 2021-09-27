@@ -39,15 +39,19 @@ html, body {
   background-size: cover;
 }
 
+#contato {
+  background-color: #0e0e0e;
+}
+
 .contatoslide {
   position: relative;
-  min-height: 100%;
+  min-height: 40%;
   width: 100%;
 }
 
 .downloadslide {
   position: relative;
-  min-height: 100%;
+  min-height: 90%;
   width: 100%;
 }
 
@@ -389,7 +393,7 @@ ul li a:hover {
   color: #EE1E46;
 }
 
-.divverm {
+/* .divverm {
   height: 80px;
   width: 50%;
   background-color: #EE1E46;
@@ -484,8 +488,78 @@ ul li a:hover {
   transition: 0.5s color;
   cursor: pointer;
 }
-
 .fa:hover {
   color: #EE1E46;
   transition-delay: .2s;
+} */
+
+.contato-box {
+  padding: 20px 0 20px;
+}
+
+.contato-text {
+  width: 94%;
+  height: 50px;
+  margin: 0 auto;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  background-color: #aa1e39;
+}
+
+.denisdj {
+  color: #ffffff;
+  font-size: 1.25em;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.txtcont {
+  color: #ffffff;
+  font-size: 1.1em;
+  border-bottom: 3px solid #EE1E46;
+  margin: 0;
+  padding: 0 0 5px 0;
+}
+
+.direitacont {
+  width: 47%;
+  float: left;
+}
+
+.txtemail {
+  color: #EE1E46;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 15px 0 10px 0;
+  padding: 0;
+}
+.cont {
+  display: flex;
+  justify-content: space-between;
+}
+.txtinfo {
+  color: #ffffff;
+  margin: 0;
+  padding: 0 0 0 0;
+}
+.esquerdacont {
+  width: 47%;
+  float: right;
+}
+.dir {
+  margin-right: 80px;
+}
+.txtredes {
+  color: #ffffff;
+  font-size: 1.1em;
+  border-bottom: 3px solid #EE1E46;
+  margin: 0;
+  padding: 0 0px 5px 0px;
+}
+
+.divcentraliza {
+  display: flex;
+  justify-content: center;
 }
