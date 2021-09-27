@@ -45,7 +45,7 @@ html, body {
 
 .contatoslide {
   position: relative;
-  min-height: 40%;
+  min-height: 45%;
   width: 100%;
 }
 
@@ -483,18 +483,10 @@ ul li a:hover {
   width: 400px;
 }
 
-.fa {
-  color: #ffffff;
-  transition: 0.5s color;
-  cursor: pointer;
-}
-.fa:hover {
-  color: #EE1E46;
-  transition-delay: .2s;
-} */
+ */
 
 .contato-box {
-  padding: 20px 0 20px;
+  padding: 20px 0 20px 0;
 }
 
 .contato-text {
@@ -528,29 +520,41 @@ ul li a:hover {
   float: left;
 }
 
+.logocont {
+  margin-right: 10px;
+  margin-bottom: -7px;
+  height: 25px;
+}
+
 .txtemail {
-  color: #EE1E46;
+  color: #F78097;
   font-weight: bold;
   font-size: 1.2em;
-  margin: 15px 0 10px 0;
+  margin: 25px 0 15px 0;
   padding: 0;
 }
+
 .cont {
   display: flex;
   justify-content: space-between;
 }
+
 .txtinfo {
   color: #ffffff;
   margin: 0;
-  padding: 0 0 0 0;
+  font-size: 1.05em;
+  padding: 5px 0 0 0;
 }
+
 .esquerdacont {
   width: 47%;
   float: right;
 }
+
 .dir {
   margin-right: 80px;
 }
+
 .txtredes {
   color: #ffffff;
   font-size: 1.1em;
@@ -562,4 +566,19 @@ ul li a:hover {
 .divcentraliza {
   display: flex;
   justify-content: center;
+}
+.centerfa {
+  margin: 15px 0 0 0;
+  width: 35%;
+  display: flex;
+  justify-content: space-between;
+}
+.fa {
+  color: #ffffff;
+  transition: 0.5s color;
+  cursor: pointer;
+}
+.fa:hover {
+  color: #EE1E46;
+  transition-delay: .2s;
 }
