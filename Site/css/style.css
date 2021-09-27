@@ -582,3 +582,9 @@ ul li a:hover {
   color: #EE1E46;
   transition-delay: .2s;
 }
+.copytxt {
+  border-top: 3px solid #EE1E46;
+  font-size: 1.15em;
+  color: #ffffff;
+  padding: 5px 0px 0 0px;
+}
