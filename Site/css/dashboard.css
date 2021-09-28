@@ -1,0 +1,84 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Kulim Park';
+    scroll-behavior: smooth;
+    text-decoration: none;
+    background-color: black;
+  }
+p {
+    margin: 0;
+    padding: 0;
+}
+.homeslide {
+    position: relative;
+    min-height: 100%;
+    background-color: #070709;
+    min-width: 100%;
+  }
+.menulateral {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 200px;
+    height: 100vh;
+    background-color: #0c0b10;
+}
+.topo {
+    position: absolute;
+    top:0;
+}
+.logo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 120px;
+    padding: 0 20px 5px 20px;
+    border-bottom: 3px solid #EE1E46;
+}
+.botoes {
+    flex-direction: column;
+    display: flex;
+}
+.btn {
+    width: 200px;
+    cursor: pointer;
+    height: 45px;
+    color: white;
+    border: 0;
+    font-size: 1em;
+    background-color: #00000000;
+}
+.btn:hover {
+    background-color: #131218;
+}
+.btn-sair{
+    position: absolute;
+    bottom:0;
+}
+.fa-cog,  .fa-user-plus, .fa-sign-out-alt{
+    float: left;
+    margin-left: 10px;
+}
+.fa-tv {
+    float: left;
+    margin-left: 7px; 
+}
+.destaque {
+    border: 0;
+    border-left: 3px solid #EE1E46;
+}
+.iconempresa {
+    width: 90px;
+}
+.nomeempresa {
+    color: white;
+    font-size: 1.5em;
+}
+.cnpjempresa {
+    color: #656566;
+    font-size: 1em;
+}
