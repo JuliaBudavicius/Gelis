@@ -102,7 +102,7 @@ p {
 }
 .pesquisa {
     margin: 15px 0 0 20px;
-    width: 250px;
+    width: 230px;
     position: relative;
     display: flex;
 }
@@ -114,7 +114,7 @@ p {
     padding: 5px;
     background-color: #22202a;
     height: 20px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 15px 0 0 15px;
     outline: none;
 }
 
@@ -129,7 +129,7 @@ p {
     background: #22202a;
     text-align: center;
     color: #ffffff;
-    border-radius: 0 10px 10px 0;
+    border-radius: 0 15px 15px 0;
     cursor: pointer;
     font-size: 20px;
 }
@@ -140,12 +140,26 @@ p {
     cursor: pointer;
     background-color: #2e2d32;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: 37px;
+    height: 37px;
     display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: 15px;
     right: 20px;
+}
+.numero {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15px;
+    width: 15px;
+    font-size: 0.7em;
+    color: #ffffff;
+    border-radius: 50%;
+    right: -2px;
+    bottom: -2px;
+    background-color: #ee1e46;
 }
