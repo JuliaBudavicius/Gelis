@@ -7,31 +7,37 @@ html, body {
     scroll-behavior: smooth;
     text-decoration: none;
     background-color: black;
-  }
+}
+
 p {
     margin: 0;
     padding: 0;
 }
+
 .homeslide {
     position: relative;
     min-height: 100%;
     background-color: #070709;
     min-width: 100%;
-  }
+}
+
 .menulateral {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
+    float: left;
     width: 200px;
     height: 100vh;
     background-color: #0c0b10;
 }
+
 .topo {
     position: absolute;
-    top:0;
+    top: 0;
 }
+
 .logo {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -39,10 +45,12 @@ p {
     padding: 0 20px 5px 20px;
     border-bottom: 3px solid #EE1E46;
 }
+
 .botoes {
     flex-direction: column;
     display: flex;
 }
+
 .btn {
     width: 200px;
     cursor: pointer;
@@ -52,33 +60,92 @@ p {
     font-size: 1em;
     background-color: #00000000;
 }
+
 .btn:hover {
     background-color: #131218;
 }
-.btn-sair{
+
+.btn-sair {
     position: absolute;
-    bottom:0;
+    bottom: 0;
 }
-.fa-cog,  .fa-user-plus, .fa-sign-out-alt{
+
+.fa-cog, .fa-user-plus, .fa-sign-out-alt {
     float: left;
     margin-left: 10px;
 }
+
 .fa-tv {
     float: left;
-    margin-left: 7px; 
+    margin-left: 7px;
 }
+
 .destaque {
-    border: 0;
     border-left: 3px solid #EE1E46;
 }
+
 .iconempresa {
     width: 90px;
 }
+
 .nomeempresa {
     color: white;
     font-size: 1.5em;
 }
+
 .cnpjempresa {
     color: #656566;
     font-size: 1em;
+}
+.ladoEsquerdo {
+    float: left;
+}
+.pesquisa {
+    margin: 15px 0 0 20px;
+    width: 250px;
+    position: relative;
+    display: flex;
+}
+
+.pesquisacampo {
+    width: 100%;
+    border: 3px solid #22202a;
+    border-right: none;
+    padding: 5px;
+    background-color: #22202a;
+    height: 20px;
+    border-radius: 10px 0 0 10px;
+    outline: none;
+}
+
+.pesquisacampo:focus {
+    color: #ffffff;
+}
+
+.pesquisabtn {
+    width: 40px;
+    height: 36px;
+    border: 1px solid #22202a;
+    background: #22202a;
+    text-align: center;
+    color: #ffffff;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    font-size: 20px;
+}
+.fa-bell {
+    color: #ffffff;
+}
+.notifica {
+    cursor: pointer;
+    background-color: #2e2d32;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 15px;
+    right: 20px;
 }
