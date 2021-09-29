@@ -40,9 +40,9 @@ function validaremail() {
     }
 }
 
-
+var senha;
 function validaresenha() {
-    var senha = idSenha.value;
+     senha = idSenha.value;
 
     if (senha.length >= 5) {
         idSenha.style.border = '2px solid #04d361';
@@ -52,6 +52,20 @@ function validaresenha() {
         idSenha.style.border = '2px solid #EE1E46';
     }
 }
+
+function confirmaSenha() {
+    var validaSenha = idVerificaSenha.value;
+    
+    if(validaSenha != senha){
+        idVerificaSenha.style.border = '2px solid #EE1E46';
+    }else{
+        idVerificaSenha.style.border = '2px solid #04d361';
+    }
+
+
+}
+
+
 
 function validartelefone() {
     var telefone = idTelefone.value;

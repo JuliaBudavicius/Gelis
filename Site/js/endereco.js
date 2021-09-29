@@ -12,10 +12,10 @@ function meu_callback(conteudo) {
         document.getElementById('cidade').value = (conteudo.localidade);
         document.getElementById('uf').value = (conteudo.uf);
 
-        rua.style.border = '2px solid #04d361';
-        idCep.style.border = '2px solid #04d361';   
-        cidade.style.border = '2px solid #04d361';
-        uf.style.border = '2px solid #04d361';
+        rua.style.border = '1px solid #04d361';
+        idCep.style.border = '1px solid #04d361';   
+        cidade.style.border = '1px solid #04d361';
+        uf.style.border = '1px solid #04d361';
     } //end if.
     else {
         //CEP não Encontrado.

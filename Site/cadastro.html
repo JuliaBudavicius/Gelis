@@ -28,37 +28,43 @@
     <div class="caixa2">
         <div class="caixa-item">
             <span>CEP</span>
-            <input placeholder="EX: 05257325" id="idCep" onblur="pesquisacep(this.value)" class="pequeno" type="text" maxlength="8"> 
+            <input placeholder="EX: 05257325" id="idCep" onblur="pesquisacep(this.value)" class="pequeno" type="text" maxlength="8" style="width: 150px;"> 
         </div>
         <div class="caixa-item">
-            <span>ESTADO</span>
-            <input placeholder="EX: SP" id="uf" class="pequeno" type="text">
+            <span style="margin-left: 20px;">LOGRADOURO</span>
+            <input placeholder="EX: AVENIDA HADDOCK LOBO" id="rua" class="grande" type="text" style="width: 271px; margin-left: 20px;">
         </div>
         <div class="caixa-item">
-            <span>CIDADE</span>
-            <input placeholder="EX: SÃO PAULO" id="cidade" class="pequeno" type="text">
+            <span style="    margin-left: 20px;">CIDADE</span>
+            <input placeholder="EX: SÃO PAULO" id="cidade" class="pequeno" type="text" style="width: 260px; margin-right: 640px; margin-left: 20px;">
+        </div>
+        <div class="caixa-item">
+            <span style="margin-left: -617px;">ESTADO</span>
+            <input placeholder="EX: SP" id="uf" class="pequeno" type="text" style="width: 152px; margin-left:-617px;">
         </div>
     </div>
 
     <div class="caixa3">
-        <div class="caixa-item">
-            <span>LOGRADOURO</span>
-            <input placeholder="EX: AVENIDA HADDOCK LOBO" id="rua" class="grande" type="text">
-        </div>
+      
         <div class="caixa-item">
             <span>WHATSAPP</span>
-            <input onkeyup="validartelefone()" id="idTelefone" placeholder="EX: (11) 981234432" class="pequeno" type="text">
+            <input onkeyup="validartelefone()" id="idTelefone" placeholder="EX: (11) 981234432" class="pequeno" type="text" style="width: 480px;">
         </div>
-    </div>
-
-    <div class="caixa4">
         <div class="caixa-item">
             <span>EMAIL</span>
             <input onkeyup="validaremail()" id="idEmail" placeholder="EX: EMAIL@EMAIL.COM" class="media" type="text">
         </div>
+    </div>
+
+    <div class="caixa4">
+        
         <div class="caixa-item">
             <span>SENHA</span>
             <input placeholder="EX: SENHA" onkeyup="validaresenha()" id="idSenha" class="media" type="password">
+        </div>
+        <div class="caixa-item">
+            <span>REPITA SUA SENHA </span>
+            <input placeholder="EX: REPITA A SENHA DIGITADA" onkeyup="confirmaSenha()" id="idVerificaSenha" class="media" type="password">
         </div>
     </div>
 
