@@ -116,12 +116,8 @@ p {
     height: 20px;
     border-radius: 15px 0 0 15px;
     outline: none;
-}
-
-.pesquisacampo:focus {
     color: #ffffff;
 }
-
 .pesquisabtn {
     width: 40px;
     height: 36px;
@@ -162,4 +158,58 @@ p {
     right: -2px;
     bottom: -2px;
     background-color: #ee1e46;
+}
+.tituloStatus {
+    color: #ffffff;
+    font-size: 1.4em;
+}
+.inferior {
+    margin: 50px 0 0 20px;
+}
+.boxes {
+    display: flex;
+}
+.box {
+    margin: 15px 20px 0 0;
+    background-color: #22202a;
+    width: 270px;
+    height: 90px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.boxComp {
+    margin: 15px 20px 0 0;
+    background-color: #22202a;
+    width: 300px;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.txt {
+    margin: 10px 0 0 0;
+    font-size: 1.4em;
+    font-weight: 400;
+}
+.Normal {
+    color: #06b306;
+}
+.Alerta {
+    color: #eeee05;
+}
+.Critico {
+    color: #ff0000;
+}
+.qtdeComp {
+    margin: 10px 0 0 0;
+    font-size: 1.2em;
+    color: #ffffff;
+}
+.computadores {
+    margin: 50px 0 0 0;
+    display: flex;
+    flex-direction: column;
 }
