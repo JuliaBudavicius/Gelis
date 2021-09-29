@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -70,7 +71,9 @@ p {
     bottom: 0;
 }
 
-.fa-cog, .fa-user-plus, .fa-sign-out-alt {
+.fa-cog,
+.fa-user-plus,
+.fa-sign-out-alt {
     float: left;
     margin-left: 10px;
 }
@@ -97,9 +100,11 @@ p {
     color: #656566;
     font-size: 1em;
 }
+
 .ladoEsquerdo {
     float: left;
 }
+
 .pesquisa {
     margin: 15px 0 0 20px;
     width: 230px;
@@ -111,13 +116,14 @@ p {
     width: 100%;
     border: 3px solid #22202a;
     border-right: none;
-    padding: 5px;
+    padding: 5px 7px;
     background-color: #22202a;
     height: 20px;
     border-radius: 15px 0 0 15px;
     outline: none;
     color: #ffffff;
 }
+
 .pesquisabtn {
     width: 40px;
     height: 36px;
@@ -129,9 +135,11 @@ p {
     cursor: pointer;
     font-size: 20px;
 }
+
 .fa-bell {
     color: #ffffff;
 }
+
 .notifica {
     cursor: pointer;
     background-color: #2e2d32;
@@ -145,6 +153,7 @@ p {
     top: 15px;
     right: 20px;
 }
+
 .numero {
     position: absolute;
     display: flex;
@@ -159,16 +168,20 @@ p {
     bottom: -2px;
     background-color: #ee1e46;
 }
+
 .tituloStatus {
     color: #ffffff;
     font-size: 1.4em;
 }
+
 .inferior {
     margin: 50px 0 0 20px;
 }
+
 .boxes {
     display: flex;
 }
+
 .box {
     margin: 15px 20px 0 0;
     background-color: #22202a;
@@ -178,7 +191,14 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.7s;
+    cursor: pointer;
 }
+
+.box:hover {
+    background-color: #ee1e46;    
+}
+
 .boxComp {
     margin: 15px 20px 0 0;
     background-color: #22202a;
@@ -189,25 +209,31 @@ p {
     flex-direction: column;
     align-items: center;
 }
+
 .txt {
     margin: 10px 0 0 0;
     font-size: 1.4em;
     font-weight: 400;
 }
+
 .Normal {
     color: #06b306;
 }
+
 .Alerta {
     color: #eeee05;
 }
+
 .Critico {
     color: #ff0000;
 }
+
 .qtdeComp {
     margin: 10px 0 0 0;
     font-size: 1.2em;
     color: #ffffff;
 }
+
 .computadores {
     margin: 50px 0 0 0;
     display: flex;
