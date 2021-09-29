@@ -92,41 +92,6 @@
         justify-content: center;
         align-items: center;
       }
-      .divfundocont {
-        height: 400px;
-        width: 100%;
-        margin-top: -10px;
-        background-color: #202020;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-      }
-      .txtredes {
-        color: #ffffff;
-        font-size: 1.7em;
-        margin: 30px 0 0 0;
-        padding-bottom: 10px;
-        text-align: center;
-        width: 550px;
-        border-bottom: 2px solid #EE1E46;
-        letter-spacing: .2em;
-      }
-      .txtemail {
-        color: #F78097;
-        font-size: 2.2em;
-        margin: 0 0 30px 10px;
-      }
-      .txtduvid {
-        color: #ffffff;
-        font-size: 1.4em;
-        margin: -10px 0 0 10px;
-      }
-      .email {
-        color: #ffffff;
-        font-size: 1.5em;
-        margin: 0 0 0 10px;
-        font-weight: bold;
-      }
 
       /*
       TESTE CSS THAIS CONTATO
@@ -218,50 +183,39 @@
       .esp {
         margin-right: 0px;
       }
-      .divverm {
-        margin-top: 60px;
+
+      .divcentraliza {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
-      .divverm p {
-        color: #ffffff;
-        font-size: 1.3em;
-        margin: 0;
-        align-items: center;
+      .direitacont {
+        width: 94%;
+        margin: auto;
       }
-      .divfundocont {
-        height: 400px;
-        width: 100%;
-        margin-top: -10px;
-        background-color: #202020;
-        display: grid;
-        justify-content: space-evenly;
-        align-items: center;
+      .esquerdacont {
+        width: 94%;
+        margin: auto;
+        margin-top: 40px;
       }
-      .divfundocont img {
-        height: 80px;
+      .centerfa {
+        margin: 15px 0 0 0;
+        display: flex;
+        justify-content: space-between;
+        width: 94%;
+        margin: auto;
       }
       .txtredes {
-        color: #ffffff;
-        font-size: 1.4em;
-        margin: 30px 0 0 0;
-        padding-bottom: 10px;
-        text-align: center;
-        width: 300px;
-        border-bottom: 2px solid #EE1E46;
-        letter-spacing: .2em;
+        margin-bottom: 15px;
       }
-      .divredes {
-        margin-top: 20px;
-        display: flex;
-        justify-content: space-around;
-        width: 300px;
-        margin-bottom: 50px;
+      .copytxt {
+        padding-top: 15px;
       }
-      .aa {
-        display: flex;
-        flex-direction: row;
-        margin: auto;
-        width: 300px;
+      .dir {
+        margin-right: 0px;
+        margin-left: 10px;
       }
-
-      
+      .cont div {
+        width: 50%;
+      }
 }
