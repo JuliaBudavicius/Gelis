@@ -1,5 +1,4 @@
-html,
-body {
+html, body {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -61,6 +60,7 @@ p {
     font-size: 1em;
     background-color: #00000000;
 }
+
 .btn:hover {
     background-color: #131218;
 }
@@ -70,9 +70,7 @@ p {
     bottom: 0;
 }
 
-.fa-cog,
-.fa-user-plus,
-.fa-sign-out-alt {
+.fa-cog, .fa-user-plus, .fa-sign-out-alt {
     float: left;
     margin-left: 10px;
 }
@@ -195,7 +193,7 @@ p {
 }
 
 .box:hover {
-    background-color: #ee1e46;    
+    background-color: #ee1e46;
 }
 
 .boxComp {
@@ -206,6 +204,7 @@ p {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
     align-items: center;
     justify-content: center;
 }
@@ -239,52 +238,73 @@ p {
     display: flex;
     flex-direction: column;
 }
+
 .nomeComp {
     color: #ffffff;
     font-size: 1.2em;
 }
+
 .nomeResponsavel {
     color: #656566;
     font-size: 1em;
 }
+
 .txtEstado {
     font-size: 1.1em;
 }
+
 .horiz {
     margin: 0 auto;
     width: 80%;
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between;
 }
+
 .vert {
     align-items: center;
     display: flex;
     flex-direction: column;
 }
+
 .txtHard {
     font-size: 1.2em;
     color: #ffffff;
 }
+
 .temp {
     font-size: 1.2em;
     color: #ff0000;
 }
+
 .ram {
     font-size: 1.1em;
     color: #ff0000;
+}
+.fa-dist {
+    margin: 10px 0 20px 0;
+    color: #eeee05;
 }
 .fa-exclamation-triangle {
     margin: 10px 0 20px 0;
     color: #eeee05;
 }
+.fa-times {
+    color: #1c223a;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+}
 .fa-exclamation-circle {
     margin: 10px 0 20px 0;
     color: #ff0000;
 }
+
 .fa-check-circle {
     margin: 10px 0 20px 0;
     color: #06b306;
 }
+
 .absolute {
     position: absolute;
     z-index: 3;
@@ -294,6 +314,9 @@ p {
     background-color: #2e2d324d;
     backdrop-filter: blur(3px);
 }
+.none {
+    display: none;
+}
 .boxTitulo {
     height: 30px;
     margin: 0 auto;
@@ -301,38 +324,117 @@ p {
     display: flex;
     align-items: center;
     width: 80%;
-    background-color: #1e1835;
+    background-color: #1c223a;
     border-radius: 10px 10px 0 0;
 }
+
 .boxSup {
     height: 90px;
     margin: 0 auto;
     width: 80%;
-    background-color: #281e50;
+    background-color: #29304a;
     display: flex;
     align-items: center;
     justify-content: space-around;
     border-radius: 0 0 10px 10px;
 }
+
+.boxTituloP {
+    height: 30px;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #1c223a;
+    border-radius: 10px 10px 0 0;
+}
+
+.listProc {
+    height: 400px;
+    width: 100%;
+    background-color: #29304a;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0 0 10px 10px;
+}
+
+.boxTituloS {
+    height: 30px;
+    margin-top: 50px;
+    display: flex;
+    float: right;
+    align-items: center;
+    width: 80%;
+    background-color: #1c223a;
+    border-radius: 10px 10px 0 0;
+}
+
+.divstatus {
+    height: 140px;
+    width: 80%;
+    float: right;
+    background-color: #29304a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
+}
+.txtAlerta {
+    color: #ffff00;
+    font-size: 1.4em;
+    margin-top: -10px;
+}
+.ultReg {
+    height: 180px;
+    width: 80%;
+    background-color: #29304a;
+    display: flex;
+    float: right;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0 0 10px 10px;
+}
+
+.inf {
+    display: flex;
+    justify-content: center;
+}
+
+.esq {
+    width: 50%;
+}
+
+.dir {
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+}
+
 .txtInfo {
     padding-left: 10px;
     color: #ffffff;
     font-size: 1.2em;
 }
+
 .verti {
     margin-top: -10px;
     display: flex;
     flex-direction: column;
 }
+
 .titInfo {
-    color:#949494;
+    color: #7d828f;
     font-size: 1.1em;
 }
+
 .Info {
     color: white;
     font-size: 1.3em;
 }
+
 .InfoRed {
-    color: red;
+    color: #bd6865;
     font-size: 1.3em;
 }

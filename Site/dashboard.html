@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css">
+    <script src="js/dashboard.js"></script>
     <script src="https://kit.fontawesome.com/6f2d70ffaf.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kulim+Park:wght@200;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
@@ -14,7 +15,8 @@
 
 <body>
     <section class="dashboard">
-        <div class="absolute">
+        <div class="absolute none" id="abs">
+            <i class="fa fa-times fa-2x" onclick="hide()"></i>
             <div class="boxTitulo">
                 <p class="txtInfo">Informações Principais</p>
             </div>
@@ -34,6 +36,34 @@
                 <div class="verti">
                     <p class="titInfo">Uso da Memória RAM</p>
                     <p class="InfoRed">7.4GB/8.0GB</p>
+                </div>
+            </div>
+            <div class="inf">
+                <div class="esq">
+                    <div class="boxTituloP">
+                        <p class="txtInfo">Lista de processos</p>
+                    </div>
+                    <div class="listProc">
+
+                    </div>
+                </div>
+                <div class="dir">
+                    <div>
+                        <div class="boxTituloS">
+                            <p class="txtInfo">Status da máquina</p>
+                        </div>
+                        <div class="divstatus">
+                            <i class="fas fa-exclamation-triangle fa-4x"></i>
+                            <p class="txtAlerta">Alerta</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="boxTituloS">
+                            <p class="txtInfo">Ultimos registros</p>
+                        </div>
+                        <div class="ultReg"></div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -83,7 +113,7 @@
                 <div class="computadores">
                     <p class="tituloStatus">Computadores</p>
                     <div class="boxes">
-                        <div class="boxComp">
+                        <div class="boxComp" onclick="show()">
                             <p class="nomeComp">Computador 1</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Alerta">Alerta</p>
@@ -103,7 +133,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="boxComp">
+                        <div class="boxComp" onclick="show()">
                             <p class="nomeComp">Computador 2</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Critico">Critico</p>
@@ -123,7 +153,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="boxComp">
+                        <div class="boxComp" onclick="show()">
                             <p class="nomeComp">Computador 3</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Normal">Normal</p>
