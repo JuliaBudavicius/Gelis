@@ -354,8 +354,7 @@ p {
     width: 100%;
     background-color: #29304a;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    flex-direction: column;
     border-radius: 0 0 10px 10px;
 }
 
@@ -392,9 +391,13 @@ p {
     background-color: #29304a;
     display: flex;
     float: right;
-    align-items: center;
-    justify-content: space-around;
     border-radius: 0 0 10px 10px;
+}
+.titulosUltReg {
+    width: 90%;
+    margin: 10px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 
 .inf {
@@ -437,4 +440,26 @@ p {
 .InfoRed {
     color: #bd6865;
     font-size: 1.3em;
+}
+.titProc {
+    font-size: 1.1;
+    color: #ffffff;
+}
+.infoProc {
+    font-size: 1.1;
+    color: #7d828f;
+}
+.titulosProc {
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+.linha {
+    display: flex;
+    margin: 0 auto;
+    margin-top: 10px;
+    justify-content: space-between;
+    width: 90%;
 }
