@@ -14,6 +14,29 @@
 
 <body>
     <section class="dashboard">
+        <div class="absolute">
+            <div class="boxTitulo">
+                <p class="txtInfo">Informações Principais</p>
+            </div>
+            <div class="boxSup">
+                <div class="verti">
+                    <p class="titInfo">Hostname</p>
+                    <p class="Info">HS3751</p>
+                </div>
+                <div class="verti">
+                    <p class="titInfo">Temperatura da GPU</p>
+                    <p class="InfoRed">65°C</p>
+                </div>
+                <div class="verti">
+                    <p class="titInfo">Temperatura da CPU</p>
+                    <p class="Info">54°C</p>
+                </div>
+                <div class="verti">
+                    <p class="titInfo">Uso da Memória RAM</p>
+                    <p class="InfoRed">7.4GB/8.0GB</p>
+                </div>
+            </div>
+        </div>
         <div class="menulateral">
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
@@ -46,23 +69,80 @@
                 <div class="boxes">
                     <div class="box">
                         <p class="txt Normal">Normal</p>
-                        <p class="qtdeComp">5 Computadores</p>
+                        <p class="qtdeComp">1 Computadores</p>
                     </div>
                     <div class="box">
                         <p class="txt Alerta">Alerta</p>
-                        <p class="qtdeComp">2 Computadores</p>
+                        <p class="qtdeComp">1 Computadores</p>
                     </div>
                     <div class="box">
                         <p class="txt Critico">Crítico</p>
-                        <p class="qtdeComp">0 Computadores</p>
+                        <p class="qtdeComp">1 Computadores</p>
                     </div>
                 </div>
                 <div class="computadores">
                     <p class="tituloStatus">Computadores</p>
                     <div class="boxes">
-                        <div class="boxComp"></div>
-                        <div class="boxComp"></div>
-                        <div class="boxComp"></div>
+                        <div class="boxComp">
+                            <p class="nomeComp">Computador 1</p>
+                            <p class="nomeResponsavel">Responsavel</p>
+                            <p class="txtEstado Alerta">Alerta</p>
+                            <i class="fas fa-exclamation-triangle fa-3x"></i>
+                            <div class="horiz">
+                                <div class="vert">
+                                    <p class="txtHard">GPU</p>
+                                    <p class="temp">65°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">CPU</p>
+                                    <p class="temp">54°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">RAM</p>
+                                    <p class="ram">7.4GB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxComp">
+                            <p class="nomeComp">Computador 2</p>
+                            <p class="nomeResponsavel">Responsavel</p>
+                            <p class="txtEstado Critico">Critico</p>
+                            <i class="fas fa-exclamation-circle fa-3x"></i>
+                            <div class="horiz">
+                                <div class="vert">
+                                    <p class="txtHard">GPU</p>
+                                    <p class="temp">65°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">CPU</p>
+                                    <p class="temp">54°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">RAM</p>
+                                    <p class="ram">7.4GB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxComp">
+                            <p class="nomeComp">Computador 3</p>
+                            <p class="nomeResponsavel">Responsavel</p>
+                            <p class="txtEstado Normal">Normal</p>
+                            <i class="fas fa-check-circle fa-3x"></i>
+                            <div class="horiz">
+                                <div class="vert">
+                                    <p class="txtHard">GPU</p>
+                                    <p class="temp">65°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">CPU</p>
+                                    <p class="temp">54°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">RAM</p>
+                                    <p class="ram">7.4GB</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

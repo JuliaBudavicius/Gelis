@@ -61,7 +61,6 @@ p {
     font-size: 1em;
     background-color: #00000000;
 }
-
 .btn:hover {
     background-color: #131218;
 }
@@ -203,11 +202,12 @@ p {
     margin: 15px 20px 0 0;
     background-color: #22202a;
     width: 300px;
-    height: 250px;
+    height: 230px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .txt {
@@ -238,4 +238,101 @@ p {
     margin: 50px 0 0 0;
     display: flex;
     flex-direction: column;
+}
+.nomeComp {
+    color: #ffffff;
+    font-size: 1.2em;
+}
+.nomeResponsavel {
+    color: #656566;
+    font-size: 1em;
+}
+.txtEstado {
+    font-size: 1.1em;
+}
+.horiz {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    justify-content:space-between;
+}
+.vert {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.txtHard {
+    font-size: 1.2em;
+    color: #ffffff;
+}
+.temp {
+    font-size: 1.2em;
+    color: #ff0000;
+}
+.ram {
+    font-size: 1.1em;
+    color: #ff0000;
+}
+.fa-exclamation-triangle {
+    margin: 10px 0 20px 0;
+    color: #eeee05;
+}
+.fa-exclamation-circle {
+    margin: 10px 0 20px 0;
+    color: #ff0000;
+}
+.fa-check-circle {
+    margin: 10px 0 20px 0;
+    color: #06b306;
+}
+.absolute {
+    position: absolute;
+    z-index: 3;
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    background-color: #2e2d324d;
+    backdrop-filter: blur(3px);
+}
+.boxTitulo {
+    height: 30px;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    background-color: #1e1835;
+    border-radius: 10px 10px 0 0;
+}
+.boxSup {
+    height: 90px;
+    margin: 0 auto;
+    width: 80%;
+    background-color: #281e50;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 0 0 10px 10px;
+}
+.txtInfo {
+    padding-left: 10px;
+    color: #ffffff;
+    font-size: 1.2em;
+}
+.verti {
+    margin-top: -10px;
+    display: flex;
+    flex-direction: column;
+}
+.titInfo {
+    color:#949494;
+    font-size: 1.1em;
+}
+.Info {
+    color: white;
+    font-size: 1.3em;
+}
+.InfoRed {
+    color: red;
+    font-size: 1.3em;
 }
