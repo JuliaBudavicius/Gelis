@@ -1,18 +1,10 @@
-Login.class
 com\github\britooo\looca\api\group\servicos\ServicosGroup.class
 com\github\britooo\looca\api\util\Conversor.class
-Horus$1.class
-Login$3.class
-teste.class
 com\github\britooo\looca\api\group\discos\DiscosGroup.class
-Horus$2.class
-Horus.class
 com\github\britooo\looca\api\group\temperatura\Temperatura.class
-Horus$3.class
 com\github\britooo\looca\api\group\processador\Processador.class
 com\github\britooo\looca\api\group\memoria\Memoria.class
 com\github\britooo\looca\api\group\sistema\Sistema.class
-Login$1.class
 com\github\britooo\looca\api\core\Looca.class
 com\github\britooo\looca\api\group\processos\Processo.class
 com\github\britooo\looca\api\group\processos\ProcessosGroup.class
@@ -20,4 +12,3 @@ com\github\britooo\looca\api\group\discos\Disco.class
 com\github\britooo\looca\api\group\discos\Volume.class
 com\github\britooo\looca\api\group\servicos\Servico.class
 com\github\britooo\looca\api\group\servicos\ServicosGroup$STATUS.class
-Login$2.class

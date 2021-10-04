@@ -67,6 +67,7 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
 
+        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\Horus-branco.png")); // NOI18N
         jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -81,7 +82,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(71, 71, 71))
         );
@@ -90,11 +91,13 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Login");
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\user.png")); // NOI18N
         jLabel1.setText("Usuário");
 
         btnLogin.setBackground(new java.awt.Color(0, 0, 0));
         btnLogin.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\enter.png")); // NOI18N
         btnLogin.setText("Entrar");
         btnLogin.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -115,6 +118,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\padlock.png")); // NOI18N
         jLabel4.setText("Senha");
 
         txtPassword.setBackground(new java.awt.Color(204, 204, 204));
@@ -183,7 +187,6 @@ public class Login extends javax.swing.JFrame {
 
         if (user.equals("admin") && password.equals("admin")) {
             new Horus().setVisible(true);
-            dispose();
             txtError.setText("");
         }
         else {
