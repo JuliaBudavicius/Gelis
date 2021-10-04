@@ -114,11 +114,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\Horus.png"/>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
@@ -130,9 +125,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\logout.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Encerrar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -169,9 +161,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\power.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Iniciar Horus"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -302,9 +291,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\operating-system.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Sistema Operacional"/>
           </Properties>
         </Component>
@@ -320,9 +306,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\cpu.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Processador"/>
           </Properties>
@@ -340,9 +323,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\ram.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Mem&#xf3;ria RAM"/>
           </Properties>
         </Component>
@@ -359,9 +339,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\gpu.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Placa de V&#xed;deo"/>
           </Properties>
         </Component>
@@ -377,9 +354,6 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="18" style="1"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="D:\Faculdade\looca-api\src\main\java\Imagens\harddisk.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Disco"/>
           </Properties>

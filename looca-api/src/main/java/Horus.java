@@ -94,12 +94,9 @@ public class Horus extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\Horus.png")); // NOI18N
-
         jButton1.setBackground(new java.awt.Color(255, 0, 0));
         jButton1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\logout.png")); // NOI18N
         jButton1.setText("Encerrar");
         jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +114,6 @@ public class Horus extends javax.swing.JFrame {
         btnIniciar.setBackground(new java.awt.Color(0, 204, 51));
         btnIniciar.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciar.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\power.png")); // NOI18N
         btnIniciar.setText("Iniciar Horus");
         btnIniciar.setBorder(null);
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
@@ -171,35 +167,30 @@ public class Horus extends javax.swing.JFrame {
         jLabel2.setText("INFORMAÇÕES DO COMPUTADOR");
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\operating-system.png")); // NOI18N
         jLabel3.setText("Sistema Operacional");
 
         lblSO.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblSO.setText("Carregando...");
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\cpu.png")); // NOI18N
         jLabel5.setText("Processador");
 
         lblProcessador.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblProcessador.setText("Carregando...");
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\ram.png")); // NOI18N
         jLabel7.setText("Memória RAM");
 
         lblRAM.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblRAM.setText("Carregando...");
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel9.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\gpu.png")); // NOI18N
         jLabel9.setText("Placa de Vídeo");
 
         lblGPU.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblGPU.setText("Carregando...");
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel11.setIcon(new javax.swing.ImageIcon("D:\\Faculdade\\looca-api\\src\\main\\java\\Imagens\\harddisk.png")); // NOI18N
         jLabel11.setText("Disco");
 
         lblDisco.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
