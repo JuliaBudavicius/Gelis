@@ -329,7 +329,7 @@ p {
 }
 
 .boxSup {
-    height: 90px;
+    height: 110px;
     margin: 0 auto;
     width: 80%;
     background-color: #29304a;
@@ -350,7 +350,7 @@ p {
 }
 
 .listProc {
-    height: 400px;
+    height: 360px;
     width: 100%;
     background-color: #29304a;
     display: flex;
@@ -370,7 +370,7 @@ p {
 }
 
 .divstatus {
-    height: 140px;
+    height: 110px;
     width: 80%;
     float: right;
     background-color: #29304a;
@@ -386,7 +386,7 @@ p {
     margin-top: -10px;
 }
 .ultReg {
-    height: 180px;
+    height: 170px;
     width: 80%;
     background-color: #29304a;
     display: flex;
@@ -426,6 +426,11 @@ p {
     display: flex;
     flex-direction: column;
 }
+.grafico {
+    width: 70px;
+    margin: -10px auto -15px auto;
+    z-index: 7;
+  }
 
 .titInfo {
     color: #7d828f;
@@ -433,7 +438,7 @@ p {
 }
 
 .Info {
-    color: white;
+    color: #ffffff;
     font-size: 1.3em;
 }
 

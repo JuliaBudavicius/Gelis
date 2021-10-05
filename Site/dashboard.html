@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://kit.fontawesome.com/6f2d70ffaf.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kulim+Park:wght@200;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
@@ -15,7 +16,7 @@
 
 <body>
     <section class="dashboard">
-        <div class="absolute none" id="abs">
+        <div class="absolute" id="abs">
             <i class="fa fa-times fa-2x" onclick="hide()"></i>
             <div class="boxTitulo">
                 <p class="txtInfo">Informações Principais</p>
@@ -35,7 +36,9 @@
                 </div>
                 <div class="verti">
                     <p class="titInfo">Uso da Memória RAM</p>
-                    <p class="InfoRed">7.4GB/8.0GB</p>
+                    <div class="grafico">
+                        <canvas id="myChart"></canvas>
+                    </div>
                 </div>
             </div>
             <div class="inf">
@@ -246,3 +249,22 @@
 </body>
 
 </html>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    window.myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [7.4, 2.6],
+                backgroundColor: [
+                    'rgb(255, 0, 0)',
+                    'rgba(255, 255, 255, 0)'
+                ],
+                hoverOffset: 3
+            }]
+        },
+        radius: 50
+    });
+
+
+</script>
