@@ -16,7 +16,7 @@
 
 <body>
     <section class="dashboard">
-        <div class="absolute" id="abs">
+        <div class="absolute none" id="abs">
             <i class="fa fa-times fa-2x" onclick="hide()"></i>
             <div class="boxTitulo">
                 <p class="txtInfo">Informações Principais</p>
@@ -255,12 +255,12 @@
         type: 'doughnut',
         data: {
             datasets: [{
-                data: [7.4, 2.6],
+                data: [7.4, 0.6],
                 backgroundColor: [
                     'rgb(255, 0, 0)',
                     'rgba(255, 255, 255, 0)'
                 ],
-                hoverOffset: 3
+                hoverOffset: 1
             }]
         },
         radius: 50

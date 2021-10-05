@@ -427,9 +427,9 @@ p {
     flex-direction: column;
 }
 .grafico {
-    width: 70px;
-    margin: -10px auto -15px auto;
-    z-index: 7;
+    width: 75px;
+    margin: -10px auto -12px auto;
+    z-index: 2;
   }
 
 .titInfo {
