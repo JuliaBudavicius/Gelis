@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="js/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/cores.js"></script>
     <script src="https://kit.fontawesome.com/6f2d70ffaf.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kulim+Park:wght@200;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
@@ -139,7 +140,7 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Empresa X</p>
+                <p class="nomeempresa">Caio Hideki</p>
                 <p class="cnpjempresa">CNPJ: 27305709000151</p>
             </div>
             <div class="botoes">
@@ -189,15 +190,15 @@
                             <div class="horiz">
                                 <div class="vert">
                                     <p class="txtHard">GPU</p>
-                                    <p class="temp">65°C</p>
+                                    <p id="gpu1" class="temp">65°C</p>
                                 </div>
                                 <div class="vert">
                                     <p class="txtHard">CPU</p>
-                                    <p class="temp">54°C</p>
+                                    <p id="cpu1" class="temp">54°C</p>
                                 </div>
                                 <div class="vert">
                                     <p class="txtHard">RAM</p>
-                                    <p class="ram">7.4GB</p>
+                                    <p id="ram1" class="ram">5.4GB</p>
                                 </div>
                             </div>
                         </div>
@@ -209,15 +210,15 @@
                             <div class="horiz">
                                 <div class="vert">
                                     <p class="txtHard">GPU</p>
-                                    <p class="temp">65°C</p>
+                                    <p id="gpu2" class="temp">94°C</p>
                                 </div>
                                 <div class="vert">
                                     <p class="txtHard">CPU</p>
-                                    <p class="temp">54°C</p>
+                                    <p id="cpu2" class="temp">96°C</p>
                                 </div>
                                 <div class="vert">
                                     <p class="txtHard">RAM</p>
-                                    <p class="ram">7.4GB</p>
+                                    <p id="ram2" class="ram">7.4GB</p>
                                 </div>
                             </div>
                         </div>
@@ -229,15 +230,15 @@
                             <div class="horiz">
                                 <div class="vert">
                                     <p class="txtHard">GPU</p>
-                                    <p class="temp">65°C</p>
+                                    <p id="gpu3" class="temp">52°C</p>
                                 </div>
                                 <div class="vert">
                                     <p class="txtHard">CPU</p>
-                                    <p class="temp">54°C</p>
+                                    <p id="cpu3" class="temp">47°C</p>
                                 </div>
                                 <div class="vert">
                                     <p class="txtHard">RAM</p>
-                                    <p class="ram">7.4GB</p>
+                                    <p id="ram3" class="ram">3.0GB</p>
                                 </div>
                             </div>
                         </div>
@@ -250,6 +251,7 @@
 
 </html>
 <script>
+    window.onload = cores();
     var ctx = document.getElementById('myChart').getContext('2d');
     window.myChart = new Chart(ctx, {
         type: 'doughnut',
