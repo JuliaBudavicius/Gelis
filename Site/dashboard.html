@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <section class="dashboard">
+    <section id="dashboardSec" class="dashboard">
         <div class="absolute none" id="abs">
             <i class="fa fa-times fa-2x" onclick="hide()"></i>
             <div class="boxTitulo">
@@ -116,7 +116,7 @@
                             <p class="txtInfo">Status da máquina</p>
                         </div>
                         <div class="divstatus">
-                            <i class="fas fa-exclamation-triangle fa-4x"></i>
+                            <i class="fas fa-exclamation-triangle fa-3x"></i>
                             <p class="txtAlerta">Alerta</p>
                         </div>
                     </div>
@@ -144,9 +144,9 @@
                 <p class="cnpjempresa">CNPJ: 27305709000151</p>
             </div>
             <div class="botoes">
-                <button class="btn destaque"><i class="fas fa-tv"></i>Computadores</button>
-                <button class="btn"><i class="fas fa-cog"></i>Configurações</button>
-                <button class="btn"><i class="fas fa-user-plus"></i>Novo Usuário</button>
+                <button class="btn destaque" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
+                <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
+                <button class="btn" onclick="cadastro()"><i class="fas fa-user-plus"></i>Novo Usuário</button>
             </div>
             <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
@@ -247,10 +247,73 @@
             </div>
         </div>
     </section>
+    <section id="configSec" class="config none">
+        <div class="menulateral">
+            <div class="topo">
+                <img class="logo" src="img/logo.png" alt="">
+                <img class="iconempresa" src="img/icon.png" alt="">
+                <p class="nomeempresa">Caio Hideki</p>
+                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+            </div>
+            <div class="botoes">
+                <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
+                <button class="btn destaque" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
+                <button class="btn" onclick="cadastro()"><i class="fas fa-user-plus"></i>Novo Usuário</button>
+            </div>
+            <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
+        </div>
+    </section>
+    <section id="novoUsu" class="novoUsu none">
+        <div class="menulateral">
+            <div class="topo">
+                <img class="logo" src="img/logo.png" alt="">
+                <img class="iconempresa" src="img/icon.png" alt="">
+                <p class="nomeempresa">Caio Hideki</p>
+                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+            </div>
+            <div class="botoes">
+                <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
+                <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
+                <button class="btn destaque" onclick="cadastro()"><i class="fas fa-user-plus"></i>Novo Usuário</button>
+            </div>
+            <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
+        </div>
+        <div class="cadastroUsu">
+            <p class="tituloCad">Cadastrar Usuario</p>
+            <div class="inputs">
+                <p>Nome Responsavel:</p>
+                <input type="text">
+                <p>Sobrenome Responsavel:</p>
+                <input type="text">
+                <p>E-mail Responsavel:</p>
+                <input type="text">
+                <p>Login:</p>
+                <input type="text">
+                <p>Senha:</p>
+                <input type="password">
+                <button class="btnCadastro">CADASTRAR</button>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>
 <script>
+    function dashboard() {
+        configSec.classList.add('none');
+        novoUsu.classList.add('none');
+        dashboardSec.classList.remove('none');
+    }
+    function config() {
+        configSec.classList.remove('none');
+        dashboardSec.classList.add('none');
+        novoUsu.classList.add('none');
+    }
+    function cadastro() {
+        configSec.classList.add('none');
+        dashboardSec.classList.add('none');
+        novoUsu.classList.remove('none');
+    }
     window.onload = cores();
     var ctx = document.getElementById('myChart').getContext('2d');
     window.myChart = new Chart(ctx, {
