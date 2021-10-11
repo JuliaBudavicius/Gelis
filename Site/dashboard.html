@@ -146,7 +146,7 @@
             <div class="botoes">
                 <button class="btn destaque" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
                 <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
-                <button class="btn" onclick="cadastro()"><i class="fas fa-user-plus"></i>Novo Usuário</button>
+                <button class="btn" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
             </div>
             <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
@@ -258,7 +258,7 @@
             <div class="botoes">
                 <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
                 <button class="btn destaque" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
-                <button class="btn" onclick="cadastro()"><i class="fas fa-user-plus"></i>Novo Usuário</button>
+                <button class="btn" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
             </div>
             <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
@@ -274,26 +274,76 @@
             <div class="botoes">
                 <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
                 <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
-                <button class="btn destaque" onclick="cadastro()"><i class="fas fa-user-plus"></i>Novo Usuário</button>
+                <button class="btn destaque" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
             </div>
             <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
-        <div class="cadastroUsu">
-            <p class="tituloCad">Cadastrar Usuario</p>
-            <div class="inputs">
-                <p>Nome Responsavel:</p>
-                <input type="text">
-                <p>Sobrenome Responsavel:</p>
-                <input type="text">
-                <p>E-mail Responsavel:</p>
-                <input type="text">
-                <p>Login:</p>
-                <input type="text">
-                <p>Senha:</p>
-                <input type="password">
-                <button class="btnCadastro">CADASTRAR</button>
+        <div class="ladoEsquerdo">
+            <div class="superior">
+                <div class="pesquisa">
+                    <input type="text" class="pesquisacampo" placeholder="Pesquisar">
+                    <button type="submit" class="pesquisabtn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="notifica">
+                    <i class="far fa-bell"></i>
+                    <div class="numero">3</div>
+                </div>
             </div>
-        </div>
+            <div class="inferior">
+                <div class="funcUsuarios">
+                    <div class="txtCentr">
+                        <p><i class="fa fa-plus-circle" aria-hidden="true"></i>Novo Usuário</p>
+                        <p><i class="fa fa-minus-circle" aria-hidden="true"></i>Remover Usuário</p>
+                        <p><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar Usuário</p>
+                    </div>
+                </div>
+                <div class="tituloUsuarios">
+                    <div class="txtCentr2">
+                        <p>Nome Completo</p>
+                        <p>Login</p>
+                        <p>Hostname</p>
+                    </div>
+                </div>
+                <div class="infoUsuarios">
+                    <div class="linhasUsuarios">
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Gustavo Quaresma</p>
+                                <p class="email">Gustavo@Gelis.com</p>
+                                <p>HS347A</p>
+                            </div>
+                        </div>
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Gabriel Alves</p>
+                                <p class="email">Gabriel@Gelis.com</p>
+                                <p>HS346B</p>
+                            </div>
+                        </div>
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Leonardo Arruda</p>
+                                <p class="email">Leonardo@Gelis.com</p>
+                                <p>HS345C</p>
+                            </div>
+                        </div>
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Júlia Budavicius</p>
+                                <p class="email">Júlia@Gelis.com</p>
+                                <p>HS349B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     </section>
 </body>
 
@@ -309,7 +359,7 @@
         dashboardSec.classList.add('none');
         novoUsu.classList.add('none');
     }
-    function cadastro() {
+    function usuario() {
         configSec.classList.add('none');
         dashboardSec.classList.add('none');
         novoUsu.classList.remove('none');

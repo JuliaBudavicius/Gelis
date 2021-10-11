@@ -278,14 +278,17 @@ p {
 .ram {
     font-size: 1.1em;
 }
+
 .fa-dist {
     margin: 10px 0 20px 0;
     color: #eeee05;
 }
+
 .fa-exclamation-triangle {
     margin: 10px 0 20px 0;
     color: #eeee05;
 }
+
 .fa-times {
     color: #212a52;
     position: absolute;
@@ -294,9 +297,11 @@ p {
     transition: 0.5s;
     cursor: pointer;
 }
+
 .fa-times:hover {
     color: #273979;
 }
+
 .fa-exclamation-circle {
     margin: 10px 0 20px 0;
     color: #ff0000;
@@ -316,9 +321,11 @@ p {
     background-color: #2e2d324d;
     backdrop-filter: blur(3px);
 }
+
 .none {
     display: none;
 }
+
 .boxTitulo {
     height: 30px;
     margin: 0 auto;
@@ -382,11 +389,13 @@ p {
     justify-content: center;
     border-radius: 0 0 10px 10px;
 }
+
 .txtAlerta {
     color: #ffff00;
     font-size: 1.4em;
     margin-top: -10px;
 }
+
 .ultReg {
     height: 160px;
     width: 80%;
@@ -395,6 +404,7 @@ p {
     float: right;
     border-radius: 0 0 10px 10px;
 }
+
 .titulosUltReg {
     width: 90%;
     margin: 10px auto 0 auto;
@@ -428,11 +438,12 @@ p {
     display: flex;
     flex-direction: column;
 }
+
 .grafico {
     width: 75px;
     margin: -10px auto -12px auto;
     z-index: 2;
-  }
+}
 
 .titInfo {
     color: #7d828f;
@@ -448,14 +459,17 @@ p {
     color: #bd6865;
     font-size: 1.3em;
 }
+
 .titProc {
     font-size: 1.1;
     color: #ffffff;
 }
+
 .infoProc {
     font-size: 1.1;
     color: #7d828f;
 }
+
 .titulosProc {
     display: flex;
     margin: 0 auto;
@@ -463,6 +477,7 @@ p {
     margin-top: 10px;
     justify-content: space-between;
 }
+
 .linha {
     display: flex;
     margin: 0 auto;
@@ -470,52 +485,100 @@ p {
     justify-content: space-between;
     width: 90%;
 }
-.cadastroUsu {
+
+.funcUsuarios {
     display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: calc(100vw-200px);
-    align-items: center;
-    justify-content: center;
-}
-.tituloCad {
-    color: #ffffff;
-    font-size: 1.9em;
-    padding: 0 15px 5px 15px;
-    border-bottom: 3px solid #EE1E46;
-    margin: -20px 0 20px 0;
-}
-.inputs {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-}
-.inputs input {
-    background-color: #58585862;
-    height: 22px;
-    border: none;
-}
-.inputs p {
-    margin: 5px 0 3px 0;
-    color: white;
-    font-size: 1.1em;
-}
-.btnCadastro {
-    margin-top: 5%;
-    border: none;
-    background-color: #EE1E46;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
+    width: calc(100vw - 240px);
     height: 50px;
-    letter-spacing: 3px;
-    width: 100%;
-    font-size: 1rem;
-    transition: .5s;
+    align-items: center;
+    background-color: #EE1E46;
 }
 
-.btnCadastro:hover {
-    border: 1px solid #EE1E46;
-    background-color: black;
-    letter-spacing: 4px;
+.tituloUsuarios {
+    display: flex;
+    width: calc(100vw - 240px);
+    height: 40px;
+    margin-top: 5px;
+    align-items: center;
+    background-color: #22202a;
+}
+
+.infoUsuarios {
+    display: flex;
+    width: calc(100vw - 240px);
+    height: 450px;
+    margin-top: 5px;
+    background-color: #22202a;
+}
+
+.txtCentr {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.txtCentr2 {
+    width: 78%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.tituloUsuarios p {
+    color: white;
+    font-size: 1.2em;
+}
+
+.funcUsuarios p {
+    color: white;
+    font-size: 1.2em;
+}
+
+.nome {
+    width: 300px;
+}
+
+.email {
+    width: 300px;
+}
+
+.funcUsuarios i {
+    margin: 0 5px 0 0;
+}
+
+.linhasUsuarios {
+    width: 100%;
+}
+
+.linhaUsuarios {
+    margin: 0 auto;
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0 0;
+    border-bottom: 1px solid #EE1E46;
+}
+
+.checkbox {
+    transform: scale(1.2);
+    margin-left: 10px;
+    margin-right: -30px;
+}
+
+.linhaUsuarios div {
+    display: flex;
+    flex-direction: row;
+    width: 78%;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.linhaUsuarios p {
+    color: white;
+    font-size: 1.1em;
 }
