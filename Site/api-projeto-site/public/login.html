@@ -43,7 +43,6 @@
 
 <script>
     function entrar() {
-        aguardar();
         var formulario = new URLSearchParams(new FormData(form_login));
         fetch("/empresas/autenticar", {
             method: "POST",
@@ -53,14 +52,19 @@
             if (resposta.ok) {
 
                 resposta.json().then(json => {
+                    sessionStorage.emailEmpresa = json.email;
                     sessionStorage.nomeEmpresa = json.nomeEmpresa;
                     sessionStorage.cnpjEmpresa = json.CNPJ;
+                    sessionStorage.whatsEmpresa = json.whatsApp;
+                    sessionStorage.cepEmpresa = json.CEP;
+                    sessionStorage.estadoEmpresa = json.estado;
+                    sessionStorage.cidadeEmpresa = json.cidade;
+                    sessionStorage.logradouroEmpresa = json.logradouro;
                     window.location.href = 'dashboard.html';
                 });
             } else {
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizar_aguardar(texto);
                 });
             }
         });
@@ -68,9 +72,6 @@
         return false;
     }
 
-    function aguardar() {
-        btn_entrar.disabled = true;
-    }
     var contador = 0;
     function ver() {
 

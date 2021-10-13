@@ -278,42 +278,42 @@
                 <div class="forms">
                     <div>
                         <p>Nome empresa</p>
-                        <input type="text">
+                        <input type="text" id="nomeEmpresaInput">
                     </div>
                     <div>
                         <p>Email</p>
-                        <input type="text">
+                        <input type="text" id="emailEmpresaInput">
                     </div>
                 </div>
                 <div class="forms">
                     <div>
                         <p>CNPJ</p>
-                        <input type="text">
+                        <input type="text" id="cnpjEmpresaInput">
                     </div>
                     <div>
                         <p>WhatsApp</p>
-                        <input type="text">
+                        <input type="text" id="whatsEmpresaInput">
                     </div>
                 </div>
-                <div class="linha"></div>
+                <div class="linhaConfig"></div>
                 <div class="forms">
                     <div>
                         <p>CEP</p>
-                        <input type="text">
+                        <input type="text" id="cepEmpresaInput">
                     </div>
                     <div>
                         <p>Estado</p>
-                        <input type="text">
+                        <input type="text" id="estadoEmpresaInput">
                     </div>
                 </div>
                 <div class="forms">
                     <div>
                         <p>Cidade</p>
-                        <input type="text">
+                        <input type="text" id="cidadeEmpresaInput">
                     </div>
                     <div>
                         <p>Logradouro</p>
-                        <input type="text">
+                        <input type="text" id="logradouroEmpresaInput">
                     </div>
                 </div>
                 <button class="btnSave">Salvar alterações</button>
@@ -407,9 +407,6 @@
 </html>
 <script>
     window.onload = verificar_autenticacao();
-    function logoff() {
-        window.location.href = "index.html";
-    }
     function sair() {
         absoluto.style = "display: flex;";
     }
@@ -431,7 +428,7 @@
         dashboardSec.classList.add('none');
         novoUsu.classList.remove('none');
     }
-    window.onload = cores();
+
     var ctx = document.getElementById('myChart').getContext('2d');
     window.myChart = new Chart(ctx, {
         type: 'doughnut',
@@ -448,24 +445,55 @@
         radius: 50
     });
     function verificar_autenticacao() {
+        var nome = document.getElementById('nomeEmpresaInput');
+        var email = document.getElementById('emailEmpresaInput');
+        var cnpj = document.getElementById('cnpjEmpresaInput');
+        var whats = document.getElementById('whatsEmpresaInput');
+        var cep = document.getElementById('cepEmpresaInput');
+        var estado = document.getElementById('estadoEmpresaInput');
+        var cidade = document.getElementById('cidadeEmpresaInput');
+        var logradouro = document.getElementById('logradouroEmpresaInput');
+        cores();
         let nomeEmpresa;
         let cnpjEmpresa;
+        let emailEmpresa;
+        let whatsEmpresa;
+        let cepEmpresa;
+        let estadoEmpresa;
+        let cidadeEmpresa;
+        let logradouroEmpresa;
+
         nomeEmpresa = sessionStorage.nomeEmpresa;
         cnpjEmpresa = sessionStorage.cnpjEmpresa;
+        emailEmpresa = sessionStorage.emailEmpresa;
+        whatsEmpresa = sessionStorage.whatsEmpresa;
+        cepEmpresa = sessionStorage.cepEmpresa;
+        estadoEmpresa = sessionStorage.estadoEmpresa;
+        cidadeEmpresa = sessionStorage.cidadeEmpresa;
+        logradouroEmpresa = sessionStorage.logradouroEmpresa;
+
         if (nomeEmpresa == undefined) {
             redirecionar_email();
         } else {
+            nome.value += `${nomeEmpresa}`;
+            email.value += `${emailEmpresa}`;
+            cnpj.value += `${cnpjEmpresa}`;
+            whats.value += `${whatsEmpresa}`;
+            cep.value += `${cepEmpresa}`;
+            estado.value += `${estadoEmpresa}`;
+            cidade.value += `${cidadeEmpresa}`;
+            logradouro.value += `${logradouroEmpresa}`;
             nome_EmpresaD.innerHTML += `${nomeEmpresa}`;
             nome_EmpresaC.innerHTML += `${nomeEmpresa}`;
             nome_EmpresaN.innerHTML += `${nomeEmpresa}`;
             cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
             cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
             cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
-            // validar_sessao();
+            validar_sessao();
         }
     }
     function validar_sessao() {
-        fetch(`/usuarios/sessao/${nomeEmpresa}`, { cache: 'no-store' })
+        fetch(`/usuarios/sessao/${emailEmpresa}`, { cache: 'no-store' })
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.text().then(texto => {
@@ -482,8 +510,7 @@
     }
 
     function logoff() {
-        finalizar_sessao();
         sessionStorage.clear();
-        redirecionar_email();
+        window.location.href = 'index.html';
     }
 </script>
