@@ -584,6 +584,7 @@ p {
     color: white;
     font-size: 1.1em;
 }
+
 .configuracoes {
     display: flex;
     flex-direction: column;
@@ -592,12 +593,14 @@ p {
     height: 100vh;
     justify-content: center;
 }
+
 .linha {
     height: 3px;
     background-color: #EE1E46;
     width: calc(100vw - 720px);
     margin: 30px 0 10px 0;
 }
+
 .tituloConfig {
     font-size: 1.5em;
     font-weight: bold;
@@ -605,10 +608,12 @@ p {
     position: absolute;
     top: 15%;
 }
+
 .forms {
     display: flex;
     margin: 20px 0 0 0;
 }
+
 .forms input {
     border: none;
     width: 270px;
@@ -617,11 +622,13 @@ p {
     color: rgb(0, 0, 0);
     text-align: center;
 }
+
 .forms p {
     color: white;
     text-align: center;
     font-size: 1.3em;
 }
+
 .btnSave {
     background-color: #EE1E46;
     border: 0;
@@ -631,4 +638,73 @@ p {
     position: absolute;
     bottom: 13%;
     cursor: pointer;
+}
+
+.absoluto {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+.sair {
+    width: 250px;
+    height: 150px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 7px rgb(0, 0, 0, 1);
+}
+
+.iconSair {
+    height: 50px;
+}
+
+.tituloSair {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.btnCancelar {
+    width: 70px;
+    height: 30px;
+    margin-right: 20px;
+    border: 0;
+    color: white;
+    background-color: #808080;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.5s ease-out;
+}
+
+.btnSair {
+    width: 70px;
+    height: 30px;
+    background-color: #94162f;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btnSair:hover {
+    background-color: #EE1E46;
+}
+
+.btncancelar:hover {
+    background-color: #818181;
 }

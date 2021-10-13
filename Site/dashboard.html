@@ -16,6 +16,16 @@
 </head>
 
 <body>
+    <div id="absoluto" class="absoluto">
+        <div class="sair">
+          <img class="iconSair" src="img/icone.png" alt="">
+          <p class="tituloSair">Deseja mesmo sair?</p>
+          <div class="lado">
+            <button class="btnCancelar" onclick="fechar()" >Cancelar</button>
+            <button class="btnSair" onclick="logoff()"> Sair</button>
+          </div>
+        </div>
+      </div>
     <section id="dashboardSec" class="dashboard">
         <div class="absolute none" id="abs">
             <i class="fa fa-times fa-2x" onclick="hide()"></i>
@@ -148,7 +158,7 @@
                 <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
                 <button class="btn" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
             </div>
-            <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
+            <button class="btn btn-sair" onclick="sair()"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
         <div class="ladoEsquerdo">
             <div class="superior">
@@ -260,7 +270,7 @@
                 <button class="btn destaque" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
                 <button class="btn" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
             </div>
-            <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
+            <button class="btn btn-sair" onclick="sair()"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
         <div class="ladoEsquerdo">
             <div class="configuracoes">
@@ -323,7 +333,7 @@
                 <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
                 <button class="btn destaque" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
             </div>
-            <button class="btn btn-sair"><i class="fas fa-sign-out-alt"></i>Sair</button>
+            <button class="btn btn-sair" onclick="sair()"><i class="fas fa-sign-out-alt"></i>Sair</button>
         </div>
         <div class="ladoEsquerdo">
             <div class="superior">
@@ -396,6 +406,15 @@
 
 </html>
 <script>
+    function logoff(){
+        window.location.href = "index.html";
+    }
+    function sair(){
+        absoluto.style = "display: flex;";
+    }
+    function fechar(){
+        absoluto.style = "display: none;";
+    }
     function dashboard() {
         configSec.classList.add('none');
         novoUsu.classList.add('none');
