@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/cores.js"></script>
+    <script src="https://kit.fontawesome.com/6f2d70ffaf.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kulim+Park:wght@200;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+    <title>Painel de Controle</title>
+</head>
+
+<body>
+    <div id="absoluto" class="absoluto">
+        <div class="sair">
+          <img class="iconSair" src="img/icone.png" alt="">
+          <p class="tituloSair">Deseja mesmo sair?</p>
+          <div class="lado">
+            <button class="btnCancelar" onclick="fechar()" >Cancelar</button>
+            <button class="btnSair" onclick="logoff()"> Sair</button>
+          </div>
+        </div>
+      </div>
+    <section id="dashboardSec" class="dashboard">
+        <div class="absolute none" id="abs">
+            <i class="fa fa-times fa-2x" onclick="hide()"></i>
+            <div class="boxTitulo">
+                <p class="txtInfo">Informações Principais</p>
+            </div>
+            <div class="boxSup">
+                <div class="verti">
+                    <p class="titInfo">Hostname</p>
+                    <p class="Info">HS3751</p>
+                </div>
+                <div class="verti">
+                    <p class="titInfo">Temperatura da GPU</p>
+                    <p class="InfoRed">65°C</p>
+                </div>
+                <div class="verti">
+                    <p class="titInfo">Temperatura da CPU</p>
+                    <p class="Info">54°C</p>
+                </div>
+                <div class="verti">
+                    <p class="titInfo">Uso da Memória RAM</p>
+                    <div class="grafico">
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="inf">
+                <div class="esq">
+                    <div class="boxTituloP">
+                        <p class="txtInfo">Lista de processos</p>
+                    </div>
+                    <div class="listProc">
+                        <div class="titulosProc">
+                            <p class="titProc">Nome</p>
+                            <p class="titProc">CPU</p>
+                            <p class="titProc">Memória</p>
+                            <p class="titProc">PID</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                        <div class="linha">
+                            <p class="infoProc">Discord</p>
+                            <p class="infoProc">22%</p>
+                            <p class="infoProc">10%</p>
+                            <p class="infoProc">34232</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="dir">
+                    <div>
+                        <div class="boxTituloS">
+                            <p class="txtInfo">Status da máquina</p>
+                        </div>
+                        <div class="divstatus">
+                            <i class="fas fa-exclamation-triangle fa-3x"></i>
+                            <p class="txtAlerta">Alerta</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="boxTituloS">
+                            <p class="txtInfo">Ultimos registros</p>
+                        </div>
+                        <div class="ultReg">
+                            <div class="titulosUltReg">
+                                <p class="titProc">Status</p>
+                                <p class="titProc">Data</p>
+                                <p class="titProc">GPU</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="menulateral">
+            <div class="topo">
+                <img class="logo" src="img/logo.png" alt="">
+                <img class="iconempresa" src="img/icon.png" alt="">
+                <p class="nomeempresa">Caio Hideki</p>
+                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+            </div>
+            <div class="botoes">
+                <button class="btn destaque" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
+                <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
+                <button class="btn" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
+            </div>
+            <button class="btn btn-sair" onclick="sair()"><i class="fas fa-sign-out-alt"></i>Sair</button>
+        </div>
+        <div class="ladoEsquerdo">
+            <div class="superior">
+                <div class="pesquisa">
+                    <input type="text" class="pesquisacampo" placeholder="Pesquisar">
+                    <button type="submit" class="pesquisabtn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="notifica">
+                    <i class="far fa-bell"></i>
+                    <div class="numero">3</div>
+                </div>
+            </div>
+            <div class="inferior">
+                <p class="tituloStatus">Status dos computadores</p>
+                <div class="boxes">
+                    <div class="box">
+                        <p class="txt Normal">Normal</p>
+                        <p class="qtdeComp">1 Computadores</p>
+                    </div>
+                    <div class="box">
+                        <p class="txt Alerta">Alerta</p>
+                        <p class="qtdeComp">1 Computadores</p>
+                    </div>
+                    <div class="box">
+                        <p class="txt Critico">Crítico</p>
+                        <p class="qtdeComp">1 Computadores</p>
+                    </div>
+                </div>
+                <div class="computadores">
+                    <p class="tituloStatus">Computadores</p>
+                    <div class="boxes">
+                        <div class="boxComp" onclick="show()">
+                            <p class="nomeComp">Computador 1</p>
+                            <p class="nomeResponsavel">Responsavel</p>
+                            <p class="txtEstado Alerta">Alerta</p>
+                            <i class="fas fa-exclamation-triangle fa-3x"></i>
+                            <div class="horiz">
+                                <div class="vert">
+                                    <p class="txtHard">GPU</p>
+                                    <p id="gpu1" class="temp">65°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">CPU</p>
+                                    <p id="cpu1" class="temp">54°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">RAM</p>
+                                    <p id="ram1" class="ram">5.4GB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxComp" onclick="show()">
+                            <p class="nomeComp">Computador 2</p>
+                            <p class="nomeResponsavel">Responsavel</p>
+                            <p class="txtEstado Critico">Critico</p>
+                            <i class="fas fa-exclamation-circle fa-3x"></i>
+                            <div class="horiz">
+                                <div class="vert">
+                                    <p class="txtHard">GPU</p>
+                                    <p id="gpu2" class="temp">94°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">CPU</p>
+                                    <p id="cpu2" class="temp">96°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">RAM</p>
+                                    <p id="ram2" class="ram">7.4GB</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boxComp" onclick="show()">
+                            <p class="nomeComp">Computador 3</p>
+                            <p class="nomeResponsavel">Responsavel</p>
+                            <p class="txtEstado Normal">Normal</p>
+                            <i class="fas fa-check-circle fa-3x"></i>
+                            <div class="horiz">
+                                <div class="vert">
+                                    <p class="txtHard">GPU</p>
+                                    <p id="gpu3" class="temp">52°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">CPU</p>
+                                    <p id="cpu3" class="temp">47°C</p>
+                                </div>
+                                <div class="vert">
+                                    <p class="txtHard">RAM</p>
+                                    <p id="ram3" class="ram">3.0GB</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="configSec" class="config none">
+        <div class="menulateral">
+            <div class="topo">
+                <img class="logo" src="img/logo.png" alt="">
+                <img class="iconempresa" src="img/icon.png" alt="">
+                <p class="nomeempresa">Caio Hideki</p>
+                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+            </div>
+            <div class="botoes">
+                <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
+                <button class="btn destaque" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
+                <button class="btn" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
+            </div>
+            <button class="btn btn-sair" onclick="sair()"><i class="fas fa-sign-out-alt"></i>Sair</button>
+        </div>
+        <div class="ladoEsquerdo">
+            <div class="configuracoes">
+                <p class="tituloConfig">CONFIGURAÇÕES</p>
+                <div class="forms">
+                    <div>
+                        <p>Nome empresa</p>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <p>Email</p>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="forms">
+                    <div>
+                        <p>CNPJ</p>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <p>WhatsApp</p>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="linha"></div>
+                <div class="forms">
+                    <div>
+                        <p>CEP</p>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <p>Estado</p>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="forms">
+                    <div>
+                        <p>Cidade</p>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <p>Logradouro</p>
+                        <input type="text">
+                    </div>
+                </div>
+                <button class="btnSave">Salvar alterações</button>
+            </div>
+        </div>
+    </section>
+    <section id="novoUsu" class="novoUsu none">
+        <div class="menulateral">
+            <div class="topo">
+                <img class="logo" src="img/logo.png" alt="">
+                <img class="iconempresa" src="img/icon.png" alt="">
+                <p class="nomeempresa">Caio Hideki</p>
+                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+            </div>
+            <div class="botoes">
+                <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
+                <button class="btn" onclick="config()"><i class="fas fa-cog"></i>Configurações</button>
+                <button class="btn destaque" onclick="usuario()"><i class="fas fa-user-plus"></i>Usuário</button>
+            </div>
+            <button class="btn btn-sair" onclick="sair()"><i class="fas fa-sign-out-alt"></i>Sair</button>
+        </div>
+        <div class="ladoEsquerdo">
+            <div class="superior">
+                <div class="pesquisa">
+                    <input type="text" class="pesquisacampo" placeholder="Pesquisar">
+                    <button type="submit" class="pesquisabtn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+                <div class="notifica">
+                    <i class="far fa-bell"></i>
+                    <div class="numero">3</div>
+                </div>
+            </div>
+            <div class="inferior">
+                <div class="funcUsuarios">
+                    <div class="txtCentr">
+                        <p><i class="fa fa-plus-circle" aria-hidden="true"></i>Novo Usuário</p>
+                        <p><i class="fa fa-minus-circle" aria-hidden="true"></i>Remover Usuário</p>
+                        <p><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar Usuário</p>
+                    </div>
+                </div>
+                <div class="tituloUsuarios">
+                    <div class="txtCentr2">
+                        <p>Nome Completo</p>
+                        <p>Login</p>
+                        <p>Hostname</p>
+                    </div>
+                </div>
+                <div class="infoUsuarios">
+                    <div class="linhasUsuarios">
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Gustavo Quaresma</p>
+                                <p class="email">Gustavo@Gelis.com</p>
+                                <p>HS347A</p>
+                            </div>
+                        </div>
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Gabriel Alves</p>
+                                <p class="email">Gabriel@Gelis.com</p>
+                                <p>HS346B</p>
+                            </div>
+                        </div>
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Leonardo Arruda</p>
+                                <p class="email">Leonardo@Gelis.com</p>
+                                <p>HS345C</p>
+                            </div>
+                        </div>
+                        <div class="linhaUsuarios">
+                            <input class="checkbox" type="checkbox" id="user" name="user">
+                            <div>
+                                <p class="nome">Júlia Budavicius</p>
+                                <p class="email">Júlia@Gelis.com</p>
+                                <p>HS349B</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+</body>
+
+</html>
+<script>
+    function logoff(){
+        window.location.href = "index.html";
+    }
+    function sair(){
+        absoluto.style = "display: flex;";
+    }
+    function fechar(){
+        absoluto.style = "display: none;";
+    }
+    function dashboard() {
+        configSec.classList.add('none');
+        novoUsu.classList.add('none');
+        dashboardSec.classList.remove('none');
+    }
+    function config() {
+        configSec.classList.remove('none');
+        dashboardSec.classList.add('none');
+        novoUsu.classList.add('none');
+    }
+    function usuario() {
+        configSec.classList.add('none');
+        dashboardSec.classList.add('none');
+        novoUsu.classList.remove('none');
+    }
+    window.onload = cores();
+    var ctx = document.getElementById('myChart').getContext('2d');
+    window.myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            datasets: [{
+                data: [7.4, 0.6],
+                backgroundColor: [
+                    'rgb(255, 0, 0)',
+                    'rgba(255, 255, 255, 0)'
+                ],
+                hoverOffset: 1
+            }]
+        },
+        radius: 50
+    });
+
+
+</script>

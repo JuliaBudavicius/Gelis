@@ -21,11 +21,11 @@
             <div class="caixaLogin">
                 <div class="inputTexto">
                     <span>EMAIL</span>
-                    <input type="text">
+                    <input name="email" type="text">
                 </div>
                 <div class="inputTexto">
                     <span>SENHA</span>
-                    <input id="senha" type="password">
+                    <input name="senha" id="senha" type="password">
                 </div>
             </div>
             <div class="botaoLogin">
@@ -45,7 +45,7 @@
     function entrar() {
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_login));
-        fetch("/usuarios/autenticar", {
+        fetch("/empresas/autenticar", {
             method: "POST",
             body: formulario
         }).then(resposta => {
