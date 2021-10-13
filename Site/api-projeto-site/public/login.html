@@ -53,15 +53,10 @@
             if (resposta.ok) {
 
                 resposta.json().then(json => {
-                    sessionStorage.login_usuario_meuapp = json.login;
-                    sessionStorage.nome_usuario_meuapp = json.nome;
-                    sessionStorage.jogo_usuario_meuapp = json.fkJogo;
-                    sessionStorage.id_usuario_meuapp = json.idUsuario;
-
+                    sessionStorage.nomeEmpresa = json.nomeEmpresa;
+                    sessionStorage.cnpjEmpresa = json.CNPJ;
                     window.location.href = 'dashboard.html';
-
                 });
-
             } else {
                 resposta.text().then(texto => {
                     console.error(texto);

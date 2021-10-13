@@ -18,14 +18,14 @@
 <body>
     <div id="absoluto" class="absoluto">
         <div class="sair">
-          <img class="iconSair" src="img/icone.png" alt="">
-          <p class="tituloSair">Deseja mesmo sair?</p>
-          <div class="lado">
-            <button class="btnCancelar" onclick="fechar()" >Cancelar</button>
-            <button class="btnSair" onclick="logoff()"> Sair</button>
-          </div>
+            <img class="iconSair" src="img/icone.png" alt="">
+            <p class="tituloSair">Deseja mesmo sair?</p>
+            <div class="lado">
+                <button class="btnCancelar" onclick="fechar()">Cancelar</button>
+                <button class="btnSair" onclick="logoff()"> Sair</button>
+            </div>
         </div>
-      </div>
+    </div>
     <section id="dashboardSec" class="dashboard">
         <div class="absolute none" id="abs">
             <i class="fa fa-times fa-2x" onclick="hide()"></i>
@@ -150,8 +150,8 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Caio Hideki</p>
-                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+                <p class="nomeempresa" id="nome_EmpresaD"></p>
+                <p class="cnpjempresa" id="cnpj_EmpresaD">CNPJ: </p>
             </div>
             <div class="botoes">
                 <button class="btn destaque" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
@@ -262,8 +262,8 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Caio Hideki</p>
-                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+                <p class="nomeempresa" id="nome_EmpresaC"></p>
+                <p class="cnpjempresa" id="cnpj_EmpresaC">CNPJ: </p>
             </div>
             <div class="botoes">
                 <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
@@ -325,8 +325,8 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Caio Hideki</p>
-                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+                <p class="nomeempresa" id="nome_EmpresaN"></p>
+                <p class="cnpjempresa" id="cnpj_EmpresaN">CNPJ: </p>
             </div>
             <div class="botoes">
                 <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
@@ -406,13 +406,14 @@
 
 </html>
 <script>
-    function logoff(){
+    window.onload = verificar_autenticacao();
+    function logoff() {
         window.location.href = "index.html";
     }
-    function sair(){
+    function sair() {
         absoluto.style = "display: flex;";
     }
-    function fechar(){
+    function fechar() {
         absoluto.style = "display: none;";
     }
     function dashboard() {
@@ -446,6 +447,43 @@
         },
         radius: 50
     });
+    function verificar_autenticacao() {
+        let nomeEmpresa;
+        let cnpjEmpresa;
+        nomeEmpresa = sessionStorage.nomeEmpresa;
+        cnpjEmpresa = sessionStorage.cnpjEmpresa;
+        if (nomeEmpresa == undefined) {
+            redirecionar_email();
+        } else {
+            nome_EmpresaD.innerHTML += `${nomeEmpresa}`;
+            nome_EmpresaC.innerHTML += `${nomeEmpresa}`;
+            nome_EmpresaN.innerHTML += `${nomeEmpresa}`;
+            cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
+            cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
+            cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
+            // validar_sessao();
+        }
+    }
+    function validar_sessao() {
+        fetch(`/usuarios/sessao/${nomeEmpresa}`, { cache: 'no-store' })
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.text().then(texto => {
+                        console.log('Sessão :) ', texto);
+                    });
+                } else {
+                    console.error('Sessão :.( ');
+                    logoff();
+                }
+            });
+    }
+    function redirecionar_email() {
+        window.location.href = 'login.html';
+    }
 
-
+    function logoff() {
+        finalizar_sessao();
+        sessionStorage.clear();
+        redirecionar_email();
+    }
 </script>
