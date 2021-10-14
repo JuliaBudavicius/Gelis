@@ -275,48 +275,50 @@
         <div class="ladoEsquerdo">
             <div class="configuracoes">
                 <p class="tituloConfig">CONFIGURAÇÕES</p>
-                <div class="forms">
-                    <div>
-                        <p>Nome empresa</p>
-                        <input type="text" id="nomeEmpresaInput">
+                <form id="form_atualizar" method="post" onsubmit="return atualizar()">
+                    <div class="forms">
+                        <div>
+                            <p>Nome empresa</p>
+                            <input name="nomeEmpresa" type="text" id="nomeEmpresaInput">
+                        </div>
+                        <div>
+                            <p>Email</p>
+                            <input name="emailEmpresa" type="text" id="emailEmpresaInput">
+                        </div>
                     </div>
-                    <div>
-                        <p>Email</p>
-                        <input type="text" id="emailEmpresaInput">
+                    <div class="forms">
+                        <div>
+                            <p>CNPJ</p>
+                            <input name="cnpjEmpresa" type="text" id="cnpjEmpresaInput">
+                        </div>
+                        <div>
+                            <p>WhatsApp</p>
+                            <input name="whatsEmpresa" type="text" id="whatsEmpresaInput">
+                        </div>
                     </div>
-                </div>
-                <div class="forms">
-                    <div>
-                        <p>CNPJ</p>
-                        <input type="text" id="cnpjEmpresaInput">
+                    <div class="linhaConfig"></div>
+                    <div class="forms">
+                        <div>
+                            <p>CEP</p>
+                            <input name="cepEmpresa" type="text" id="cepEmpresaInput">
+                        </div>
+                        <div>
+                            <p>Estado</p>
+                            <input name="estadoEmpresa" type="text" id="estadoEmpresaInput">
+                        </div>
                     </div>
-                    <div>
-                        <p>WhatsApp</p>
-                        <input type="text" id="whatsEmpresaInput">
+                    <div class="forms">
+                        <div>
+                            <p>Cidade</p>
+                            <input name="cidadeEmpresa" type="text" id="cidadeEmpresaInput">
+                        </div>
+                        <div>
+                            <p>Logradouro</p>
+                            <input name="logradouroEmpresa" type="text" id="logradouroEmpresaInput">
+                        </div>
                     </div>
-                </div>
-                <div class="linhaConfig"></div>
-                <div class="forms">
-                    <div>
-                        <p>CEP</p>
-                        <input type="text" id="cepEmpresaInput">
-                    </div>
-                    <div>
-                        <p>Estado</p>
-                        <input type="text" id="estadoEmpresaInput">
-                    </div>
-                </div>
-                <div class="forms">
-                    <div>
-                        <p>Cidade</p>
-                        <input type="text" id="cidadeEmpresaInput">
-                    </div>
-                    <div>
-                        <p>Logradouro</p>
-                        <input type="text" id="logradouroEmpresaInput">
-                    </div>
-                </div>
-                <button class="btnSave">Salvar alterações</button>
+                    <button class="btnSave">Salvar alterações</button>
+                </form>
             </div>
         </div>
     </section>
@@ -428,22 +430,23 @@
         dashboardSec.classList.add('none');
         novoUsu.classList.remove('none');
     }
-
-    var ctx = document.getElementById('myChart').getContext('2d');
-    window.myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [7.4, 0.6],
-                backgroundColor: [
-                    'rgb(255, 0, 0)',
-                    'rgba(255, 255, 255, 0)'
-                ],
-                hoverOffset: 1
-            }]
-        },
-        radius: 50
-    });
+    function chart() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        window.myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [7.4, 0.6],
+                    backgroundColor: [
+                        'rgb(255, 0, 0)',
+                        'rgba(255, 255, 255, 0)'
+                    ],
+                    hoverOffset: 1
+                }]
+            },
+            radius: 50
+        });
+    }
     function verificar_autenticacao() {
         var nome = document.getElementById('nomeEmpresaInput');
         var email = document.getElementById('emailEmpresaInput');
@@ -454,6 +457,7 @@
         var cidade = document.getElementById('cidadeEmpresaInput');
         var logradouro = document.getElementById('logradouroEmpresaInput');
         cores();
+        chart();
         let nomeEmpresa;
         let cnpjEmpresa;
         let emailEmpresa;
@@ -489,11 +493,12 @@
             cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
             cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
             cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
-            validar_sessao();
         }
+        validar_sessao()
     }
     function validar_sessao() {
-        fetch(`/usuarios/sessao/${emailEmpresa}`, { cache: 'no-store' })
+        var emailEmpresa = sessionStorage.emailEmpresa;
+        fetch(`/empresas/sessao/${emailEmpresa}`, { cache: 'no-store' })
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.text().then(texto => {
@@ -505,6 +510,26 @@
                 }
             });
     }
+    function atualizar() {
+        var idEmpresa = sessionStorage.idEmpresa;
+        var formulario = new URLSearchParams(new FormData(form_atualizar));
+        fetch(`/empresas/atualizar/${idEmpresa}`, {
+            method: "POST",
+            body: formulario
+        }).then(function (resultado) {
+            if (resultado.ok) {
+                console.log('Atualizado com sucesso');
+                sessionStorage.nomeEmpresa = nome.value;
+            } else {
+                console.log('Erro de atualização!');
+                response.text().then(function (resultado) {
+                });
+            }
+        });
+
+        return false;
+    }
+
     function redirecionar_email() {
         window.location.href = 'login.html';
     }

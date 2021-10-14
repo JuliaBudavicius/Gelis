@@ -52,6 +52,7 @@
             if (resposta.ok) {
 
                 resposta.json().then(json => {
+                    sessionStorage.idEmpresa = json.idEmpresa;
                     sessionStorage.emailEmpresa = json.email;
                     sessionStorage.nomeEmpresa = json.nomeEmpresa;
                     sessionStorage.cnpjEmpresa = json.CNPJ;
