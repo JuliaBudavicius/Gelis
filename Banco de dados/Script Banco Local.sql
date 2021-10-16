@@ -5,7 +5,7 @@ USE Gelis;
 CREATE TABLE Empresa (
 idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
 nomeEmpresa VARCHAR(100),
-CNPJ CHAR(14),
+CNPJ CHAR(18),
 CEP CHAR(8),
 estado CHAR(2),
 cidade VARCHAR(50),
@@ -14,7 +14,7 @@ email VARCHAR(100),
 senha VARCHAR(45),
 whatsApp CHAR(11)
 );
-
+select * from empresa;
 -- Criação da tabela Máquinas
 CREATE TABLE Maquinas (
 idMaquinas INT PRIMARY KEY AUTO_INCREMENT,
@@ -56,7 +56,11 @@ usoCPU INT,
 memRAM INT,
 PID INT
 );
-
+-- select * from empresa;
+-- SELECT DATABASE();
+-- show tables;
+-- describe empresa;
 -- Transformando a fkMaquinas em uma Foreign Key
 ALTER TABLE Processos ADD 
 FOREIGN KEY (fkMaquinas) REFERENCES Maquinas (idMaquinas);
+-- drop database gelis;
