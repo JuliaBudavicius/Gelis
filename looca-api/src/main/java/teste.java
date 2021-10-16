@@ -45,31 +45,14 @@ import java.util.List;
 public class teste {
 
     public static void main(String[] args) {
-           Components components = JSensors.get.components();
+        Looca looca = new Looca();
+        ProcessosGroup  grupoDeProcessos = looca.getGrupoDeProcessos();
 
-    List<Gpu> gpus = components.gpus;
-    if (gpus != null) {
-        for (final Gpu gpu : gpus) {
-            System.out.println("Found CPU component: " + gpu.name);
-            if (gpu.sensors != null) {
-              System.out.println("Sensors: ");
-  
-              //Print temperatures
-              List<Temperature> temps = gpu.sensors.temperatures;
-              for (final Temperature temp : temps) {
-                  System.out.println(temp.name + ": " + temp.value + " C");
-              }
-  
-              //Print fan speed
-              List<Fan> fans = gpu.sensors.fans;
-              for (final Fan fan : fans) {
-                  System.out.println(fan.name + ": " + fan.value + " RPM");
-              }
-            }
+        List<Processo> processos = grupoDeProcessos.getProcessos();
+
+        for (Processo p : processos) {
+            System.out.println(p);
         }
-    }
 
-       
     }
 }
-
