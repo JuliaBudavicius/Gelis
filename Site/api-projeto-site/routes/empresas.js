@@ -6,7 +6,7 @@ var env = process.env.NODE_ENV || 'development';
 
 let sessoes = [];
 
-router.get('/atualizar/:idEmpresa', function (req, res, next) {
+router.post('/atualizar/:idEmpresa', function (req, res, next) {
 	console.log('atualizando informações');
 	var idEmpresa = req.params.idEmpresa;
 	var nomeEmpresa = req.body.nomeEmpresa;
