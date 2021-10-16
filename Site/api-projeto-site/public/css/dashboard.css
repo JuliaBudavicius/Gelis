@@ -393,9 +393,8 @@ p {
 }
 
 .txtAlerta {
-    color: #ffff00;
     font-size: 1.4em;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 
 .ultReg {
@@ -608,7 +607,11 @@ p {
     position: absolute;
     top: 15%;
 }
-
+#form_atualizar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .forms {
     display: flex;
     margin: 20px 0 0 0;

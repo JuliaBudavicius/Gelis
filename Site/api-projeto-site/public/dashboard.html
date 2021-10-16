@@ -35,15 +35,15 @@
             <div class="boxSup">
                 <div class="verti">
                     <p class="titInfo">Hostname</p>
-                    <p class="Info">HS3751</p>
+                    <p id="hostname" class="Info"></p>
                 </div>
                 <div class="verti">
                     <p class="titInfo">Temperatura da GPU</p>
-                    <p class="InfoRed">65°C</p>
+                    <p id="tempGpu" class="InfoRed"></p>
                 </div>
                 <div class="verti">
                     <p class="titInfo">Temperatura da CPU</p>
-                    <p class="Info">54°C</p>
+                    <p id="tempCpu" class="Info"></p>
                 </div>
                 <div class="verti">
                     <p class="titInfo">Uso da Memória RAM</p>
@@ -126,8 +126,8 @@
                             <p class="txtInfo">Status da máquina</p>
                         </div>
                         <div class="divstatus">
-                            <i class="fas fa-exclamation-triangle fa-3x"></i>
-                            <p class="txtAlerta">Alerta</p>
+                            <i id="icon" class="fas fa-3x"></i>
+                            <p id="txtAlert" class="txtAlerta"></p>
                         </div>
                     </div>
                     <div>
@@ -192,7 +192,7 @@
                 <div class="computadores">
                     <p class="tituloStatus">Computadores</p>
                     <div class="boxes">
-                        <div class="boxComp" onclick="show()">
+                        <div class="boxComp" onclick="show(1)">
                             <p class="nomeComp">Computador 1</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Alerta">Alerta</p>
@@ -212,7 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="boxComp" onclick="show()">
+                        <div class="boxComp" onclick="show(2)">
                             <p class="nomeComp">Computador 2</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Critico">Critico</p>
@@ -232,7 +232,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="boxComp" onclick="show()">
+                        <div class="boxComp" onclick="show(3)">
                             <p class="nomeComp">Computador 3</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Normal">Normal</p>
@@ -436,7 +436,7 @@
             type: 'doughnut',
             data: {
                 datasets: [{
-                    data: [7.4, 0.6],
+                    data: [5.4, 1.6],
                     backgroundColor: [
                         'rgb(255, 0, 0)',
                         'rgba(255, 255, 255, 0)'
@@ -447,6 +447,30 @@
             radius: 50
         });
     }
+    function update(numero) {
+        switch (numero) {
+            case 1:
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.push(5.4);
+            myChart.data.datasets[0].data.push(1.6);
+                break;
+            case 2:
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.push(7.4);
+            myChart.data.datasets[0].data.push(0.6);
+                break;
+            case 3:
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.push(3.0);
+            myChart.data.datasets[0].data.push(5.0);
+                break;
+        }
+        myChart.update();
+    }
+
     function verificar_autenticacao() {
         var nome = document.getElementById('nomeEmpresaInput');
         var email = document.getElementById('emailEmpresaInput');
