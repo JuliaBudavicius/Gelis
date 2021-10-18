@@ -15,8 +15,8 @@ public class ViewController {
 
     public Boolean login(String login, String senha) {
         String query = String.format("select hostname,modCPU,modGPU,qntRAM,fkEmpresa from Maquinas where loginMaquina ='%s' and senhaMaquina = '%s';", login, senha);
-        String valida = db.makeSelectQuery(query);
-        if(valida == null){
+        Map map = db.makeSelectQuery(query);
+        if(map.isEmpty()){
             return false;
         }else{
             return true;
