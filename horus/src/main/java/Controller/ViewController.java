@@ -9,35 +9,27 @@ import com.profesorfalken.jsensors.JSensors;
 import com.profesorfalken.jsensors.model.components.Components;
 import com.profesorfalken.jsensors.model.components.Gpu;
 import com.profesorfalken.jsensors.model.sensors.Temperature;
-import com.sun.jna.platform.win32.WinBase;
-
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.JOptionPane;
 
 public class ViewController {
 
     private String fkMaquina;
     private final Looca looca = new Looca();
     private final DataBaseModel db = new DataBaseModel();
-    List<Object> listaMap = new ArrayList<>();
     Components components = JSensors.get.components();
     List<Gpu> gpus = components.gpus;
     Memoria memRam = looca.getMemoria();
-    Double gpuTemp; 
+    Double gpuTemp;
+
     public Map login(String login, String senha) {
         String query = String.format("select idMaquinas, hostname,modCPU,modGPU,qntRAM,fkEmpresa from Maquinas where loginMaquina ='%s' and senhaMaquina = '%s';", login, senha);
         Map map = db.makeSelectQuery(query);
         if (map.isEmpty()) {
             return map;
         } else {
-            listaMap.add(map.get("idMaquina"));
             return map;
         }
     }
@@ -58,7 +50,6 @@ public class ViewController {
         public void run() {
             List<Gpu> gpus = JSensors.get.components().gpus;
             if (gpus.size() > 0) {
-                //For the moment jHardware only handles 1 temperature of processor
                 Gpu gpu = gpus.get(0);
                 if (gpu.sensors.temperatures != null && gpu.sensors.temperatures.size() > 0) {
                     for (Temperature temp : gpu.sensors.temperatures) {
@@ -69,36 +60,34 @@ public class ViewController {
                 }
             }
 
-                String qntMem = Conversor.formatarBytes(memRam.getEmUso());
-                String nova = qntMem.replace(" GiB", "");
-                String nova2 = nova.replace(",", ".");
-                qntMem = nova2;
-                String tempCPU1 = looca.getTemperatura().toString().replace("Temperatura: ", "");
-                String tempCPU = tempCPU1.replace(",", ".");
-                String query = String.format("INSERT INTO dadosMaquinas values (null,%s,'%s','%s','%s',now());",
-                        fkMaquina,
-                        tempCPU,
-                        gpuTemp,
-                        qntMem);
-                db.initializer();
-                db.makeInsertQuery(query);
+            String qntMem = Conversor.formatarBytes(memRam.getEmUso());
+            String nova = qntMem.replace(" GiB", "");
+            String nova2 = nova.replace(",", ".");
+            qntMem = nova2;
+            String tempCPU1 = looca.getTemperatura().toString().replace("Temperatura: ", "");
+            String tempCPU = tempCPU1.replace(",", ".");
+            String query = String.format("INSERT INTO dadosMaquinas values (null,%s,'%s','%s','%s',now());",
+                    fkMaquina,
+                    tempCPU,
+                    gpuTemp,
+                    qntMem);
+            db.initializer();
+            db.makeInsertQuery(query);
 
-            }
         }
-
-        ;
+    };
 
     public void tempoInsert(int segundos) {
-            timer.schedule(task, 0, segundos * 1000L);
-        }
-
-        public void startInsert(String fkMaquina) {
-            setFkMaquina(fkMaquina);
-            tempoInsert(15);
-        }
-
-        public void setFkMaquina(String fkMaquina) {
-            this.fkMaquina = fkMaquina;
-        }
-
+        timer.schedule(task, 0, segundos * 1000L);
     }
+
+    public void startInsert(String fkMaquina) {
+        setFkMaquina(fkMaquina);
+        tempoInsert(15);
+    }
+
+    public void setFkMaquina(String fkMaquina) {
+        this.fkMaquina = fkMaquina;
+    }
+
+}
