@@ -2,6 +2,7 @@ package Views;
 
 import controller.ViewController;
 import java.awt.Color;
+import java.util.Map;
 
 public class Login extends javax.swing.JFrame {
 
@@ -153,9 +154,11 @@ public class Login extends javax.swing.JFrame {
         vc.init();
         String user = txtUser.getText();
         String password = txtPassword.getText();
-        if (vc.login(user, password)) {
-            new Horus().setVisible(true);
+        Map map = vc.login(user, password);
+        if (!map.isEmpty()) {
+            new Horus(map).setVisible(true);
             new Processos().setVisible(true);
+            dispose();
         } else {
             txtError.setText("Usuário ou senha incorretos!");
         }

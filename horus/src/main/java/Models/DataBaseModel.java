@@ -26,12 +26,19 @@ public class DataBaseModel {
         }
     }
 
+    public void makeUpdateQuery(String query){
+        try (Connection connection = DriverManager.getConnection(url, user, password); Statement statement = connection.createStatement();){
+            statement.executeUpdate(query);
+            System.out.println("Update realizado.");
+        } catch (SQLException ex) {
+            Logger.getLogger(DataBaseModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public Map makeSelectQuery(String query) {
         Map<String, String> map = new HashMap<>();
         try (Connection connection = DriverManager.getConnection(url, user, password); Statement statement = connection.createStatement();) {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
-                System.out.println(rs.getString(1));
                 map.put("label1", rs.getString(1));
                 map.put("label2", rs.getString(2));
                 map.put("label3", rs.getString(3));

@@ -22,13 +22,14 @@ fkEmpresa INT,
 hostname VARCHAR(30),
 modCPU VARCHAR(50),
 modGPU VARCHAR(50),
-qntRAM INT,
+qntRAM Double,
 senhaMaquina VARCHAR(45),
 nomeResp VARCHAR(100),
 sobrenomeResp VARCHAR(100),
 loginMaquina VARCHAR(30)
 );
-
+insert into maquinas values(null, '2', 'HS1321B', 'AMD Ryzen 5', 'GTX 750ti', 8, '123321', 'Gustavo', 'Quaresma', 'admin');
+select * from Maquinas;
 -- Transformando a fkEmpresa em uma Foreign Key
 ALTER TABLE Maquinas ADD 
 FOREIGN KEY (fkEmpresa) REFERENCES Empresa (idEmpresa);

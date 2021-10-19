@@ -1,6 +1,5 @@
 package Views;
 
-
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.DiscosGroup;
@@ -11,46 +10,25 @@ import com.github.britooo.looca.api.util.Conversor;
 import com.profesorfalken.jsensors.JSensors;
 import com.profesorfalken.jsensors.model.components.Components;
 import com.profesorfalken.jsensors.model.components.Gpu;
+import controller.ViewController;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/*
- * The MIT License
- *
- * Copyright 2021 Gabri.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-/**
- *
- * @author Gabri
- */
 public class Horus extends javax.swing.JFrame {
 
+    private final ViewController vc = new ViewController();
     /**
      * Creates new form Horus
      */
-    public Horus() {
-        initComponents();
+    List<Object> listaMap = new ArrayList<>();
 
+    public Horus(Map map) {
+        initComponents();
+        listaMap.add(map.get("label1"));
         Color cor = new Color(255, 255, 255);
         getContentPane().setBackground(cor);
     }
@@ -359,10 +337,16 @@ public class Horus extends javax.swing.JFrame {
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         // TODO add your handling code here:
         Looca looca = new Looca();
-
+        Sistema sistema = looca.getSistema();
+        Memoria memRam = looca.getMemoria();
+        DiscosGroup grupoDeDiscos = looca.getGrupoDeDiscos();
+        Processador processador = looca.getProcessador();
+        Components components = JSensors.get.components();
+        List<Gpu> gpus = components.gpus;
+        String modGpu = null;
+        
         if (checkSO.isSelected()) {
             //Pegando informações do sistema
-            Sistema sistema = looca.getSistema();
             lblSO.setText(sistema.getSistemaOperacional());
             //checkSO.setEnabled(false);
         } else {
@@ -371,7 +355,6 @@ public class Horus extends javax.swing.JFrame {
 
         if (checkCPU.isSelected()) {
             //Pegando informações do processador
-            Processador processador = looca.getProcessador();
             lblProcessador.setText(processador.getNome());
         } else {
             lblProcessador.setText("Não selecionado");
@@ -379,7 +362,6 @@ public class Horus extends javax.swing.JFrame {
 
         if (checkRAM.isSelected()) {
             //Pegando informações da memória ram e convertendo de long para string
-            Memoria memRam = looca.getMemoria();
             memRam.getTotal();
             Conversor.formatarBytes(memRam.getTotal());
             lblRAM.setText(Conversor.formatarBytes(memRam.getTotal()));
@@ -389,7 +371,6 @@ public class Horus extends javax.swing.JFrame {
 
         if (checkDisco.isSelected()) {
             //Pegando informações do hard disk
-            DiscosGroup grupoDeDiscos = looca.getGrupoDeDiscos();
             List<Disco> discos = grupoDeDiscos.getDiscos();
 
             for (Disco disco : discos) {
@@ -402,18 +383,23 @@ public class Horus extends javax.swing.JFrame {
 
         if (checkGPU.isSelected()) {
             //Pegando informações da placa de vídeo
-            Components components = JSensors.get.components();
-
-            List<Gpu> gpus = components.gpus;
             if (gpus != null) {
                 for (final Gpu gpu : gpus) {
                     lblGPU.setText(gpu.name);
+                    modGpu = gpu.name;
                 }
             }
         } else {
             lblGPU.setText("Não selecionado");
         }
-
+        vc.init();
+        String qntMem = Conversor.formatarBytes(memRam.getTotal());
+        String nova = qntMem.replace("G", "");
+        String nova2 = nova.replace("i", "");
+        String nova3 = nova2.replace("B", "");
+        String nova4 = nova3.replace(" ", "");
+        String nova5 = nova4.replace(",", ".");
+        vc.Insere(processador.getNome(), modGpu,nova5, listaMap.get(0).toString());
 
     }//GEN-LAST:event_btnIniciarActionPerformed
 
@@ -476,37 +462,6 @@ public class Horus extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Horus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Horus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Horus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Horus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Horus().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
