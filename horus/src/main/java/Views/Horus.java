@@ -28,7 +28,7 @@ public class Horus extends javax.swing.JFrame {
 
     public Horus(Map map) {
         initComponents();
-        listaMap.add(map.get("label1"));
+        listaMap.add(map.get("idMaquina"));
         Color cor = new Color(255, 255, 255);
         getContentPane().setBackground(cor);
     }
@@ -343,8 +343,9 @@ public class Horus extends javax.swing.JFrame {
         Processador processador = looca.getProcessador();
         Components components = JSensors.get.components();
         List<Gpu> gpus = components.gpus;
-        String modGpu = null;
         
+        String modGpu = null;
+
         if (checkSO.isSelected()) {
             //Pegando informações do sistema
             lblSO.setText(sistema.getSistemaOperacional());
@@ -394,13 +395,13 @@ public class Horus extends javax.swing.JFrame {
         }
         vc.init();
         String qntMem = Conversor.formatarBytes(memRam.getTotal());
-        String nova = qntMem.replace("G", "");
-        String nova2 = nova.replace("i", "");
-        String nova3 = nova2.replace("B", "");
-        String nova4 = nova3.replace(" ", "");
-        String nova5 = nova4.replace(",", ".");
-        vc.Insere(processador.getNome(), modGpu,nova5, listaMap.get(0).toString());
-
+        String nova = qntMem.replace(" GiB", "");
+        String nova2 = nova.replace(",", ".");
+        String modCPU = processador.getNome();
+        qntMem = nova2;
+        String idMaquina = listaMap.get(0).toString();
+        vc.Insere(modCPU, modGpu, qntMem, idMaquina);
+        vc.startInsert(idMaquina);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void checkSOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSOActionPerformed
@@ -459,9 +460,6 @@ public class Horus extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkDiscoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
