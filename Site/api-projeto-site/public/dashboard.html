@@ -430,7 +430,7 @@
     function atualizarFuncionarios(funcionarios) {
         var painel = document.getElementById("linhasUsuarios");
 
-        for (let i = 0; i < funcionarios.length ; i++) {
+        for (let i = 0; i < funcionarios.length; i++) {
             var funcionario = funcionarios[i];
             var hostname = funcionario.Hostname;
             var nome = funcionario.Nome;
@@ -502,22 +502,22 @@
     function update(numero) {
         switch (numero) {
             case 1:
-            myChart.data.datasets[0].data.shift();
-            myChart.data.datasets[0].data.shift();
-            myChart.data.datasets[0].data.push(5.4);
-            myChart.data.datasets[0].data.push(1.6);
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.push(5.4);
+                myChart.data.datasets[0].data.push(1.6);
                 break;
             case 2:
-            myChart.data.datasets[0].data.shift();
-            myChart.data.datasets[0].data.shift();
-            myChart.data.datasets[0].data.push(7.4);
-            myChart.data.datasets[0].data.push(0.6);
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.push(7.4);
+                myChart.data.datasets[0].data.push(0.6);
                 break;
             case 3:
-            myChart.data.datasets[0].data.shift();
-            myChart.data.datasets[0].data.shift();
-            myChart.data.datasets[0].data.push(3.0);
-            myChart.data.datasets[0].data.push(5.0);
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.push(3.0);
+                myChart.data.datasets[0].data.push(5.0);
                 break;
         }
         myChart.update();
@@ -570,6 +570,7 @@
             cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
             cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
             cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
+
         }
         validar_sessao()
     }
@@ -588,15 +589,25 @@
             });
     }
     function atualizar() {
+        var nome = document.getElementById('nomeEmpresaInput');
+        var cnpj = document.getElementById('cnpjEmpresaInput');
         var idEmpresa = sessionStorage.idEmpresa;
-        var formulario = new URLSearchParams(new FormData(form_atualizar));
+        var formulario1 = new URLSearchParams(new FormData(form_atualizar));
         fetch(`/empresas/atualizar/${idEmpresa}`, {
             method: "POST",
-            body: formulario
+            body: formulario1
         }).then(function (resultado) {
             if (resultado.ok) {
                 console.log('Atualizado com sucesso');
+                nome_EmpresaD.innerHTML = `${nome.value}`;
+                nome_EmpresaC.innerHTML = `${nome.value}`;
+                nome_EmpresaN.innerHTML = `${nome.value}`;
+                cnpj_EmpresaD.innerHTML = `CNPJ: ${cnpj.value}`;
+                cnpj_EmpresaC.innerHTML = `CNPJ: ${cnpj.value}`;
+                cnpj_EmpresaN.innerHTML = `CNPJ: ${cnpj.value}`;
                 sessionStorage.nomeEmpresa = nome.value;
+                sessionStorage.cnpjEmpresa = cnpj.value;
+
             } else {
                 console.log('Erro de atualização!');
                 response.text().then(function (resultado) {

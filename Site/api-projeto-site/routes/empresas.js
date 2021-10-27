@@ -20,10 +20,13 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 
 	var instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}', email='${emailEmpresa}', CNPJ='${cnpjEmpresa}', whatsApp='${whatsEmpresa}', CEP='${cepEmpresa}', estado='${estadoEmpresa}', cidade='${cidadeEmpresa}', logradouro='${logradouroEmpresa}' where idEmpresa = ${idEmpresa};`;
 	console.log(instrucaoSql);
-	sequelize.query(instrucaoSql, function (erro, resultado) {
-		if (erro) throw erro;
-		console.log('User updated in database with ID: ' + req.params.idEmpresa);
-	});
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE })
+    .then(resultado => {
+        res.json(resultado[0]);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
 });
 
 /* Recuperar usuário por login e senha */
