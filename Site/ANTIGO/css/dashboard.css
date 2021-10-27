@@ -594,7 +594,7 @@ p {
     justify-content: center;
 }
 
-.linha {
+.linhaConfig {
     height: 3px;
     background-color: #EE1E46;
     width: calc(100vw - 720px);

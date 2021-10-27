@@ -18,14 +18,14 @@
 <body>
     <div id="absoluto" class="absoluto">
         <div class="sair">
-          <img class="iconSair" src="img/icone.png" alt="">
-          <p class="tituloSair">Deseja mesmo sair?</p>
-          <div class="lado">
-            <button class="btnCancelar" onclick="fechar()" >Cancelar</button>
-            <button class="btnSair" onclick="logoff()"> Sair</button>
-          </div>
+            <img class="iconSair" src="img/icone.png" alt="">
+            <p class="tituloSair">Deseja mesmo sair?</p>
+            <div class="lado">
+                <button class="btnCancelar" onclick="fechar()">Cancelar</button>
+                <button class="btnSair" onclick="logoff()"> Sair</button>
+            </div>
         </div>
-      </div>
+    </div>
     <section id="dashboardSec" class="dashboard">
         <div class="absolute none" id="abs">
             <i class="fa fa-times fa-2x" onclick="hide()"></i>
@@ -35,15 +35,15 @@
             <div class="boxSup">
                 <div class="verti">
                     <p class="titInfo">Hostname</p>
-                    <p class="Info">HS3751</p>
+                    <p id="hostname" class="Info"></p>
                 </div>
                 <div class="verti">
                     <p class="titInfo">Temperatura da GPU</p>
-                    <p class="InfoRed">65°C</p>
+                    <p id="tempGpu" class="InfoRed"></p>
                 </div>
                 <div class="verti">
                     <p class="titInfo">Temperatura da CPU</p>
-                    <p class="Info">54°C</p>
+                    <p id="tempCpu" class="Info"></p>
                 </div>
                 <div class="verti">
                     <p class="titInfo">Uso da Memória RAM</p>
@@ -126,8 +126,8 @@
                             <p class="txtInfo">Status da máquina</p>
                         </div>
                         <div class="divstatus">
-                            <i class="fas fa-exclamation-triangle fa-3x"></i>
-                            <p class="txtAlerta">Alerta</p>
+                            <i id="icon" class="fas fa-3x"></i>
+                            <p id="txtAlert" class="txtAlerta"></p>
                         </div>
                     </div>
                     <div>
@@ -150,8 +150,8 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Caio Hideki</p>
-                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+                <p class="nomeempresa" id="nome_EmpresaD"></p>
+                <p class="cnpjempresa" id="cnpj_EmpresaD">CNPJ: </p>
             </div>
             <div class="botoes">
                 <button class="btn destaque" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
@@ -192,7 +192,7 @@
                 <div class="computadores">
                     <p class="tituloStatus">Computadores</p>
                     <div class="boxes">
-                        <div class="boxComp" onclick="show()">
+                        <div class="boxComp" onclick="show(1)">
                             <p class="nomeComp">Computador 1</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Alerta">Alerta</p>
@@ -212,7 +212,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="boxComp" onclick="show()">
+                        <div class="boxComp" onclick="show(2)">
                             <p class="nomeComp">Computador 2</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Critico">Critico</p>
@@ -232,7 +232,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="boxComp" onclick="show()">
+                        <div class="boxComp" onclick="show(3)">
                             <p class="nomeComp">Computador 3</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Normal">Normal</p>
@@ -262,8 +262,8 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Caio Hideki</p>
-                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+                <p class="nomeempresa" id="nome_EmpresaC"></p>
+                <p class="cnpjempresa" id="cnpj_EmpresaC">CNPJ: </p>
             </div>
             <div class="botoes">
                 <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
@@ -275,48 +275,50 @@
         <div class="ladoEsquerdo">
             <div class="configuracoes">
                 <p class="tituloConfig">CONFIGURAÇÕES</p>
-                <div class="forms">
-                    <div>
-                        <p>Nome empresa</p>
-                        <input type="text">
+                <form id="form_atualizar" method="post" onsubmit="return atualizar()">
+                    <div class="forms">
+                        <div>
+                            <p>Nome empresa</p>
+                            <input name="nomeEmpresa" type="text" id="nomeEmpresaInput">
+                        </div>
+                        <div>
+                            <p>Email</p>
+                            <input name="emailEmpresa" type="text" id="emailEmpresaInput">
+                        </div>
                     </div>
-                    <div>
-                        <p>Email</p>
-                        <input type="text">
+                    <div class="forms">
+                        <div>
+                            <p>CNPJ</p>
+                            <input name="cnpjEmpresa" type="text" id="cnpjEmpresaInput">
+                        </div>
+                        <div>
+                            <p>WhatsApp</p>
+                            <input name="whatsEmpresa" type="text" id="whatsEmpresaInput">
+                        </div>
                     </div>
-                </div>
-                <div class="forms">
-                    <div>
-                        <p>CNPJ</p>
-                        <input type="text">
+                    <div class="linhaConfig"></div>
+                    <div class="forms">
+                        <div>
+                            <p>CEP</p>
+                            <input name="cepEmpresa" type="text" id="cepEmpresaInput">
+                        </div>
+                        <div>
+                            <p>Estado</p>
+                            <input name="estadoEmpresa" type="text" id="estadoEmpresaInput">
+                        </div>
                     </div>
-                    <div>
-                        <p>WhatsApp</p>
-                        <input type="text">
+                    <div class="forms">
+                        <div>
+                            <p>Cidade</p>
+                            <input name="cidadeEmpresa" type="text" id="cidadeEmpresaInput">
+                        </div>
+                        <div>
+                            <p>Logradouro</p>
+                            <input name="logradouroEmpresa" type="text" id="logradouroEmpresaInput">
+                        </div>
                     </div>
-                </div>
-                <div class="linha"></div>
-                <div class="forms">
-                    <div>
-                        <p>CEP</p>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <p>Estado</p>
-                        <input type="text">
-                    </div>
-                </div>
-                <div class="forms">
-                    <div>
-                        <p>Cidade</p>
-                        <input type="text">
-                    </div>
-                    <div>
-                        <p>Logradouro</p>
-                        <input type="text">
-                    </div>
-                </div>
-                <button class="btnSave">Salvar alterações</button>
+                    <button class="btnSave">Salvar alterações</button>
+                </form>
             </div>
         </div>
     </section>
@@ -325,8 +327,8 @@
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
                 <img class="iconempresa" src="img/icon.png" alt="">
-                <p class="nomeempresa">Caio Hideki</p>
-                <p class="cnpjempresa">CNPJ: 27305709000151</p>
+                <p class="nomeempresa" id="nome_EmpresaN"></p>
+                <p class="cnpjempresa" id="cnpj_EmpresaN">CNPJ: </p>
             </div>
             <div class="botoes">
                 <button class="btn" onclick="dashboard()"><i class="fas fa-tv"></i>Computadores</button>
@@ -406,13 +408,11 @@
 
 </html>
 <script>
-    function logoff(){
-        window.location.href = "index.html";
-    }
-    function sair(){
+    window.onload = verificar_autenticacao();
+    function sair() {
         absoluto.style = "display: flex;";
     }
-    function fechar(){
+    function fechar() {
         absoluto.style = "display: none;";
     }
     function dashboard() {
@@ -430,22 +430,136 @@
         dashboardSec.classList.add('none');
         novoUsu.classList.remove('none');
     }
-    window.onload = cores();
-    var ctx = document.getElementById('myChart').getContext('2d');
-    window.myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            datasets: [{
-                data: [7.4, 0.6],
-                backgroundColor: [
-                    'rgb(255, 0, 0)',
-                    'rgba(255, 255, 255, 0)'
-                ],
-                hoverOffset: 1
-            }]
-        },
-        radius: 50
-    });
+    function chart() {
+        var ctx = document.getElementById('myChart').getContext('2d');
+        window.myChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [5.4, 1.6],
+                    backgroundColor: [
+                        'rgb(255, 0, 0)',
+                        'rgba(255, 255, 255, 0)'
+                    ],
+                    hoverOffset: 1
+                }]
+            },
+            radius: 50
+        });
+    }
+    function update(numero) {
+        switch (numero) {
+            case 1:
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.push(5.4);
+            myChart.data.datasets[0].data.push(1.6);
+                break;
+            case 2:
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.push(7.4);
+            myChart.data.datasets[0].data.push(0.6);
+                break;
+            case 3:
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.shift();
+            myChart.data.datasets[0].data.push(3.0);
+            myChart.data.datasets[0].data.push(5.0);
+                break;
+        }
+        myChart.update();
+    }
 
+    function verificar_autenticacao() {
+        var nome = document.getElementById('nomeEmpresaInput');
+        var email = document.getElementById('emailEmpresaInput');
+        var cnpj = document.getElementById('cnpjEmpresaInput');
+        var whats = document.getElementById('whatsEmpresaInput');
+        var cep = document.getElementById('cepEmpresaInput');
+        var estado = document.getElementById('estadoEmpresaInput');
+        var cidade = document.getElementById('cidadeEmpresaInput');
+        var logradouro = document.getElementById('logradouroEmpresaInput');
+        cores();
+        chart();
+        let nomeEmpresa;
+        let cnpjEmpresa;
+        let emailEmpresa;
+        let whatsEmpresa;
+        let cepEmpresa;
+        let estadoEmpresa;
+        let cidadeEmpresa;
+        let logradouroEmpresa;
 
+        nomeEmpresa = sessionStorage.nomeEmpresa;
+        cnpjEmpresa = sessionStorage.cnpjEmpresa;
+        emailEmpresa = sessionStorage.emailEmpresa;
+        whatsEmpresa = sessionStorage.whatsEmpresa;
+        cepEmpresa = sessionStorage.cepEmpresa;
+        estadoEmpresa = sessionStorage.estadoEmpresa;
+        cidadeEmpresa = sessionStorage.cidadeEmpresa;
+        logradouroEmpresa = sessionStorage.logradouroEmpresa;
+
+        if (nomeEmpresa == undefined) {
+            redirecionar_email();
+        } else {
+            nome.value += `${nomeEmpresa}`;
+            email.value += `${emailEmpresa}`;
+            cnpj.value += `${cnpjEmpresa}`;
+            whats.value += `${whatsEmpresa}`;
+            cep.value += `${cepEmpresa}`;
+            estado.value += `${estadoEmpresa}`;
+            cidade.value += `${cidadeEmpresa}`;
+            logradouro.value += `${logradouroEmpresa}`;
+            nome_EmpresaD.innerHTML += `${nomeEmpresa}`;
+            nome_EmpresaC.innerHTML += `${nomeEmpresa}`;
+            nome_EmpresaN.innerHTML += `${nomeEmpresa}`;
+            cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
+            cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
+            cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
+        }
+        validar_sessao()
+    }
+    function validar_sessao() {
+        var emailEmpresa = sessionStorage.emailEmpresa;
+        fetch(`/empresas/sessao/${emailEmpresa}`, { cache: 'no-store' })
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.text().then(texto => {
+                        console.log('Sessão :) ', texto);
+                    });
+                } else {
+                    console.error('Sessão :.( ');
+                    logoff();
+                }
+            });
+    }
+    function atualizar() {
+        var idEmpresa = sessionStorage.idEmpresa;
+        var formulario = new URLSearchParams(new FormData(form_atualizar));
+        fetch(`/empresas/atualizar/${idEmpresa}`, {
+            method: "POST",
+            body: formulario
+        }).then(function (resultado) {
+            if (resultado.ok) {
+                console.log('Atualizado com sucesso');
+                sessionStorage.nomeEmpresa = nome.value;
+            } else {
+                console.log('Erro de atualização!');
+                response.text().then(function (resultado) {
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function redirecionar_email() {
+        window.location.href = 'login.html';
+    }
+
+    function logoff() {
+        sessionStorage.clear();
+        window.location.href = 'index.html';
+    }
 </script>

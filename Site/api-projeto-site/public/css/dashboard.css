@@ -571,7 +571,7 @@ p {
     margin-right: -30px;
 }
 
-.linhaUsuarios div {
+.divAux {
     display: flex;
     flex-direction: row;
     width: 78%;

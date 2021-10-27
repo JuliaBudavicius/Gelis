@@ -361,16 +361,16 @@
                 <div class="tituloUsuarios">
                     <div class="txtCentr2">
                         <p>Nome Completo</p>
-                        <p>Login</p>
+                        <p>E-mail</p>
                         <p>Hostname</p>
                     </div>
                 </div>
                 <div class="infoUsuarios">
-                    <div class="linhasUsuarios">
-                        <div class="linhaUsuarios">
+                    <div id="linhasUsuarios" class="linhasUsuarios">
+                        <!-- <div class="linhaUsuarios">
                             <input class="checkbox" type="checkbox" id="user" name="user">
                             <div>
-                                <p class="nome">Gustavo Quaresma</p>
+                                <p id="nome13" class="nome">Gustavo Quaresma</p>
                                 <p class="email">Gustavo@Gelis.com</p>
                                 <p>HS347A</p>
                             </div>
@@ -398,7 +398,7 @@
                                 <p class="email">Júlia@Gelis.com</p>
                                 <p>HS349B</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -409,6 +409,58 @@
 </html>
 <script>
     window.onload = verificar_autenticacao();
+    function obterFuncionarios() {
+        var idEmpresa = sessionStorage.idEmpresa;
+        fetch(`/funcionarios/${idEmpresa}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log(`Dados dos funcionarios recebidos: ${JSON.stringify(resposta)}`);
+                        atualizarFuncionarios(resposta);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção das publicações: ${error.message}`);
+            });
+    }
+
+    function atualizarFuncionarios(funcionarios) {
+        var painel = document.getElementById("linhasUsuarios");
+
+        for (let i = 0; i < funcionarios.length ; i++) {
+            var funcionario = funcionarios[i];
+            var hostname = funcionario.Hostname;
+            var nome = funcionario.Nome;
+            var sobrenome = funcionario.Sobrenome;
+            var email = funcionario.email;
+            var divAux = document.createElement("div")
+            var divLinha = document.createElement("div")
+            var checkbox = document.createElement("input")
+            var NomeP = document.createElement("p")
+            var emailP = document.createElement("p")
+            var HostnameP = document.createElement("p")
+            checkbox.type = "checkbox";
+            NomeP.innerHTML = nome + " " + sobrenome;
+            emailP.innerHTML = email;
+            HostnameP.innerHTML = hostname;
+
+            divAux.className = "divAux";
+            checkbox.className = "checkbox";
+            divLinha.className = "linhaUsuarios";
+            NomeP.className = "nome";
+            emailP.className = "email";
+
+            divAux.appendChild(NomeP);
+            divAux.appendChild(emailP);
+            divAux.appendChild(HostnameP);
+            divLinha.appendChild(checkbox);
+            divLinha.appendChild(divAux);
+            painel.appendChild(divLinha);
+        }
+    }
     function sair() {
         absoluto.style = "display: flex;";
     }
@@ -503,6 +555,7 @@
         if (nomeEmpresa == undefined) {
             redirecionar_email();
         } else {
+            obterFuncionarios();
             nome.value += `${nomeEmpresa}`;
             email.value += `${emailEmpresa}`;
             cnpj.value += `${cnpjEmpresa}`;
