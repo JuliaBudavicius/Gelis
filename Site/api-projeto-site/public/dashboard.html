@@ -367,6 +367,7 @@
                 </div>
                 <div class="infoUsuarios">
                     <div id="linhasUsuarios" class="linhasUsuarios">
+                        
                         <!-- <div class="linhaUsuarios">
                             <input class="checkbox" type="checkbox" id="user" name="user">
                             <div>
@@ -442,7 +443,9 @@
             var NomeP = document.createElement("p")
             var emailP = document.createElement("p")
             var HostnameP = document.createElement("p")
-            checkbox.type = "checkbox";
+            checkbox.type = "radio";
+            checkbox.value = i;
+            checkbox.name ="group";
             NomeP.innerHTML = nome + " " + sobrenome;
             emailP.innerHTML = email;
             HostnameP.innerHTML = hostname;
