@@ -367,39 +367,6 @@
                 </div>
                 <div class="infoUsuarios">
                     <div id="linhasUsuarios" class="linhasUsuarios">
-                        
-                        <!-- <div class="linhaUsuarios">
-                            <input class="checkbox" type="checkbox" id="user" name="user">
-                            <div>
-                                <p id="nome13" class="nome">Gustavo Quaresma</p>
-                                <p class="email">Gustavo@Gelis.com</p>
-                                <p>HS347A</p>
-                            </div>
-                        </div>
-                        <div class="linhaUsuarios">
-                            <input class="checkbox" type="checkbox" id="user" name="user">
-                            <div>
-                                <p class="nome">Gabriel Alves</p>
-                                <p class="email">Gabriel@Gelis.com</p>
-                                <p>HS346B</p>
-                            </div>
-                        </div>
-                        <div class="linhaUsuarios">
-                            <input class="checkbox" type="checkbox" id="user" name="user">
-                            <div>
-                                <p class="nome">Leonardo Arruda</p>
-                                <p class="email">Leonardo@Gelis.com</p>
-                                <p>HS345C</p>
-                            </div>
-                        </div>
-                        <div class="linhaUsuarios">
-                            <input class="checkbox" type="checkbox" id="user" name="user">
-                            <div>
-                                <p class="nome">Júlia Budavicius</p>
-                                <p class="email">Júlia@Gelis.com</p>
-                                <p>HS349B</p>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -444,7 +411,7 @@
             var emailP = document.createElement("p")
             var HostnameP = document.createElement("p")
             checkbox.type = "radio";
-            checkbox.value = i;
+            checkbox.value = funcionario.idMaquina;
             checkbox.name ="group";
             NomeP.innerHTML = nome + " " + sobrenome;
             emailP.innerHTML = email;

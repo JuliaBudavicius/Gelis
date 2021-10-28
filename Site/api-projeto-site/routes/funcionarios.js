@@ -10,12 +10,13 @@ router.get('/:idEmpresa', function (req, res, next) {
 	let instrucaoSql = "";
 
 	if (env = "dev") {
-		instrucaoSql = `SELECT hostname as Hostname,
-		nomeResp as Nome,
-		sobrenomeResp as Sobrenome,
-		emailFunc as email
-		FROM maquinas JOIN empresa 
-		WHERE fkEmpresa = idEmpresa and fkEmpresa = ${idEmpresa}`;
+        instrucaoSql = `SELECT idMaquinas as idMaquina,
+        hostname as Hostname,
+        nomeResp as Nome,
+        sobrenomeResp as Sobrenome,
+        emailFunc as email
+        FROM maquinas JOIN empresa 
+        WHERE fkEmpresa = idEmpresa and fkEmpresa = ${idEmpresa}`;
 	} else {
 
 	}
