@@ -29,7 +29,7 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 	logradouro='${logradouroEmpresa}'
 	where idEmpresa = ${idEmpresa};`;
 	} else {
-
+		
 	}
 	console.log(instrucaoSql);
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE })
