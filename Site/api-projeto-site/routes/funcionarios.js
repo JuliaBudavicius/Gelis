@@ -9,7 +9,7 @@ router.get('/:idEmpresa', function (req, res, next) {
 	console.log('Recuperando todos funcionarios da empresa');
 	let instrucaoSql = "";
 
-	if (env = "dev") {
+	if (env == "dev") {
         instrucaoSql = `SELECT idMaquinas as idMaquina,
         hostname as Hostname,
         nomeResp as Nome,
@@ -18,9 +18,7 @@ router.get('/:idEmpresa', function (req, res, next) {
         FROM maquinas JOIN empresa 
         WHERE fkEmpresa = idEmpresa and fkEmpresa = ${idEmpresa}`;
 	} else {
-
 	}
-
 	sequelize.query(instrucaoSql, {
 		model: funcionario,
 		mapToModel: true

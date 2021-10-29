@@ -17,16 +17,28 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 	var estadoEmpresa = req.body.estadoEmpresa;
 	var cidadeEmpresa = req.body.cidadeEmpresa;
 	var logradouroEmpresa = req.body.logradouroEmpresa;
+	var instrucaoSql;
+	if (env == "dev") {
+		instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}',
+	email='${emailEmpresa}',
+	CNPJ='${cnpjEmpresa}',
+	whatsApp='${whatsEmpresa}',
+	CEP='${cepEmpresa}',
+	estado='${estadoEmpresa}',
+	cidade='${cidadeEmpresa}',
+	logradouro='${logradouroEmpresa}'
+	where idEmpresa = ${idEmpresa};`;
+	} else {
 
-	var instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}', email='${emailEmpresa}', CNPJ='${cnpjEmpresa}', whatsApp='${whatsEmpresa}', CEP='${cepEmpresa}', estado='${estadoEmpresa}', cidade='${cidadeEmpresa}', logradouro='${logradouroEmpresa}' where idEmpresa = ${idEmpresa};`;
+	}
 	console.log(instrucaoSql);
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE })
-    .then(resultado => {
-        res.json(resultado[0]);
-    }).catch(erro => {
-        console.error(erro);
-        res.status(500).send(erro.message);
-    });
+		.then(resultado => {
+			res.json(resultado[0]);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
 });
 
 /* Recuperar usuário por login e senha */
@@ -35,8 +47,12 @@ router.post('/autenticar', function (req, res, next) {
 
 	var email = req.body.email;
 	var senha = req.body.senha;
+	var instrucaoSql;
+	if (env == "dev") {
+		instrucaoSql = `select * from Empresa where email='${email}' and senha='${senha}'`;
+	} else {
 
-	let instrucaoSql = `select * from Empresa where email='${email}' and senha='${senha}'`;
+	}
 	console.log(instrucaoSql);
 
 	sequelize.query(instrucaoSql, {
