@@ -20,16 +20,24 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 	var instrucaoSql;
 	if (env == "dev") {
 		instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}',
-	email='${emailEmpresa}',
-	CNPJ='${cnpjEmpresa}',
-	whatsApp='${whatsEmpresa}',
-	CEP='${cepEmpresa}',
-	estado='${estadoEmpresa}',
-	cidade='${cidadeEmpresa}',
-	logradouro='${logradouroEmpresa}'
-	where idEmpresa = ${idEmpresa};`;
+		email='${emailEmpresa}',
+		CNPJ='${cnpjEmpresa}',
+		whatsApp='${whatsEmpresa}',
+		CEP='${cepEmpresa}',
+		estado='${estadoEmpresa}',
+		cidade='${cidadeEmpresa}',
+		logradouro='${logradouroEmpresa}'
+		where idEmpresa = ${idEmpresa};`;
 	} else {
-		
+		instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}',
+		email='${emailEmpresa}',
+		CNPJ='${cnpjEmpresa}',
+		whatsApp='${whatsEmpresa}',
+		CEP='${cepEmpresa}',
+		estado='${estadoEmpresa}',
+		cidade='${cidadeEmpresa}',
+		logradouro='${logradouroEmpresa}'
+		where idEmpresa = ${idEmpresa};`;
 	}
 	console.log(instrucaoSql);
 	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE })
@@ -51,7 +59,7 @@ router.post('/autenticar', function (req, res, next) {
 	if (env == "dev") {
 		instrucaoSql = `select * from Empresa where email='${email}' and senha='${senha}'`;
 	} else {
-
+		instrucaoSql = `select * from Empresa where email='${email}' and senha='${senha}'`;
 	}
 	console.log(instrucaoSql);
 

@@ -18,6 +18,13 @@ router.get('/:idEmpresa', function (req, res, next) {
         FROM maquinas JOIN empresa 
         WHERE fkEmpresa = idEmpresa and fkEmpresa = ${idEmpresa}`;
 	} else {
+		instrucaoSql = `SELECT idMaquinas as idMaquina,
+        hostname as Hostname,
+        nomeResp as Nome,
+        sobrenomeResp as Sobrenome,
+        emailFunc as email
+        FROM maquinas JOIN empresa
+        ON fkEmpresa = idEmpresa and fkEmpresa = ${idEmpresa};`;
 	}
 	sequelize.query(instrucaoSql, {
 		model: funcionario,
