@@ -7,6 +7,7 @@ import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.util.Conversor;
 import com.profesorfalken.jsensors.JSensors;
 import com.profesorfalken.jsensors.model.components.Components;
+import com.profesorfalken.jsensors.model.components.Cpu;
 import com.profesorfalken.jsensors.model.components.Gpu;
 import com.profesorfalken.jsensors.model.sensors.Temperature;
 import java.util.List;
@@ -21,8 +22,11 @@ public class ViewController {
     private final DataBaseModel db = new DataBaseModel();
     Components components = JSensors.get.components();
     List<Gpu> gpus = components.gpus;
+    List<Cpu> cpus = components.cpus;
     Memoria memRam = looca.getMemoria();
     Double gpuTemp;
+    String cpuTemp;
+    String tempCPU1;
 
     public Map login(String login, String senha) {
         String query = String.format("select idMaquinas, hostname,modCPU,modGPU,qntRAM,fkEmpresa from Maquinas where loginMaquina ='%s' and senhaMaquina = '%s';", login, senha);
@@ -48,27 +52,23 @@ public class ViewController {
 
         @Override
         public void run() {
-            List<Gpu> gpus = JSensors.get.components().gpus;
             if (gpus.size() > 0) {
-                Gpu gpu = gpus.get(0);
-                if (gpu.sensors.temperatures != null && gpu.sensors.temperatures.size() > 0) {
-                    for (Temperature temp : gpu.sensors.temperatures) {
-                        if (temp.value != null) {
-                            gpuTemp = temp.value;
-                        }
+                for (final Gpu gpu : gpus) {
+                    List<Temperature> temps = gpu.sensors.temperatures;
+                    for (final Temperature temp : temps) {
+                        gpuTemp = temp.value;
                     }
                 }
             }
-
+            cpuTemp = looca.getTemperatura().toString();
             String qntMem = Conversor.formatarBytes(memRam.getEmUso());
-            String nova = qntMem.replace(" GiB", "");
-            String nova2 = nova.replace(",", ".");
-            qntMem = nova2;
-            String tempCPU1 = looca.getTemperatura().toString().replace("Temperatura: ", "");
-            String tempCPU = tempCPU1.replace(",", ".");
-            String query = String.format("INSERT INTO dadosMaquinas values (null,%s,'%s','%s','%s',now());",
+            cpuTemp = cpuTemp.replace("Temperatura: ", "");
+            cpuTemp = cpuTemp.replace(",",".");
+            qntMem = qntMem.replace(" GiB", "");
+            qntMem = qntMem.replace(",", ".");
+            String query = String.format("INSERT INTO dadosMaquinas values (%s,%s,%s,'%s',GETDATE());",
                     fkMaquina,
-                    tempCPU,
+                    cpuTemp,
                     gpuTemp,
                     qntMem);
             db.initializer();

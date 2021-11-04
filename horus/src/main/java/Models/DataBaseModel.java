@@ -14,22 +14,23 @@ import java.util.logging.Logger;
 
 public class DataBaseModel {
 
-    String url = "jdbc:mysql://localhost:3306/Gelis";
-    String user = "root";
-    String password = "bandtec";
+    String url = "jdbc:sqlserver://srvgelis.database.windows.net;"
+            + "database=Gelis;"
+            + "user=gelis;"
+            + "password=#Gfgrupo6;";
+    // String user = "root";
+    // String password = "bandtec";
 
     public void initializer() {
-
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Conectado no banco " + url);
-        } catch (ClassNotFoundException ex) {
+            System.out.println("Conectado ao banco");
+        } catch (Exception ex) {
             Logger.getLogger(DataBaseModel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void makeUpdateQuery(String query) {
-        try (Connection connection = DriverManager.getConnection(url, user, password); Statement statement = connection.createStatement();) {
+        try (Connection connection = DriverManager.getConnection(url); Statement statement = connection.createStatement();) {
             statement.executeUpdate(query);
             System.out.println("Update realizado.");
         } catch (SQLException ex) {
@@ -38,7 +39,7 @@ public class DataBaseModel {
     }
 
     public void makeInsertQuery(String query) {
-        try (Connection connection = DriverManager.getConnection(url, user, password); Statement statement = connection.createStatement();) {
+        try (Connection connection = DriverManager.getConnection(url); Statement statement = connection.createStatement();) {
             statement.execute(query);
             System.out.println("Insert realizado.");
         } catch (SQLException ex) {
@@ -48,7 +49,7 @@ public class DataBaseModel {
 
     public Map makeSelectQuery(String query) {
         Map<String, String> map = new HashMap<>();
-        try (Connection connection = DriverManager.getConnection(url, user, password); Statement statement = connection.createStatement();) {
+        try (Connection connection = DriverManager.getConnection(url); Statement statement = connection.createStatement();) {
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 map.put("idMaquina", rs.getString(1));
