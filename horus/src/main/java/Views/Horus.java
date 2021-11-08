@@ -10,8 +10,15 @@ import com.github.britooo.looca.api.util.Conversor;
 import com.profesorfalken.jsensors.JSensors;
 import com.profesorfalken.jsensors.model.components.Components;
 import com.profesorfalken.jsensors.model.components.Gpu;
+import com.profesorfalken.jsensors.model.sensors.Temperature;
 import controller.ViewController;
 import java.awt.Color;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -343,7 +350,7 @@ public class Horus extends javax.swing.JFrame {
         Processador processador = looca.getProcessador();
         Components components = JSensors.get.components();
         List<Gpu> gpus = components.gpus;
-        
+
         String modGpu = null;
 
         if (checkSO.isSelected()) {
@@ -402,6 +409,27 @@ public class Horus extends javax.swing.JFrame {
         String idMaquina = listaMap.get(0).toString();
         vc.Insere(modCPU, modGpu, qntMem, idMaquina);
         vc.startInsert(idMaquina);
+
+        // Area do log
+        Double gpuTemp = 0.0;
+
+        if (gpus.size() > 0) {
+            for (final Gpu gpu : gpus) {
+                List<Temperature> temps = gpu.sensors.temperatures;
+                for (final Temperature temp : temps) {
+                    gpuTemp = temp.value;
+                }
+            }
+        }
+
+        for (Integer i = 0; i < 10; i++) {
+            if (gpuTemp > 80.5) {
+                String temperaturaGPU = "Temperatura da GPU: " + gpuTemp;
+                LocalDateTime dataHora = LocalDateTime.now();
+                String dadosLog = temperaturaGPU + "\nData e Hora: " + dataHora + "\n";
+                Log.criarLog("Erro" + i + ".txt", dadosLog);
+            }
+        }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void checkSOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSOActionPerformed
