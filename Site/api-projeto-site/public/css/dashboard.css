@@ -631,6 +631,13 @@ p {
     margin-left: 25px;
     color: rgb(0, 0, 0);
     text-align: center;
+    outline: none;
+}
+
+.forms input:focus {
+    width: 275px;
+    border-radius: 5px;
+    transition: 0.7s;
 }
 
 .forms p {
@@ -641,13 +648,21 @@ p {
 
 .btnSave {
     background-color: #EE1E46;
-    border: 0;
+    border: 2px solid #EE1E46;
     color: white;
     height: 30px;
     font-size: 1.1em;
     position: absolute;
     bottom: 13%;
     cursor: pointer;
+    transition: 0.7s;  
+}
+
+.btnSave:hover {
+  border: 2px solid #EE1E46;
+  color: #ffffff;
+  font-size: 1.2em;
+  background-color: transparent;
 }
 
 .absoluto {

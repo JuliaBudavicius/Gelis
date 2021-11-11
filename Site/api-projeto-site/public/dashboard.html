@@ -12,9 +12,9 @@
     <script src="https://kit.fontawesome.com/6f2d70ffaf.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kulim+Park:wght@200;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+    <script src="js/validacaoNPJ.js"></script>
     <title>Painel de Controle</title>
 </head>
-
 <body>
     <div id="absoluto" class="absoluto">
         <div class="sair">
@@ -289,7 +289,7 @@
                     <div class="forms">
                         <div>
                             <p>CNPJ</p>
-                            <input name="cnpjEmpresa" type="text" id="cnpjEmpresaInput">
+                            <input onkeyup="validarcnpj()" name="cnpjEmpresa" type="text" id="cnpjEmpresaInput">
                         </div>
                         <div>
                             <p>WhatsApp</p>
@@ -588,9 +588,9 @@
         return false;
     }
 
-    function redirecionar_email() {
-        window.location.href = 'login.html';
-    }
+    // function redirecionar_email() {
+    //     window.location.href = 'login.html';
+    // }
 
     function logoff() {
         sessionStorage.clear();
