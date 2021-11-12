@@ -414,31 +414,31 @@ public class Horus extends javax.swing.JFrame {
         vc.startInsert(idMaquina);
 
         // Area do log
-        Double gpuTemp = 0.0;
         Temperatura temperatura = looca.getTemperatura();
         Double cpuTemp = temperatura.getTemperatura();
         Timer timer = new Timer();
-    final TimerTask task = new TimerTask() {
+        final TimerTask task = new TimerTask() {
 
-        @Override
-        public void run() {
-            if (gpus.size() > 0) {
-                for (final Gpu gpu : gpus) {
-                    List<Temperature> temps = gpu.sensors.temperatures;
-                    for ( Temperature temp : temps) {
-                        gpuTemp = temp.value;
+            @Override
+            public void run() {
+                Double gpuTemp = 0.0;
+                if (gpus.size() > 0) {
+                    for (final Gpu gpu : gpus) {
+                        List<Temperature> temps = gpu.sensors.temperatures;
+                        for (final Temperature temp : temps) {
+                            gpuTemp = temp.value;
+                        }
                     }
                 }
-      }
-                if (cpuTemp < 80.5) {
+                if (gpuTemp < 80.5) {
                     String temperaturaGPU = "Temperatura da GPU: " + gpuTemp;
                     LocalDateTime dataHora = LocalDateTime.now();
                     String dadosLog = temperaturaGPU + "\nData e Hora: " + dataHora + "\n";
                     Log.criarLog("Erro.txt", dadosLog);
                 }
             }
-    };
-    timer.schedule(task, 0, 10 * 1000L);
+        };
+        timer.schedule(task, 0, 10 * 1000L);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void checkSOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSOActionPerformed
