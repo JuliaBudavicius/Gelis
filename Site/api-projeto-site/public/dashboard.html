@@ -50,7 +50,7 @@
                     <p class="titInfo">Uso da Memória RAM</p>
                     <div class="grafico">
                         <canvas id="myChart"></canvas>
-                    </div>  
+                    </div>
                 </div>
             </div>
             <div class="inf">
@@ -339,6 +339,7 @@
 <script>
     let proximaAtualizacao;
     window.onload = verificar_autenticacao();
+    var cont = 0;
     function obterFuncionarios() {
         var idEmpresa = sessionStorage.idEmpresa;
         fetch(`/funcionarios/${idEmpresa}`)
@@ -445,14 +446,14 @@
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.push(7.4);
                 myChart.data.datasets[0].data.push(0.6);
-                window.onload = obterDadosGraficoPrimeiraVez(2);
+                obterDadosGraficoPrimeiraVez(2);
                 break;
             case 3:
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.push(3.0);
                 myChart.data.datasets[0].data.push(5.0);
-                window.onload = obterDadosGraficoPrimeiraVez(3);
+                obterDadosGraficoPrimeiraVez(3);
                 break;
         }
         myChart.update();
@@ -552,41 +553,10 @@
 
         return false;
     }
-    function configurarGrafico() {
-        console.log("executei configurarGrafico")
-        var configuracoes = {
-            responsive: true,
-            animation: { duration: 500 },
-            hoverMode: 'index',
-            stacked: false,
-            title: {
-                display: true,
-                text: 'Histórico de temperatura'
-            },
-            scales: {
-                yAxes: [{
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    ticks: {
-                        min: 0,
-                        max: 50,
-                        stepsize: 1
-                    },
-                    id: 'y-temperatura',
-                }, {
-                    gridLines: {
-                        drawOnChartArea: false, 
-                    },
-                }],
-            }
-        };
 
-        return configuracoes;
-    }
     function obterDadosGraficoPrimeiraVez(idSensor) {
-        console.log("executei obterDadosGraficoPrimeiraVez")
 
+        console.log("executei obterDadosGraficoPrimeiraVez")
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
@@ -610,6 +580,11 @@
                             }
                         ]
                     };
+
+                    for (i = 0; i == 7; i++) {
+                        dados.labels.shift();
+                        dados.datasets[0].data.shift();
+                    }
                     for (i = 0; i < resposta.length; i++) {
                         var registro = resposta[i];
                         dados.labels.push(registro.momento_grafico);
@@ -645,11 +620,11 @@
                     dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
                     window.lineChart.update();
 
-                     proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
-                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
             }
         })
             .catch(function (error) {
@@ -661,17 +636,51 @@
     function plotarGrafico(dados, idSensor) {
         console.log("executei plotarGrafico")
         console.log('iniciando plotagem do gráfico...');
-
+        if(cont > 0){
+            lineChart.destroy();
+        }
         var ctx2 = document.getElementById('lineChart').getContext('2d');
         window.lineChart = new Chart(ctx2, {
             type: 'line',
             data: dados,
             options: configurarGrafico()
         });
-
-     setTimeout(() => atualizarGrafico(idSensor, dados), 2000);
+        cont++;
+        setTimeout(() => atualizarGrafico(idSensor, dados), 2000);
     }
 
+    function configurarGrafico() {
+        console.log("executei configurarGrafico")
+        var configuracoes = {
+            responsive: true,
+            animation: { duration: 500 },
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+                display: true,
+                text: 'Histórico de temperatura'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    ticks: {
+                        min: 0,
+                        max: 50,
+                        stepsize: 1
+                    },
+                    id: 'y-temperatura',
+                }, {
+                    gridLines: {
+                        drawOnChartArea: false,
+                    },
+                }],
+            }
+        };
+
+        return configuracoes;
+    }
     function redirecionar_email() {
         window.location.href = 'login.html';
     }
