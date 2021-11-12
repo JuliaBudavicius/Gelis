@@ -5,7 +5,9 @@ import com.github.britooo.looca.api.group.processos.Processo;
 import com.github.britooo.looca.api.group.processos.ProcessosGroup;
 import java.awt.Color;
 import java.awt.PopupMenu;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.table.DefaultTableModel;
 
 public class Processos extends javax.swing.JFrame {
@@ -20,17 +22,30 @@ public class Processos extends javax.swing.JFrame {
 
         Looca looca = new Looca();
         ProcessosGroup grupoDeProcessos = looca.getGrupoDeProcessos();
-
+        Processo maior = null;
+        Processo SegMaior = null;
+        Processo TerMaior = null;
         List<Processo> processos = grupoDeProcessos.getProcessos();
 
         String colunas[] = {"Nome", "CPU", "PID"};
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
         for (Processo p : processos) {
+            if (maior == null) {
+                maior = processos.get(12);
+                SegMaior = processos.get(12);
+                TerMaior = processos.get(12);
+            }
+            if (p.getUsoCpu() > maior.getUsoCpu()) {
+                maior = p;
+            } else if (p.getUsoCpu() > SegMaior.getUsoCpu()) {
+                SegMaior = p;
+            } else if (p.getUsoCpu() > TerMaior.getUsoCpu()) {
+                TerMaior = p;
+            }
             String cpu = String.format("%.2f", p.getUsoCpu());
             String pid = String.format("%d", p.getPid());
             String nome = p.getNome();
-
             modelo.addRow(new String[]{nome, cpu, pid});
             tableProcessos.setModel(modelo);
         }
