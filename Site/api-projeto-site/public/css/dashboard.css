@@ -402,6 +402,7 @@ p {
     width: 80%;
     background-color: #29304a;
     display: flex;
+    flex-direction: column;
     float: right;
     border-radius: 0 0 10px 10px;
 }

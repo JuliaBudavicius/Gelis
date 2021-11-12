@@ -15,6 +15,7 @@
     <script src="js/validacaoNPJ.js"></script>
     <title>Painel de Controle</title>
 </head>
+
 <body>
     <div id="absoluto" class="absoluto">
         <div class="sair">
@@ -49,75 +50,16 @@
                     <p class="titInfo">Uso da Memória RAM</p>
                     <div class="grafico">
                         <canvas id="myChart"></canvas>
-                    </div>
+                    </div>  
                 </div>
             </div>
             <div class="inf">
                 <div class="esq">
                     <div class="boxTituloP">
-                        <p class="txtInfo">Lista de processos</p>
+                        <p class="txtInfo">Grafico de temperatura GPU</p>
                     </div>
                     <div class="listProc">
-                        <div class="titulosProc">
-                            <p class="titProc">Nome</p>
-                            <p class="titProc">CPU</p>
-                            <p class="titProc">Memória</p>
-                            <p class="titProc">PID</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
-                        <div class="linha">
-                            <p class="infoProc">Discord</p>
-                            <p class="infoProc">22%</p>
-                            <p class="infoProc">10%</p>
-                            <p class="infoProc">34232</p>
-                        </div>
+                        <canvas id="lineChart"></canvas>
                     </div>
                 </div>
                 <div class="dir">
@@ -132,13 +74,32 @@
                     </div>
                     <div>
                         <div class="boxTituloS">
-                            <p class="txtInfo">Ultimos registros</p>
+                            <p class="txtInfo">Lista de processos</p>
                         </div>
                         <div class="ultReg">
-                            <div class="titulosUltReg">
-                                <p class="titProc">Status</p>
-                                <p class="titProc">Data</p>
-                                <p class="titProc">GPU</p>
+                            <div class="titulosProc">
+                                <p class="titProc">Nome</p>
+                                <p class="titProc">CPU</p>
+                                <p class="titProc">Memória</p>
+                                <p class="titProc">PID</p>
+                            </div>
+                            <div class="linha">
+                                <p class="infoProc">Discord</p>
+                                <p class="infoProc">22%</p>
+                                <p class="infoProc">10%</p>
+                                <p class="infoProc">34232</p>
+                            </div>
+                            <div class="linha">
+                                <p class="infoProc">Discord</p>
+                                <p class="infoProc">22%</p>
+                                <p class="infoProc">10%</p>
+                                <p class="infoProc">34232</p>
+                            </div>
+                            <div class="linha">
+                                <p class="infoProc">Discord</p>
+                                <p class="infoProc">22%</p>
+                                <p class="infoProc">10%</p>
+                                <p class="infoProc">34232</p>
                             </div>
                         </div>
                     </div>
@@ -376,6 +337,7 @@
 
 </html>
 <script>
+    let proximaAtualizacao;
     window.onload = verificar_autenticacao();
     function obterFuncionarios() {
         var idEmpresa = sessionStorage.idEmpresa;
@@ -412,7 +374,7 @@
             var HostnameP = document.createElement("p")
             checkbox.type = "radio";
             checkbox.value = funcionario.idMaquina;
-            checkbox.name ="group";
+            checkbox.name = "group";
             NomeP.innerHTML = nome + " " + sobrenome;
             emailP.innerHTML = email;
             HostnameP.innerHTML = hostname;
@@ -476,18 +438,21 @@
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.push(5.4);
                 myChart.data.datasets[0].data.push(1.6);
+                obterDadosGraficoPrimeiraVez(1);
                 break;
             case 2:
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.push(7.4);
                 myChart.data.datasets[0].data.push(0.6);
+                window.onload = obterDadosGraficoPrimeiraVez(2);
                 break;
             case 3:
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.shift();
                 myChart.data.datasets[0].data.push(3.0);
                 myChart.data.datasets[0].data.push(5.0);
+                window.onload = obterDadosGraficoPrimeiraVez(3);
                 break;
         }
         myChart.update();
@@ -587,10 +552,129 @@
 
         return false;
     }
+    function configurarGrafico() {
+        console.log("executei configurarGrafico")
+        var configuracoes = {
+            responsive: true,
+            animation: { duration: 500 },
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+                display: true,
+                text: 'Histórico de temperatura'
+            },
+            scales: {
+                yAxes: [{
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    ticks: {
+                        min: 0,
+                        max: 50,
+                        stepsize: 1
+                    },
+                    id: 'y-temperatura',
+                }, {
+                    gridLines: {
+                        drawOnChartArea: false, 
+                    },
+                }],
+            }
+        };
 
-    // function redirecionar_email() {
-    //     window.location.href = 'login.html';
-    // }
+        return configuracoes;
+    }
+    function obterDadosGraficoPrimeiraVez(idSensor) {
+        console.log("executei obterDadosGraficoPrimeiraVez")
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/funcionarios/ultimas/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    var dados = {
+                        labels: [],
+                        datasets: [
+                            {
+                                yAxisID: 'y-temperatura',
+                                label: 'Temperatura',
+                                borderColor: 'rgba(255,0,0,1)',
+                                backgroundColor: 'rgba(255,0,0,1)',
+                                fill: false,
+                                data: []
+                            }
+                        ]
+                    };
+                    for (i = 0; i < resposta.length; i++) {
+                        var registro = resposta[i];
+                        dados.labels.push(registro.momento_grafico);
+                        dados.datasets[0].data.push(registro.temperatura);
+                    }
+                    console.log(JSON.stringify(dados));
+                    plotarGrafico(dados, idSensor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function atualizarGrafico(idSensor, dados) {
+        console.log("executei atualizarGrafico")
+        fetch(`/funcionarios/dashboard/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+            console.log("Estou tentando pegar idSensor = ", idSensor)
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`, dados);
+
+                    // tirando e colocando valores no gráfico
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                    dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
+                    window.lineChart.update();
+
+                     proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function plotarGrafico(dados, idSensor) {
+        console.log("executei plotarGrafico")
+        console.log('iniciando plotagem do gráfico...');
+
+        var ctx2 = document.getElementById('lineChart').getContext('2d');
+        window.lineChart = new Chart(ctx2, {
+            type: 'line',
+            data: dados,
+            options: configurarGrafico()
+        });
+
+     setTimeout(() => atualizarGrafico(idSensor, dados), 2000);
+    }
+
+    function redirecionar_email() {
+        window.location.href = 'login.html';
+    }
 
     function logoff() {
         sessionStorage.clear();
