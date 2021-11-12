@@ -6,6 +6,7 @@ import com.github.britooo.looca.api.group.discos.DiscosGroup;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
+import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import com.github.britooo.looca.api.util.Conversor;
 import com.profesorfalken.jsensors.JSensors;
 import com.profesorfalken.jsensors.model.components.Components;
@@ -19,9 +20,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -411,25 +415,33 @@ public class Horus extends javax.swing.JFrame {
         vc.startInsert(idMaquina);
 
         // Area do log
-        Double gpuTemp = 0.0;
+        Temperatura temperatura = looca.getTemperatura();
+        Double cpuTemp = temperatura.getTemperatura();
+        Timer timer = new Timer();
+        final TimerTask task = new TimerTask() {
 
-        if (gpus.size() > 0) {
-            for (final Gpu gpu : gpus) {
-                List<Temperature> temps = gpu.sensors.temperatures;
-                for (final Temperature temp : temps) {
-                    gpuTemp = temp.value;
+            @Override
+            public void run() {
+                Double gpuTemp = 0.0;
+                if (gpus.size() > 0) {
+                    for (final Gpu gpu : gpus) {
+                        List<Temperature> temps = gpu.sensors.temperatures;
+                        for (final Temperature temp : temps) {
+                            gpuTemp = temp.value;
+                        }
+                    }
+                }
+                if (gpuTemp < 80.5) {
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    String dataHora = dtf.format(LocalDateTime.now()).toString();
+                    String usoRam = Conversor.formatarBytes(memRam.getEmUso());
+                    String freqCPU = Conversor.formatarBytes(processador.getFrequencia());
+                    String dadosLog = String.format("Data e Hora: %s\nTemperatura da GPU: %sºC\nUso da RAM: %s\nFrequência CPU: %s\n\n", dataHora, gpuTemp, usoRam, freqCPU);
+                    Log.criarLog("Erro.txt", dadosLog);
                 }
             }
-        }
-
-        for (Integer i = 0; i < 10; i++) {
-            if (gpuTemp > 80.5) {
-                String temperaturaGPU = "Temperatura da GPU: " + gpuTemp;
-                LocalDateTime dataHora = LocalDateTime.now();
-                String dadosLog = temperaturaGPU + "\nData e Hora: " + dataHora + "\n";
-                Log.criarLog("Erro" + i + ".txt", dadosLog);
-            }
-        }
+        };
+        timer.schedule(task, 0, 10 * 1000L);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void checkSOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSOActionPerformed
