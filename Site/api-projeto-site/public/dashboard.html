@@ -278,6 +278,11 @@
                             <input name="logradouroEmpresa" type="text" id="logradouroEmpresaInput">
                         </div>
                     </div>
+                    <div class="linhaConfig"></div>
+                    <div class="slack">
+                        <p>Url Slack</p>
+                        <input name="urlSlack" type="text" id="urlSlackInput">
+                    </div>
                     <button class="btnSave">Salvar alterações</button>
                 </form>
             </div>
@@ -468,6 +473,7 @@
         var estado = document.getElementById('estadoEmpresaInput');
         var cidade = document.getElementById('cidadeEmpresaInput');
         var logradouro = document.getElementById('logradouroEmpresaInput');
+        var urlSlack = document.getElementById('urlSlackInput');
         cores();
         chart();
         let nomeEmpresa;
@@ -478,6 +484,7 @@
         let estadoEmpresa;
         let cidadeEmpresa;
         let logradouroEmpresa;
+        let urlSlack;
 
         nomeEmpresa = sessionStorage.nomeEmpresa;
         cnpjEmpresa = sessionStorage.cnpjEmpresa;
@@ -487,6 +494,7 @@
         estadoEmpresa = sessionStorage.estadoEmpresa;
         cidadeEmpresa = sessionStorage.cidadeEmpresa;
         logradouroEmpresa = sessionStorage.logradouroEmpresa;
+        urlSlack = sessionStorage.urlSlack;
 
         if (nomeEmpresa == undefined) {
             redirecionar_email();

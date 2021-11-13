@@ -17,6 +17,7 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 	var estadoEmpresa = req.body.estadoEmpresa;
 	var cidadeEmpresa = req.body.cidadeEmpresa;
 	var logradouroEmpresa = req.body.logradouroEmpresa;
+	var urlSlack = req.body.urlSlack;
 	var instrucaoSql;
 	if (env == "dev") {
 		instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}',
@@ -26,7 +27,8 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 		CEP='${cepEmpresa}',
 		estado='${estadoEmpresa}',
 		cidade='${cidadeEmpresa}',
-		logradouro='${logradouroEmpresa}'
+		logradouro='${logradouroEmpresa}',
+		urlSlack='${urlSlack}'
 		where idEmpresa = ${idEmpresa};`;
 	} else {
 		instrucaoSql = `update Empresa set nomeEmpresa ='${nomeEmpresa}',
@@ -36,7 +38,8 @@ router.post('/atualizar/:idEmpresa', function (req, res, next) {
 		CEP='${cepEmpresa}',
 		estado='${estadoEmpresa}',
 		cidade='${cidadeEmpresa}',
-		logradouro='${logradouroEmpresa}'
+		logradouro='${logradouroEmpresa}',
+		urlSlack='${urlSlack}'
 		where idEmpresa = ${idEmpresa};`;
 	}
 	console.log(instrucaoSql);
