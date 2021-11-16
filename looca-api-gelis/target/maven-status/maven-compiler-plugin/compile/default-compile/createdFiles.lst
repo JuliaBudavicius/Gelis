@@ -5,6 +5,7 @@ View\Horus$4.class
 View\Login$1.class
 View\Login.class
 com\github\britooo\looca\api\group\sistema\Sistema.class
+Slack\MensagemSlack.class
 View\Processos.class
 com\github\britooo\looca\api\group\processos\Processo.class
 com\github\britooo\looca\api\group\processos\ProcessosGroup.class
@@ -18,6 +19,7 @@ View\Horus.class
 View\Login$2.class
 com\github\britooo\looca\api\group\discos\DiscosGroup.class
 View\Horus$3.class
+Slack\Slack.class
 View\Horus$2.class
 com\github\britooo\looca\api\group\temperatura\Temperatura.class
 com\github\britooo\looca\api\group\processador\Processador.class
