@@ -13,3 +13,13 @@ Temperatura da GPU: 52.0ºC
 Uso da RAM: 7,5 GiB
 Frequência CPU: 2,6 GiB
 
+Data e Hora: 2021/11/16 11:23:43
+Temperatura da GPU: 41.0ºC
+Uso da RAM: 6,5 GiB
+Frequência CPU: 3,0 GiB
+
+Data e Hora: 2021/11/16 11:23:53
+Temperatura da GPU: 41.0ºC
+Uso da RAM: 6,5 GiB
+Frequência CPU: 3,0 GiB
+

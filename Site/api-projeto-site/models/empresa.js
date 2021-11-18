@@ -57,6 +57,11 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'whatsApp',
 			type: DataTypes.STRING,
 			allowNull: false
+		},
+		urlSlack: {
+			field: 'urlSlack',
+			type: DataTypes.STRING,
+			allowNull: false
 		}
 	},
 		{
