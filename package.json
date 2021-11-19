@@ -1,0 +1,10 @@
+{
+    "name":"Gelis",
+    "version": "0.0.1",
+    "private":true,
+    "scripts": {
+        "start": "node ./Site/api-projeto-site/bin/www",
+        "postinstall": "cd Site/api-projeto-site && npm install"
+    }
+    
+}
