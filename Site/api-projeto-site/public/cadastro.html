@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CADASTRO | GELI'S</title>
+    <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="css/responsive2.css">
+    <script src="js/validacao.js"></script>
+    <script src="js/endereco.js"></script>
+</head>
+
+<body>
+    <a href="index.html"><img class="logo" src="img/logo.png" alt=""></a>
+    <h1 class="titulo">CADASTRO</h1>
+    <form id="form_empresa" method="post" onsubmit="return cadastrar_empresa()">
+        <div class="caixa">
+            <div class="caixa-item">
+                <span>NOME DA EMPRESA</span>
+                <input name="nomeEmpresa" placeholder="EX: EMPRESA GELIS" onkeyup="validarnome()" id="idNomeEmpresa" class="media"
+                    type="text">
+            </div>
+            <div class="caixa-item">
+                <span>CNPJ</span>
+                <input name="cnpj" placeholder="EX: 12.321.312/3123-23" onkeyup="validarcnpj()" id="idCNPJ" class="media"
+                    type="text">
+            </div>
+        </div>
+
+        <div class="caixa2">
+            <div class="caixa-item">
+                <span>CEP</span>
+                <input name="cep" placeholder="EX: 05257325" id="idCep" onblur="pesquisacep(this.value)" class="pequeno"
+                    type="text" maxlength="8" style="width: 150px;">
+            </div>
+            <div class="caixa-item">
+                <span style="margin-left: 20px;">LOGRADOURO</span>
+                <input name="logradouro" placeholder="EX: AVENIDA HADDOCK LOBO" id="rua" class="grande" type="text"
+                    style="width: 271px; margin-left: 20px;">
+            </div>
+            <div class="caixa-item">
+                <span style="    margin-left: 20px;">CIDADE</span>
+                <input name="cidade" placeholder="EX: SÃO PAULO" id="cidade" class="pequeno" type="text"
+                    style="width: 260px; margin-right: 640px; margin-left: 20px;">
+            </div>
+            <div class="caixa-item">
+                <span style="margin-left: -617px;">ESTADO</span>
+                <input name="estado" placeholder="EX: SP" id="uf" class="pequeno" type="text"
+                    style="width: 152px; margin-left:-617px;">
+            </div>
+        </div>
+
+        <div class="caixa3">
+
+            <div class="caixa-item">
+                <span>WHATSAPP</span>
+                <input name="telefone" onkeyup="validartelefone()" id="idTelefone" placeholder="EX: (11) 981234432" class="pequeno"
+                    type="text" style="width: 480px;">
+            </div>
+            <div class="caixa-item">
+                <span>EMAIL</span>
+                <input name="email" onkeyup="validaremail()" id="idEmail" placeholder="EX: EMAIL@EMAIL.COM" class="media"
+                    type="text">
+            </div>
+        </div>
+
+        <div class="caixa4">
+
+            <div class="caixa-item">
+                <span>SENHA</span>
+                <input name="senha" placeholder="EX: SENHA" onkeyup="validaresenha()" id="idSenha" class="media" type="password">
+            </div>
+            <div class="caixa-item">
+                <span>REPITA SUA SENHA </span>
+                <input placeholder="EX: REPITA A SENHA DIGITADA" onkeyup="confirmaSenha()" id="idVerificaSenha"
+                    class="media" type="password">
+            </div>
+        </div>
+
+        <button class="bt-cadastrar">CADASTRAR</button>
+    </form>
+</body>
+
+</html>
+<script>
+    function cadastrar_empresa() {
+        var cadastro_emp = new URLSearchParams(new FormData(form_empresa));
+        fetch("/empresas/cadastrar", {
+            method: "POST",
+            body: cadastro_emp
+        }).then(function (response) {
+            if (response.ok) {
+                window.location.href = 'login.html';
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                });
+            }
+        });
+
+        return false;
+    }
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="img/icone.png" type="image/x-icon">
+    <title>GELI'S | LOGIN</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/responsive2.css">
+</head>
+
+<body>
+    <div class="englobaTudo">
+        <form id="form_login" method="post" onsubmit="return entrar()">
+            <a href="index.html"><img src="img/logo.png" alt=""></a>
+            <div class="titulo">
+                <h1>LOGIN</h1>
+            </div>
+            <div class="caixaLogin">
+                <div class="inputTexto">
+                    <span>EMAIL</span>
+                    <input name="email" type="text">
+                </div>
+                <div class="inputTexto">
+                    <span>SENHA</span>
+                    <input name="senha" id="senha" type="password">
+                </div>
+            </div>
+            <div class="botaoLogin">
+                <button id="btn_entrar">ENTRAR</button>
+        </form>
+        <a href="cadastro.html">AINDA NÃO POSSUI CADASTRO?</a>
+        <div class="traco"></div>
+    </div>
+    <img onclick="ver()" id="olho" class="olhoAtivo" src="img/olhoAtivo.png" alt="">
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    function entrar() {
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/empresas/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+                    sessionStorage.idEmpresa = json.idEmpresa;
+                    sessionStorage.emailEmpresa = json.email;
+                    sessionStorage.nomeEmpresa = json.nomeEmpresa;
+                    sessionStorage.cnpjEmpresa = json.CNPJ;
+                    sessionStorage.whatsEmpresa = json.whatsApp;
+                    sessionStorage.cepEmpresa = json.CEP;
+                    sessionStorage.estadoEmpresa = json.estado;
+                    sessionStorage.cidadeEmpresa = json.cidade;
+                    sessionStorage.logradouroEmpresa = json.logradouro;
+                    sessionStorage.urlSlack = json.urlSlack;
+                    window.location.href = 'dashboard.html';
+                });
+            } else {
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    var contador = 0;
+    function ver() {
+
+        if (contador % 2 == 0) {
+            olho.src = 'img/olhoInativo.png';
+            senha.type = 'text';
+        } else {
+            olho.src = 'img/olhoAtivo.png';
+            senha.type = 'password';
+            ativo = true;
+        }
+
+        contador++;
+    }
+
+</script>

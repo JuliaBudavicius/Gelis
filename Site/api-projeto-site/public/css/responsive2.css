@@ -1,0 +1,64 @@
+/* Para Desktop Grande */
+@media screen and (min-width: 1382px) {
+
+    /* Parte do Cadastro */
+    .caixa {
+        width: 60%;
+        height: 100px;
+    }
+    .caixa2 {
+        width: 60%;
+        height: 100px;
+    }
+    .caixa3 {
+        width: 60%;
+        height: 100px;
+    }
+    .caixa4 {
+        width: 60%;
+        height: 100px;
+    }
+    .grande{
+        width: 700px;
+        height: 40px;
+    }
+    .media{
+        width: 510px;
+        height: 40px;
+    }
+    .pequeno{
+        width: 320px;
+        height: 40px;
+    }
+    .bt-cadastrar{
+        margin-top: 4%;
+        padding: 18px 100px;
+        font-size: 20px;
+    }
+    .caixa input, .caixa2 input, .caixa3 input, .caixa4 input {
+        margin-bottom: 0px;
+    }
+    .caixa span, .caixa2 span, .caixa3 span, .caixa4 span {
+        margin-bottom: 10px;
+    }
+    .logo {
+        width: 11%;
+    }
+
+    /* Parte do Login */
+    .englobaTudo{
+        top: 20%;
+    }
+
+}
+
+/* Para Mobile */
+@media only screen and (max-width: 480px) {
+
+    /* Parte do Login */
+    
+    body {
+        background-image: none;       
+        background-color: black;
+    }
+}
