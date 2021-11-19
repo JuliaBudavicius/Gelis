@@ -438,24 +438,30 @@
         });
     }
     function update(numero) {
-        fetch(`/funcionarios/ram/${numero}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (Registro) {
-                    myChart.data.datasets[0].data.shift();
-                    myChart.data.datasets[0].data.shift();
-                    var resto = Registro.qntRAM - Registro.usoRAM;
-                    myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
-                    myChart.data.datasets[0].data.push(resto.toFixed(1));
-                    myChart.update();
-                    obterDadosGraficoPrimeiraVez(numero);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        switch (numero) {
+            case 1:
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.push(5.4);
+                myChart.data.datasets[0].data.push(1.6);
+                obterDadosGraficoPrimeiraVez(1);
+                break;
+            case 2:
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.push(7.4);
+                myChart.data.datasets[0].data.push(0.6);
+                obterDadosGraficoPrimeiraVez(2);
+                break;
+            case 3:
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.shift();
+                myChart.data.datasets[0].data.push(3.0);
+                myChart.data.datasets[0].data.push(5.0);
+                obterDadosGraficoPrimeiraVez(3);
+                break;
+        }
+        myChart.update();
     }
 
     function verificar_autenticacao() {
@@ -478,7 +484,7 @@
         let estadoEmpresa;
         let cidadeEmpresa;
         let logradouroEmpresa;
-        let urlSlackEmpresa;
+        let urlSlack;
 
         nomeEmpresa = sessionStorage.nomeEmpresa;
         cnpjEmpresa = sessionStorage.cnpjEmpresa;
@@ -488,7 +494,7 @@
         estadoEmpresa = sessionStorage.estadoEmpresa;
         cidadeEmpresa = sessionStorage.cidadeEmpresa;
         logradouroEmpresa = sessionStorage.logradouroEmpresa;
-        urlSlackEmpresa = sessionStorage.urlSlack;
+        urlSlack = sessionStorage.urlSlack;
 
         if (nomeEmpresa == undefined) {
             redirecionar_email();
@@ -502,7 +508,6 @@
             estado.value += `${estadoEmpresa}`;
             cidade.value += `${cidadeEmpresa}`;
             logradouro.value += `${logradouroEmpresa}`;
-            urlSlack.value += `${urlSlackEmpresa}`;
             nome_EmpresaD.innerHTML += `${nomeEmpresa}`;
             nome_EmpresaC.innerHTML += `${nomeEmpresa}`;
             nome_EmpresaN.innerHTML += `${nomeEmpresa}`;
@@ -590,7 +595,6 @@
                     }
                     for (i = 0; i < resposta.length; i++) {
                         var registro = resposta[i];
-                        hostname.innerHTML = registro.Hostname;
                         dados.labels.push(registro.momento_grafico);
                         dados.datasets[0].data.push(registro.temperatura);
                     }
@@ -617,8 +621,7 @@
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`, dados);
 
-                    tempGpu.innerHTML = novoRegistro.temperatura + "°C";
-                    tempCpu.innerHTML = novoRegistro.tempC + "°C";
+                    // tirando e colocando valores no gráfico
                     dados.labels.shift(); // apagar o primeiro
                     dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
                     dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
@@ -641,7 +644,7 @@
     function plotarGrafico(dados, idSensor) {
         console.log("executei plotarGrafico")
         console.log('iniciando plotagem do gráfico...');
-        if (cont > 0) {
+        if(cont > 0){
             lineChart.destroy();
         }
         var ctx2 = document.getElementById('lineChart').getContext('2d');

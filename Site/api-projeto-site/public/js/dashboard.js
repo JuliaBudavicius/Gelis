@@ -11,9 +11,9 @@ function show(numero) {
             icon.classList.remove('fa-exclamation-circle');
             icon.classList.remove('fa-check-circle');
             txtAlert.innerHTML = `Alerta`;
-            hostname.innerHTML = `XXXXXX`;
-            tempGpu.innerHTML = `0°C`;
-            tempCpu.innerHTML = `0°C`;
+            hostname.innerHTML = `HS347A`;
+            tempGpu.innerHTML = `65°C`;
+            tempCpu.innerHTML = `54°C`;
             txtAlert.classList.add('Alerta');
             txtAlert.classList.remove('Critico');
             txtAlert.classList.remove('Normal');
@@ -24,9 +24,9 @@ function show(numero) {
             icon.classList.remove('fa-exclamation-triangle');
             icon.classList.remove('fa-check-circle');
             txtAlert.innerHTML = `Crítico`;
-            hostname.innerHTML = `XXXXXX`;
-            tempGpu.innerHTML = `0°C`;
-            tempCpu.innerHTML = `0°C`;
+            hostname.innerHTML = `HS346B`;
+            tempGpu.innerHTML = `94°C`;
+            tempCpu.innerHTML = `96°C`;
             txtAlert.classList.add('Critico');
             txtAlert.classList.remove('Alerta');
             txtAlert.classList.remove('Normal');
@@ -37,9 +37,9 @@ function show(numero) {
             icon.classList.remove('fa-exclamation-triangle');
             icon.classList.remove('fa-exclamation-circle');
             txtAlert.innerHTML = `Normal`;
-            hostname.innerHTML = `XXXXXX`;
-            tempGpu.innerHTML = `0°C`;
-            tempCpu.innerHTML = `0°C`;
+            hostname.innerHTML = `HS345C`;
+            tempGpu.innerHTML = `47°C`;
+            tempCpu.innerHTML = `52°C`;
             txtAlert.classList.add('Normal');
             txtAlert.classList.remove('Alerta');
             txtAlert.classList.remove('Critico');

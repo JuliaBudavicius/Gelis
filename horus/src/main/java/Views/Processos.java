@@ -31,19 +31,17 @@ public class Processos extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
         for (Processo p : processos) {
-            if (p != processos.get(0)) {
-                if (maior == null) {
-                    maior = processos.get(12);
-                    SegMaior = processos.get(12);
-                    TerMaior = processos.get(12);
-                }
-                if (p.getUsoCpu() > maior.getUsoCpu()) {
-                    maior = p;
-                } else if (p.getUsoCpu() > SegMaior.getUsoCpu()) {
-                    SegMaior = p;
-                } else if (p.getUsoCpu() > TerMaior.getUsoCpu()) {
-                    TerMaior = p;
-                }
+            if (maior == null) {
+                maior = processos.get(12);
+                SegMaior = processos.get(12);
+                TerMaior = processos.get(12);
+            }
+            if (p.getUsoCpu() > maior.getUsoCpu()) {
+                maior = p;
+            } else if (p.getUsoCpu() > SegMaior.getUsoCpu()) {
+                SegMaior = p;
+            } else if (p.getUsoCpu() > TerMaior.getUsoCpu()) {
+                TerMaior = p;
             }
             String cpu = String.format("%.2f", p.getUsoCpu());
             String pid = String.format("%d", p.getPid());
@@ -51,9 +49,7 @@ public class Processos extends javax.swing.JFrame {
             modelo.addRow(new String[]{nome, cpu, pid});
             tableProcessos.setModel(modelo);
         }
-        System.out.println(maior);
-        System.out.println(SegMaior);
-        System.out.println(TerMaior);
+
     }
 
     @SuppressWarnings("unchecked")

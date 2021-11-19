@@ -14,7 +14,6 @@ router.get('/dashboard/:idSensor', function (req, res, next) {
 
 	} else if (env == 'production') {
 		instrucaoSql = `select top 1 tempGPU as temperatura,
-		tempCPU as tempC,
 		idDadosMaquinas,
 		FORMAT(dataHora,'HH:mm:ss') as momento_grafico
 		from [dbo].[dadosMaquinas] WHERE fkMaquinas = ${idSensor} ORDER BY idDadosMaquinas DESC`;
@@ -32,47 +31,19 @@ router.get('/dashboard/:idSensor', function (req, res, next) {
 			res.status(500).send(erro.message);
 		});
 });
-
-router.get('/ram/:idSensor', function (req, res, next) {
-	var idSensor = req.params.idSensor;
-	let instrucaoSql = "";
-
-	if (env == 'dev') {
-
-	} else if (env == 'production') {
-		instrucaoSql = `select top 1 usoRAM as usoRAM, qntRAM
-		from [dbo].[dadosMaquinas] inner join [dbo].[Maquinas]
-		on fkMaquinas = idMaquinas and fkMaquinas = ${idSensor}
-		ORDER BY idDadosMaquinas DESC`;
-	} else {
-		console.log("\n\n\n\nVERIFIQUE O VALOR DE LINHA 1 EM APP.JS!\n\n\n\n")
-	}
-
-	console.log(instrucaoSql);
-
-	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
-		.then(resultado => {
-			res.json(resultado[0]);
-		}).catch(erro => {
-			console.error(erro);
-			res.status(500).send(erro.message);
-		});
-});
-
 router.get('/ultimas/:idSensor', function (req, res, next) {
 	const limite_linhas = 7;
 	var idSensor = req.params.idSensor;
-	console.log(`Recuperando as ultimas  capturas`);
+	console.log(`Recuperando as ultimas ${limite_linhas} capturas`);
 	if (env == 'dev') {
 
 	} else if (env == 'production') {
 		instrucaoSql = `select top ${limite_linhas}
 		idDadosMaquinas,
-		hostname as Hostname,
-		tempGPU as temperatura,
+		tempGPU as temperatura, 
 		FORMAT(dataHora,'HH:mm:ss') as momento_grafico
-		from [dbo].[dadosMaquinas] INNER JOIN [dbo].[Maquinas]
-		ON fkMaquinas = idMaquinas and fkMaquinas = ${idSensor}
+		from [dbo].[dadosMaquinas]
+		where fkMaquinas = ${idSensor}
 		order by idDadosMaquinas desc;`;
 	} else {
 		console.log("\n\n\n\nVERIFIQUE O VALOR DE LINHA 1 EM APP.JS!\n\n\n\n")
