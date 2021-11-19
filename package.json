@@ -4,7 +4,7 @@
     "private":true,
     "scripts": {
         "start": "node ./Site/api-projeto-site/bin/www",
-        "postinstall": "cd Site/api-projeto-site"
+        "postinstall": "cd Site/api-projeto-site && npm install"
     }
     
 }
