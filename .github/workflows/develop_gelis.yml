@@ -6,6 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - gelis
 on:
   push:
     branches:
+      - develop
       - main
   workflow_dispatch:
 
