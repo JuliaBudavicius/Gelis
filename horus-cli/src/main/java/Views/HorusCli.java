@@ -39,72 +39,32 @@ public class HorusCli {
         Scanner leitor = new Scanner(System.in);
         Double cpuTemp = temperatura.getTemperatura();
 
-        // Estrutura
-        do {
-            vc.init();
-            System.out.println("\nDigite seu login:");
-            login = leitor.nextLine();
-            System.out.println("\nDigite sua senha:");
-            senha = leitor.nextLine();
-            Map map = vc.login(login, senha);
-            if (!map.isEmpty()) {
-                System.out.println("\n(!) Login Realizado com sucesso!\n");
-                do {
-                    System.out.println("Sua máquina está sendo verificada!");
-                    String idMaquina = map.get(0).toString();
-                    modCPU = processador.getNome();
-                    if (gpus != null) {
-                        for (final Gpu gpu : gpus) {
-                            modGpu = gpu.name;
-                        }
-                    }
-                    String qntMem = Conversor.formatarBytes(memRam.getTotal());
-                    qntMem = qntMem.replace(" GiB", "");
-                    qntMem = qntMem.replace(",", ".");
-                    modCPU = processador.getNome();
-                    vc.Insere(modCPU, modGpu, qntMem, idMaquina);
-                    vc.startInsert(idMaquina);
-                    System.out.println("\nEscolha o que deseja verificar:\n"
-                            + "\n1 - Sistema Operacional"
-                            + "\n2 - Processador"
-                            + "\n3 - Mémoria RAM"
-                            + "\n4 - Disco"
-                            + "\n5 - Placa de vídeo"
-                            + "\n\n0 - Sair");
-
-                    menu = leitor.nextInt();
-
-                    switch (menu) {
-                        case 1:
-                            System.out.println(String.format("\n- Seu Sistema Operacional: %s", sistema.getSistemaOperacional()));
-                            break;
-                        case 2:
-                            System.out.println(String.format("\n- Seu processador: %s", processador.getNome()));
-                            System.out.println(String.format("Temperatura do processador: %.1fºC", cpuTemp));
-                            break;
-                        case 3:
-                            System.out.println(String.format("\n- Quantidade de Memória RAM: %s", Conversor.formatarBytes(mem.getTotal())));
-                            break;
-                        case 4:
-                            List<Disco> discos = grupoDeDiscos.getDiscos();
-                            for (Disco disco : discos) {
-                                System.out.println(disco);
-                            }
-                            break;
-                        case 5:
-                            System.out.println("\n(!) Você não possui placa de vídeo");
-                            break;
-                        case 0:
-                            System.out.println("\n(!) Você se desconectou, até logo!");
-                            return;
-                        default:
-                            break;
-                    }
-                } while (menu != 0);
-            } else {
-                System.out.println("\n(!) Login ou senha incorretos!");
+        vc.init();
+        System.out.println("\nDigite seu login:");
+        login = leitor.nextLine();
+        System.out.println("\nDigite sua senha:");
+        senha = leitor.nextLine();
+        Map map = vc.login(login, senha);
+        if (!map.isEmpty()) {
+            System.out.println("\n(!) Login Realizado com sucesso!\n");
+            System.out.println("Sua máquina está sendo verificada!");
+            String idMaquina = map.get("idMaquina").toString();
+            modCPU = processador.getNome();
+            if (gpus != null) {
+                for (final Gpu gpu : gpus) {
+                    modGpu = gpu.name;
+                }
             }
-        } while (!login.equals("admin") || !senha.equals("admin"));
+            String qntMem = Conversor.formatarBytes(memRam.getTotal());
+            qntMem = qntMem.replace(" GiB", "");
+            qntMem = qntMem.replace(",", ".");
+            modCPU = processador.getNome();
+            vc.Insere(modCPU, modGpu, qntMem, idMaquina);
+            vc.startInsert(idMaquina);
+
+        } else {
+            System.out.println("\n(!) Login ou senha incorretos!");
+        }
     }
 
 }

@@ -23,7 +23,6 @@ public class DataBaseModel {
 
     public void initializer() {
         try {
-            System.out.println("Conectado ao banco");
         } catch (Exception ex) {
             Logger.getLogger(DataBaseModel.class.getName()).log(Level.SEVERE, null, ex);
         }

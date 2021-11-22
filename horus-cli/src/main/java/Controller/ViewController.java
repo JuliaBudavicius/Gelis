@@ -32,6 +32,7 @@ public class ViewController {
         String query = String.format("select idMaquinas, hostname,modCPU,modGPU,qntRAM,fkEmpresa from Maquinas where loginMaquina ='%s' and senhaMaquina = '%s';", login, senha);
         Map map = db.makeSelectQuery(query);
         if (map.isEmpty()) {
+            System.out.println("Problema no login");
             return map;
         } else {
             return map;
