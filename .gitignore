@@ -65,3 +65,4 @@ package-lock.json
 
 
 database.js
+/horus-cli/target/
