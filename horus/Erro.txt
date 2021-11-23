@@ -13,3 +13,223 @@ Temperatura da GPU: 52.0ºC
 Uso da RAM: 7,5 GiB
 Frequência CPU: 2,6 GiB
 
+Data e Hora: 2021/11/22 09:46:04
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 6,9 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 09:46:14
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 6,9 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:58:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:58:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:59:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:59:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:59:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:59:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:59:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 21:59:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:00:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:00:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:00:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:00:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:00:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,3 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:00:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:01:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:01:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:01:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:01:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:01:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:01:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:02:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:02:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,8 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:02:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,6 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:02:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,5 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:02:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,5 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:02:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:03:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:03:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:03:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:03:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:03:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:03:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:04:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:04:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:04:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:04:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:04:49
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:04:59
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:05:09
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:05:19
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,5 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:05:29
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+
+Data e Hora: 2021/11/22 22:05:39
+Temperatura da GPU: 0.0ºC
+Uso da RAM: 9,4 GiB
+Frequência CPU: 1,1 GiB
+

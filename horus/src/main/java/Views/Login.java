@@ -2,12 +2,18 @@ package Views;
 
 import controller.ViewController;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
 
 public class Login extends javax.swing.JFrame {
-
+    
     private final ViewController vc = new ViewController();
-
+    JSONObject json = new JSONObject();
+    
+    
     public Login() {
         initComponents();
 
@@ -159,6 +165,15 @@ public class Login extends javax.swing.JFrame {
             new Horus(map).setVisible(true);
             new Processos().setVisible(true);
             dispose();
+            json.put("text", "Olá, " + user + ", eu sou a Veronica sua assistente pessoal!\nEstou ansiosa para te ajudar"
+                    + " a monitorar suas maquinas 😄");
+            try {
+                Slack.sendMessage(json);
+            } catch (IOException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             txtError.setText("Usuário ou senha incorretos!");
         }
