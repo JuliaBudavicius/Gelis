@@ -460,6 +460,10 @@ public class Horus extends javax.swing.JFrame {
                         Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
+                        
+                        
+                        
+                        
                     }
                 }
             }
