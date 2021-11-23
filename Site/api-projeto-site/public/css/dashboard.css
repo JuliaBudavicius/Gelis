@@ -658,7 +658,7 @@ p {
     height: 30px;
     font-size: 1.1em;
     position: absolute;
-    bottom: 13%;
+    bottom: 9%;
     cursor: pointer;
     transition: 0.7s;
 }
