@@ -65,7 +65,7 @@ public class ViewController {
             String qntMem = Conversor.formatarBytes(memRam.getEmUso());
             cpuTemp = cpuTemp.replace("Temperatura: ", "");
             cpuTemp = cpuTemp.replace(",",".");
-            qntMem = qntMem.replace(" GiB", "");
+            qntMem = qntMem.replace(" MiB", "");
             qntMem = qntMem.replace(",", ".");
             String query = String.format("INSERT INTO dadosMaquinas values (%s,%s,%s,'%s',GETDATE());",
                     fkMaquina,

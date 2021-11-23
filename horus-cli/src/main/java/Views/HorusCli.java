@@ -56,7 +56,7 @@ public class HorusCli {
                 }
             }
             String qntMem = Conversor.formatarBytes(memRam.getTotal());
-            qntMem = qntMem.replace(" GiB", "");
+            qntMem = qntMem.replace(" MiB", "");
             qntMem = qntMem.replace(",", ".");
             modCPU = processador.getNome();
             vc.Insere(modCPU, modGpu, qntMem, idMaquina);
