@@ -1,0 +1,14 @@
+{
+<<<<<<< HEAD
+    "name":"gelis",
+=======
+    "name":"Gelis",
+>>>>>>> 7c019a67c8d0c1881e301e52d1e9b87f71f75d75
+    "version": "0.0.1",
+    "private":true,
+    "scripts": {
+        "start": "node ./Site/api-projeto-site/bin/www",
+        "postinstall": "cd Site/api-projeto-site && npm install"
+    }
+    
+}
