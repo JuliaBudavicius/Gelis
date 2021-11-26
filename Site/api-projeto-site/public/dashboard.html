@@ -379,7 +379,31 @@
                 console.error(`Erro na obtenção das publicações: ${error.message}`);
             });
     }
+    function medias(tempCP, tempGP, usoRamP, id) {
+        fetch(`/funcionarios/media/${id}`)
+            .then(resposta => {
+                if (resposta.ok) {
+                    resposta.json().then(function (medias) {
+                        caio = JSON.parse(JSON.stringify(medias[0]));
+                        console.log(caio.mediaCPU);
+                        console.log(caio.mediaGPU);
+                        console.log(caio.mediaRAM);
+                        tempCP.innerHTML = caio.mediaCPU;
+                        tempGP.innerHTML = caio.mediaGPU;
+                        usoRamP.innerHTML = caio.mediaRAM;
+                        cores(usoRamP, tempGP, tempCP);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
 
+            })
+
+            .catch(function (error) {
+                console.error(`Erro na obtenção das publicações: ${error.message}`);
+            });
+
+    }
     function atualizarFuncionarios(funcionarios) {
         var painel = document.getElementById("linhasUsuarios");
         var painelBoxes = document.getElementById("boxes")
@@ -389,6 +413,8 @@
             var nome = funcionario.Nome;
             var sobrenome = funcionario.Sobrenome;
             var email = funcionario.email;
+            var id = funcionario.idMaquina;
+
             var divAux = document.createElement("div")
             var divLinha = document.createElement("div")
             var checkbox = document.createElement("input")
@@ -408,11 +434,13 @@
             var CPUP = document.createElement("p");
             var RAMP = document.createElement("p");
             var GPUP = document.createElement("p");
-            var tempP = document.createElement("p");
-            var tempP = document.createElement("p");
+            var tempCP = document.createElement("p");
+            var tempGP = document.createElement("p");
             var usoRamP = document.createElement("p");
-
-
+            tempCP.setAttribute('id', 'tempCP');
+            usoRamP.setAttribute('id', 'usoRamP');
+            tempGP.setAttribute('id', 'tempGP');
+            medias(tempCP, tempGP, usoRamP, id);
             checkbox.type = "radio";
             checkbox.value = funcionario.idMaquina;
             checkbox.name = "group";
@@ -425,6 +453,7 @@
             CPUP.innerHTML = "CPU";
             RAMP.innerHTML = "RAM";
             GPUP.innerHTML = "GPU";
+
             box.setAttribute("onclick", `show(${funcionario.idMaquina})`)
             divAux.className = "divAux";
             checkbox.className = "checkbox";
@@ -442,9 +471,17 @@
             divVert2.className = "vert";
             divVert3.className = "vert";
             divHoriz.className = "horiz";
+            tempCP.className = "temp";
+            tempGP.className = "temp";
+            usoRamP.className = "ram";
+
             divVert.appendChild(GPUP);
             divVert2.appendChild(CPUP);
             divVert3.appendChild(RAMP);
+            divVert.appendChild(tempGP);
+            divVert2.appendChild(tempCP);
+            divVert3.appendChild(usoRamP);
+
             divHoriz.appendChild(divVert);
             divHoriz.appendChild(divVert2);
             divHoriz.appendChild(divVert3);
@@ -462,6 +499,7 @@
             divLinha.appendChild(divAux);
             painel.appendChild(divLinha);
         }
+
     }
     function sair() {
         absoluto.style = "display: flex;";
@@ -533,7 +571,6 @@
         var cidade = document.getElementById('cidadeEmpresaInput');
         var logradouro = document.getElementById('logradouroEmpresaInput');
         var urlSlack = document.getElementById('urlSlackInput');
-        // cores();
         chart();
         let nomeEmpresa;
         let cnpjEmpresa;
@@ -675,7 +712,7 @@
             console.log("Estou tentando pegar idSensor = ", idSensor)
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-                    
+
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`, dados);
                     tempGpu.innerHTML = novoRegistro.temperatura + "°C";

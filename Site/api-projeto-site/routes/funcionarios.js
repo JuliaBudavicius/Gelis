@@ -124,5 +124,30 @@ router.get('/:idEmpresa', function (req, res, next) {
 		});
 });
 
+router.get('/media/:idMaquina', function (req, res, next) {
+	let idMaquina = req.params.idMaquina;
+	let instrucaoSql = "";
+
+	if (env == "dev") {
+
+	} else {
+		instrucaoSql = `SELECT top 10 format(avg(tempCPU), '#.0') as mediaCPU,
+		format(avg(tempGPU), '#.0') as mediaGPU,
+		format(avg(usoRAM), '#.0') as mediaRAM
+		from [dbo].[dadosMaquinas]
+		where fkMaquinas = ${idMaquina}`;
+	}
+	sequelize.query(instrucaoSql, {
+		model: funcionario,
+		mapToModel: true
+	})
+		.then(resultado => {
+			console.log(`Encontrados: ${resultado.length}`);
+			res.json(resultado[0]);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
+});
 
 module.exports = router;
