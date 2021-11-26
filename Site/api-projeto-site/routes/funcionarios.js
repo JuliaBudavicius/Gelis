@@ -5,10 +5,10 @@ var funcionario = require('../models').funcionario;
 var env = process.env.NODE_ENV || 'development';
 
 router.get('/dashboard/:idSensor', function (req, res, next) {
-	console.log('Recuperando id dos Sensores');
 
 	var idSensor = req.params.idSensor;
 	let instrucaoSql = "";
+	console.log('Recuperando id dos Sensores' + idSensor);
 
 	if (env == 'dev') {
 

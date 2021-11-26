@@ -152,8 +152,8 @@
                 </div>
                 <div class="computadores">
                     <p class="tituloStatus">Computadores</p>
-                    <div class="boxes">
-                        <div class="boxComp" onclick="show(1)">
+                    <div id="boxes" class="boxes">
+                        <!-- <div class="boxComp" onclick="'show(1)'">
                             <p class="nomeComp">Computador 1</p>
                             <p class="nomeResponsavel">Responsavel</p>
                             <p class="txtEstado Alerta">Alerta</p>
@@ -211,8 +211,8 @@
                                     <p class="txtHard">RAM</p>
                                     <p id="ram3" class="ram">3.0GB</p>
                                 </div>
-                            </div>
-                        </div>
+                            </div> 
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -289,6 +289,23 @@
         </div>
     </section>
     <section id="novoUsu" class="novoUsu none">
+        <!-- <div id="addUsu">
+            <form id="form_empresa" method="post" onsubmit="return cadastrar_empresa()">
+                <p class="tituloAddUsu">Novo Usuário</p>
+                <div class="supAddUsu">
+                    <p>Nome Completo</p>
+                    <input type="text" name="" id="">
+                    <p>Hostname</p>
+                    <input type="text" name="" id="">
+                </div>
+                <div class="infAddUsu">
+                    <p>Login</p>
+                    <input type="text" name="" id="">
+                    <p>Login</p>
+                    <input type="text" name="" id="">
+                </div>
+            </form>
+        </div> -->
         <div class="menulateral">
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
@@ -365,7 +382,7 @@
 
     function atualizarFuncionarios(funcionarios) {
         var painel = document.getElementById("linhasUsuarios");
-
+        var painelBoxes = document.getElementById("boxes")
         for (let i = 0; i < funcionarios.length; i++) {
             var funcionario = funcionarios[i];
             var hostname = funcionario.Hostname;
@@ -378,18 +395,65 @@
             var NomeP = document.createElement("p")
             var emailP = document.createElement("p")
             var HostnameP = document.createElement("p")
+
+            var box = document.createElement("div");
+            var computadorP = document.createElement("p");
+            var responsavelP = document.createElement("p");
+            var estadoP = document.createElement("p");
+            var iconEstado = document.createElement("i");
+            var divHoriz = document.createElement("div");
+            var divVert = document.createElement("div");
+            var divVert2 = document.createElement("div");
+            var divVert3 = document.createElement("div");
+            var CPUP = document.createElement("p");
+            var RAMP = document.createElement("p");
+            var GPUP = document.createElement("p");
+            var tempP = document.createElement("p");
+            var tempP = document.createElement("p");
+            var usoRamP = document.createElement("p");
+
+
             checkbox.type = "radio";
             checkbox.value = funcionario.idMaquina;
             checkbox.name = "group";
             NomeP.innerHTML = nome + " " + sobrenome;
             emailP.innerHTML = email;
             HostnameP.innerHTML = hostname;
-
+            var numPC = i + 1;
+            computadorP.innerHTML = "Computador " + numPC;
+            responsavelP.innerHTML = nome;
+            CPUP.innerHTML = "CPU";
+            RAMP.innerHTML = "RAM";
+            GPUP.innerHTML = "GPU";
+            box.setAttribute("onclick", `show(${funcionario.idMaquina})`)
             divAux.className = "divAux";
             checkbox.className = "checkbox";
             divLinha.className = "linhaUsuarios";
             NomeP.className = "nome";
             emailP.className = "email";
+
+            box.className = "boxComp";
+            computadorP.className = "nomeComp";
+            responsavelP.className = "nomeResponsavel";
+            CPUP.className = "txtHard";
+            RAMP.className = "txtHard";
+            GPUP.className = "txtHard";
+            divVert.className = "vert";
+            divVert2.className = "vert";
+            divVert3.className = "vert";
+            divHoriz.className = "horiz";
+            divVert.appendChild(GPUP);
+            divVert2.appendChild(CPUP);
+            divVert3.appendChild(RAMP);
+            divHoriz.appendChild(divVert);
+            divHoriz.appendChild(divVert2);
+            divHoriz.appendChild(divVert3);
+            box.appendChild(computadorP);
+            box.appendChild(responsavelP);
+            box.appendChild(estadoP);
+            box.appendChild(iconEstado);
+            box.appendChild(divHoriz);
+            painelBoxes.appendChild(box);
 
             divAux.appendChild(NomeP);
             divAux.appendChild(emailP);
@@ -447,6 +511,7 @@
                     myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
                     myChart.data.datasets[0].data.push(resto.toFixed(1));
                     myChart.update();
+                    console.log("O id é: " + numero);
                     obterDadosGraficoPrimeiraVez(numero);
                 });
             } else {
@@ -468,7 +533,7 @@
         var cidade = document.getElementById('cidadeEmpresaInput');
         var logradouro = document.getElementById('logradouroEmpresaInput');
         var urlSlack = document.getElementById('urlSlackInput');
-        cores();
+        // cores();
         chart();
         let nomeEmpresa;
         let cnpjEmpresa;
@@ -558,12 +623,10 @@
     }
 
     function obterDadosGraficoPrimeiraVez(idSensor) {
-
-        console.log("executei obterDadosGraficoPrimeiraVez")
+        console.log("executei obterDadosGraficoPrimeiraVez" + idSensor)
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
-
         fetch(`/funcionarios/ultimas/${idSensor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -584,7 +647,7 @@
                         ]
                     };
 
-                    for (i = 0; i == 7; i++) {
+                    for (i = 0; i >= 7; i++) {
                         dados.labels.shift();
                         dados.datasets[0].data.shift();
                     }
@@ -608,15 +671,13 @@
     }
 
     function atualizarGrafico(idSensor, dados) {
-        console.log("executei atualizarGrafico")
         fetch(`/funcionarios/dashboard/${idSensor}`, { cache: 'no-store' }).then(function (response) {
             console.log("Estou tentando pegar idSensor = ", idSensor)
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
-
+                    
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`, dados);
-
                     tempGpu.innerHTML = novoRegistro.temperatura + "°C";
                     tempCpu.innerHTML = novoRegistro.tempC + "°C";
                     dados.labels.shift(); // apagar o primeiro
@@ -624,8 +685,8 @@
                     dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
                     dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
                     window.lineChart.update();
-
                     proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -640,7 +701,6 @@
 
     function plotarGrafico(dados, idSensor) {
         console.log("executei plotarGrafico")
-        console.log('iniciando plotagem do gráfico...');
         if (cont > 0) {
             lineChart.destroy();
         }
@@ -651,7 +711,7 @@
             options: configurarGrafico()
         });
         cont++;
-        setTimeout(() => atualizarGrafico(idSensor, dados), 2000);
+        atualizarGrafico(idSensor, dados);
     }
 
     function configurarGrafico() {
