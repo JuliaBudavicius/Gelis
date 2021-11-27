@@ -45,7 +45,6 @@ public class Horus extends javax.swing.JFrame {
     public Horus(Map map) {
         initComponents();
         listaMap.add(map.get("idMaquina"));
-        listaMap.add(map.get("Hostname"));
         Color cor = new Color(255, 255, 255);
         getContentPane().setBackground(cor);
     }
@@ -436,7 +435,8 @@ public class Horus extends javax.swing.JFrame {
                         List<Temperature> temps = gpu.sensors.temperatures;
                         for (final Temperature temp : temps) {
                             gpuTemp = temp.value;
-                            json.put("text", "Temperatura: " + gpuTemp);
+
+                            json.put("text", "Temperatura 1: " + gpuTemp);
                             try {
                                 Slack.sendMessage(json);
                             } catch (IOException ex) {
@@ -447,25 +447,26 @@ public class Horus extends javax.swing.JFrame {
                         }
                     }
                 }
-                Double teste = 5.7;
-                if (teste < 30.5) {
-                    
-                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-                    String dataHora = dtf.format(LocalDateTime.now()).toString();
-                    String usoRam = Conversor.formatarBytes(memRam.getEmUso());
-                    String freqCPU = Conversor.formatarBytes(processador.getFrequencia());
-                    String dadosLog = String.format("Data e Hora: %s\nHostname: %s\nMensagem: Temperatura muito alta\nTemperatura da GPU: %sºC\nUso da RAM: %s\nFrequência CPU: %s\n\n", dataHora, hostname, gpuTemp, usoRam, freqCPU);
-                    Log.criarLog("log.txt", dadosLog);
-                    json.put("text", "Alerta de temperatura muito alta, por favor realizar contenções! "
-                            + "\nTemperatura: " + gpuTemp);
-                    try {
-                        Slack.sendMessage(json);
-                    } catch (IOException ex) {
-                        Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
+                Double teste = 5.7;               
 
-                    }
+                    if (teste < 30.5) {
+
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                        String dataHora = dtf.format(LocalDateTime.now()).toString();
+                        String usoRam = Conversor.formatarBytes(memRam.getEmUso());
+                        String freqCPU = Conversor.formatarBytes(processador.getFrequencia());
+                        String dadosLog = String.format("Data e Hora: %s\nHostname: %s\nMensagem: Temperatura muito alta\nTemperatura da GPU: %sºC\nUso da RAM: %s\nFrequência CPU: %s\n\n", dataHora, hostname, gpuTemp, usoRam, freqCPU);
+                        Log.criarLog("LOG.txt", dadosLog);
+                        json.put("text", "Uso RAM: " + usoRam + "\n Temperatura GPU: " + gpuTemp);
+                        json.put("text", "Alerta de temperatura muito alta, por favor realizar contenções! "
+                                + "\nTemperatura: " + gpuTemp);
+                        try {
+                            Slack.sendMessage(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
+                        }                    
                 }
             }
         };

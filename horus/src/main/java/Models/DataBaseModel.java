@@ -1,5 +1,6 @@
 package Models;
 
+import Views.Log;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -26,7 +27,6 @@ public class DataBaseModel {
     public void initializer() {
         try {
             System.out.println("Conectado ao banco");
-
         } catch (Exception ex) {
             Logger.getLogger(DataBaseModel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -42,7 +42,7 @@ public class DataBaseModel {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                 String dataHora = dtf.format(LocalDateTime.now()).toString();
                 String dadosLog = String.format("Data e Hora: %s\nMensagem: Banco conectado e dados atualizados com sucesso!\n\n", dataHora);
-                Log.criarLog("log.txt", dadosLog);
+                Log.criarLog("LOG.txt", dadosLog);
                 checkPoint = true;
             }
         } catch (SQLException ex) {
