@@ -36,11 +36,12 @@ public class Horus extends javax.swing.JFrame {
 
     private final ViewController vc = new ViewController();
     JSONObject json = new JSONObject();
-    
     /**
      * Creates new form Horus
      */
     List<Object> listaMap = new ArrayList<>();
+    
+ 
 
     public Horus(Map map) {
         initComponents();
@@ -400,7 +401,7 @@ public class Horus extends javax.swing.JFrame {
 
         if (checkGPU.isSelected()) {
             //Pegando informações da placa de vídeo
-            
+
             if (gpus != null) {
                 for (final Gpu gpu : gpus) {
                     lblGPU.setText(gpu.name);
@@ -434,7 +435,8 @@ public class Horus extends javax.swing.JFrame {
                         List<Temperature> temps = gpu.sensors.temperatures;
                         for (final Temperature temp : temps) {
                             gpuTemp = temp.value;
-                            json.put("text", "Temperatura: " + gpuTemp);
+                            
+                            json.put("text", "Temperatura 1: " + gpuTemp);
                             try {
                                 Slack.sendMessage(json);
                             } catch (IOException ex) {
@@ -445,30 +447,27 @@ public class Horus extends javax.swing.JFrame {
                         }
                     }
                 }
-                if (gpuTemp >= 30.5) {
+                if (gpuTemp < 80.5) {
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
                     String dataHora = dtf.format(LocalDateTime.now()).toString();
                     String usoRam = Conversor.formatarBytes(memRam.getEmUso());
                     String freqCPU = Conversor.formatarBytes(processador.getFrequencia());
                     String dadosLog = String.format("Data e Hora: %s\nTemperatura da GPU: %sºC\nUso da RAM: %s\nFrequência CPU: %s\n\n", dataHora, gpuTemp, usoRam, freqCPU);
                     Log.criarLog("Erro.txt", dadosLog);
-                    json.put("text", "Alerta de temperatura muito alta, por favor realizar contenções! "
-                            + "\nTemperatura: " + gpuTemp);
+
+                    json.put("text", "Uso RAM: " + usoRam + "\n Temperatura GPU: " + gpuTemp);
                     try {
                         Slack.sendMessage(json);
                     } catch (IOException ex) {
                         Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
-                        
-                        
-                        
-                        
                     }
+
                 }
             }
         };
-        timer.schedule(task, 0, 60 * 1000L);
+        timer.schedule(task, 0, 10 * 1000L);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void checkSOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSOActionPerformed

@@ -17,3 +17,4 @@ Views\Login.class
 Models\DataBaseModel.class
 Views\Login$2.class
 Views\Horus$5.class
+Views\app.class
