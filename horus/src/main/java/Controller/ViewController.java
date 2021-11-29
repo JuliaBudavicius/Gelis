@@ -44,7 +44,7 @@ public class ViewController {
     }
 
     public void InsereProcessos(String fkMaquinas, String nomeProcesso, String usoCPU, String PID) {
-        String query = String.format("INSERT INTO dadosMaquinas (fkMaquinas, nomeProcesso, usoCPU, PID) values (%s,%s,%s,%s);", fkMaquinas, nomeProcesso, usoCPU, PID);
+        String query = String.format("INSERT INTO Processos (fkMaquinas, nomeProcesso, usoCPU, PID) values (%s,'%s',%s,%s);", fkMaquinas, nomeProcesso, usoCPU, PID);
         db.makeUpdateQuery(query);
     }
 
