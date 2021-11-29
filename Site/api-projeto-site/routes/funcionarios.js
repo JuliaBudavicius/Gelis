@@ -32,6 +32,28 @@ router.get('/dashboard/:idSensor', function (req, res, next) {
 			res.status(500).send(erro.message);
 		});
 });
+router.get('/processos/:idSensor', function (req, res, next) {
+	var idSensor = req.params.idSensor;
+	let instrucaoSql = "";
+
+	if (env == 'dev') {
+
+	} else if (env == 'production') {
+		instrucaoSql = `select top (3) * 
+		from [dbo].[Processos] where fkMaquinas = ${idSensor}
+		order by idProcessos DESC;`;
+	} else {
+		console.log("\n\n\n\nVERIFIQUE O VALOR DE LINHA 1 EM APP.JS!\n\n\n\n")
+	}
+
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.SELECT })
+		.then(resultado => {
+			res.json(resultado);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
+});
 
 router.get('/ram/:idSensor', function (req, res, next) {
 	var idSensor = req.params.idSensor;

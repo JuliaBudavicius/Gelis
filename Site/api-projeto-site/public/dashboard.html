@@ -80,27 +80,24 @@
                             <div class="titulosProc">
                                 <p class="titProc">Nome</p>
                                 <p class="titProc">CPU</p>
-                                <p class="titProc">Memória</p>
                                 <p class="titProc">PID</p>
                             </div>
-                            <div class="linha">
+                            <div class="painelProc" id="painelProc"></div>
+                            <!-- <div class="linha">
                                 <p class="infoProc">Discord</p>
                                 <p class="infoProc">22%</p>
-                                <p class="infoProc">10%</p>
                                 <p class="infoProc">34232</p>
                             </div>
                             <div class="linha">
                                 <p class="infoProc">Discord</p>
                                 <p class="infoProc">22%</p>
-                                <p class="infoProc">10%</p>
                                 <p class="infoProc">34232</p>
                             </div>
                             <div class="linha">
                                 <p class="infoProc">Discord</p>
                                 <p class="infoProc">22%</p>
-                                <p class="infoProc">10%</p>
                                 <p class="infoProc">34232</p>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
 
@@ -139,15 +136,15 @@
                 <div class="boxes">
                     <div class="box">
                         <p class="txt Normal">Normal</p>
-                        <p class="qtdeComp">1 Computadores</p>
+                        <p class="qtdeComp" id="qtdNormal"></p>
                     </div>
                     <div class="box">
                         <p class="txt Alerta">Alerta</p>
-                        <p class="qtdeComp">1 Computadores</p>
+                        <p class="qtdeComp" id="qtdAlerta"></p>
                     </div>
                     <div class="box">
                         <p class="txt Critico">Crítico</p>
-                        <p class="qtdeComp">1 Computadores</p>
+                        <p class="qtdeComp" id="qtdCritico"></p>
                     </div>
                 </div>
                 <div class="computadores">
@@ -379,7 +376,7 @@
                 console.error(`Erro na obtenção das publicações: ${error.message}`);
             });
     }
-    function medias(tempCP, tempGP, usoRamP, id) {
+    function medias(tempCP, tempGP, usoRamP, id, iconEstado) {
         fetch(`/funcionarios/media/${id}`)
             .then(resposta => {
                 if (resposta.ok) {
@@ -388,10 +385,12 @@
                         console.log(caio.mediaCPU);
                         console.log(caio.mediaGPU);
                         console.log(caio.mediaRAM);
-                        tempCP.innerHTML = caio.mediaCPU+"°C";
-                        tempGP.innerHTML = caio.mediaGPU+"°C";
+                        tempCP.innerHTML = caio.mediaCPU;
+                        tempGP.innerHTML = caio.mediaGPU
                         usoRamP.innerHTML = caio.mediaRAM;
-                        cores(usoRamP, tempGP, tempCP);
+                        cores(usoRamP, tempGP, tempCP, iconEstado);
+                        tempCP.innerHTML += "°C";
+                        tempGP.innerHTML += "°C";
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
@@ -440,7 +439,7 @@
             tempCP.setAttribute('id', 'tempCP');
             usoRamP.setAttribute('id', 'usoRamP');
             tempGP.setAttribute('id', 'tempGP');
-            medias(tempCP, tempGP, usoRamP, id);
+            medias(tempCP, tempGP, usoRamP, id, iconEstado);
             checkbox.type = "radio";
             checkbox.value = funcionario.idMaquina;
             checkbox.name = "group";
@@ -498,8 +497,9 @@
             divLinha.appendChild(checkbox);
             divLinha.appendChild(divAux);
             painel.appendChild(divLinha);
-        }
 
+        }
+        total();
     }
     function sair() {
         absoluto.style = "display: flex;";
@@ -560,7 +560,50 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
-
+    function processos(numero) {
+        fetch(`/funcionarios/processos/${numero}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (processos) {
+                    var painelProc = document.getElementById("painelProc");
+                    for (let i = 0; i < processos.length; i++) {
+                        var processo = processos[i];
+                        var nome = processo.nomeProcesso;
+                        var usoCPU = processo.usoCPU;
+                        var pid = processo.PID;
+                        var linha = document.createElement("div");
+                        var nomeProc = document.createElement("p");
+                        var usoCPUP = document.createElement("p");
+                        var pidP = document.createElement("p");
+                        nomeProc.innerHTML = nome;
+                        usoCPUP.innerHTML = usoCPU + "%";
+                        pidP.innerHTML = pid;
+                        linha.setAttribute('id', 'linha');
+                        linha.className = "linha";
+                        nomeProc.className = "infoProc";
+                        usoCPUP.className = "infoProc";
+                        pidP.className = "infoProc";
+                        linha.appendChild(nomeProc);
+                        linha.appendChild(usoCPUP);
+                        linha.appendChild(pidP);
+                        painelProc.appendChild(linha);
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+    function remove() {
+        for (let i = 0; i < 3; i++) {
+            var linha = document.getElementById("linha");
+            if (linha != null) {
+                linha.remove();
+            }
+        }
+    }
     function verificar_autenticacao() {
         var nome = document.getElementById('nomeEmpresaInput');
         var email = document.getElementById('emailEmpresaInput');
@@ -658,7 +701,6 @@
 
         return false;
     }
-
     function obterDadosGraficoPrimeiraVez(idSensor) {
         console.log("executei obterDadosGraficoPrimeiraVez" + idSensor)
         if (proximaAtualizacao != undefined) {
@@ -706,7 +748,6 @@
             });
 
     }
-
     function atualizarGrafico(idSensor, dados) {
         fetch(`/funcionarios/dashboard/${idSensor}`, { cache: 'no-store' }).then(function (response) {
             console.log("Estou tentando pegar idSensor = ", idSensor)
@@ -735,7 +776,6 @@
             });
 
     }
-
     function plotarGrafico(dados, idSensor) {
         console.log("executei plotarGrafico")
         if (cont > 0) {
@@ -750,7 +790,6 @@
         cont++;
         atualizarGrafico(idSensor, dados);
     }
-
     function configurarGrafico() {
         console.log("executei configurarGrafico")
         var configuracoes = {
@@ -786,7 +825,6 @@
     function redirecionar_email() {
         window.location.href = 'login.html';
     }
-
     function logoff() {
         sessionStorage.clear();
         window.location.href = 'index.html';

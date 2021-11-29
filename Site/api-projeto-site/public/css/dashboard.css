@@ -244,7 +244,7 @@ p {
 }
 
 .computadores {
-    margin: 50px 0  0;
+    margin: 50px 0 0;
     display: flex;
     flex-direction: column;
 }
@@ -478,6 +478,7 @@ p {
 .infoProc {
     font-size: 1.1;
     color: #7d828f;
+    min-width: 125px;
 }
 
 .titulosProc {
@@ -488,12 +489,18 @@ p {
     justify-content: space-between;
 }
 
+.painelProc {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
 .linha {
     display: flex;
-    margin: 0 auto;
+    width: 100%;
+    margin-left: 20px;
     margin-top: 10px;
     justify-content: space-between;
-    width: 90%;
 }
 
 .funcUsuarios {
@@ -741,7 +748,7 @@ p {
     background-color: #818181;
 }
 
-.slack {    
+.slack {
     text-align: center;
 }
 
