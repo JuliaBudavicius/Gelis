@@ -40,13 +40,17 @@ public class Horus extends javax.swing.JFrame {
     /**
      * Creates new form Horus
      */
-    List<Object> listaMap = new ArrayList<>();
+    public List<Object> listaMap = new ArrayList<>();
 
     public Horus(Map map) {
         initComponents();
         listaMap.add(map.get("idMaquina"));
         Color cor = new Color(255, 255, 255);
         getContentPane().setBackground(cor);
+    }
+
+    Horus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

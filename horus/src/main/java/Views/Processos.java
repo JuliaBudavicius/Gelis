@@ -3,23 +3,28 @@ package Views;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.processos.Processo;
 import com.github.britooo.looca.api.group.processos.ProcessosGroup;
+import controller.ViewController;
 import java.awt.Color;
 import java.awt.PopupMenu;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.table.DefaultTableModel;
+import Views.Horus;
+import java.util.ArrayList;
 
 public class Processos extends javax.swing.JFrame {
 
-    public Processos() {
-        initComponents();
+    public List<Object> listaMap = new ArrayList<>();
 
+    public Processos(Map map) {
+        initComponents();
+        listaMap.add(map.get("idMaquina"));
+        String idMaquina = listaMap.get(0).toString();
         Color cor = new Color(255, 255, 255);
         getContentPane().setBackground(cor);
-
         tableProcessos.setEnabled(false);
-
+        ViewController vc = new ViewController();
         Looca looca = new Looca();
         ProcessosGroup grupoDeProcessos = looca.getGrupoDeProcessos();
         Processo maior = null;
@@ -50,6 +55,9 @@ public class Processos extends javax.swing.JFrame {
             tableProcessos.setModel(modelo);
         }
 
+        vc.InsereProcessos(idMaquina, maior.getNome(), maior.getUsoCpu().toString(), maior.getPid().toString());
+        vc.InsereProcessos(idMaquina, SegMaior.getNome(), SegMaior.getUsoCpu().toString(), SegMaior.getPid().toString());
+        vc.InsereProcessos(idMaquina, TerMaior.getNome(), TerMaior.getUsoCpu().toString(), TerMaior.getPid().toString());
     }
 
     @SuppressWarnings("unchecked")
