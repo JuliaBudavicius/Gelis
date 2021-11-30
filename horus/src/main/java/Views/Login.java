@@ -165,6 +165,7 @@ public class Login extends javax.swing.JFrame {
             new Horus(map).setVisible(true);
             new Processos().setVisible(true);
             dispose();
+            
             json.put("text", "Olá, " + user + ", eu sou a Veronica sua assistente pessoal!\nEstou ansiosa para te ajudar"
                     + " a monitorar suas maquinas 😄");
             try {
