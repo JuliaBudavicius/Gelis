@@ -286,23 +286,6 @@
         </div>
     </section>
     <section id="novoUsu" class="novoUsu none">
-        <!-- <div id="addUsu">
-            <form id="form_empresa" method="post" onsubmit="return cadastrar_empresa()">
-                <p class="tituloAddUsu">Novo Usuário</p>
-                <div class="supAddUsu">
-                    <p>Nome Completo</p>
-                    <input type="text" name="" id="">
-                    <p>Hostname</p>
-                    <input type="text" name="" id="">
-                </div>
-                <div class="infAddUsu">
-                    <p>Login</p>
-                    <input type="text" name="" id="">
-                    <p>Login</p>
-                    <input type="text" name="" id="">
-                </div>
-            </form>
-        </div> -->
         <div class="menulateral">
             <div class="topo">
                 <img class="logo" src="img/logo.png" alt="">
@@ -333,7 +316,7 @@
             <div class="inferior">
                 <div class="funcUsuarios">
                     <div class="txtCentr">
-                        <p><i class="fa fa-plus-circle" aria-hidden="true"></i>Novo Usuário</p>
+                        <p onclick="abrirAdd()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Novo Usuário</p>
                         <p><i class="fa fa-minus-circle" aria-hidden="true"></i>Remover Usuário</p>
                         <p><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar Usuário</p>
                     </div>
@@ -352,6 +335,54 @@
             </div>
 
     </section>
+    <div id="addUsu" class="absolutoAdd">
+        <div class="fundoAdd">
+            <p class="tituloAdd">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                Novo Usuário
+            </p>
+            <div>
+                <form class="formAdd" id="form_add">
+                    <div class="agrupa">
+                        <div class="esquerdaAdd">
+                            <p>Primeiro nome</p>
+                            <input name="nome" type="text">
+                        </div>
+                        <div>
+                            <p>Sobrenome</p>
+                            <input name="sobrenome" type="text">
+                        </div>
+                    </div>
+                    <div class="agrupa">
+                        <div class="esquerdaAdd">
+                            <p>E-mail</p>
+                            <input name="email" type="text">
+                        </div>
+                        <div>
+                            <p>Hostname</p>
+                            <input name="hostname" type="text">
+                        </div>
+                    </div>
+                    <div class="agrupa">
+                        <div class="esquerdaAdd">
+                            <p>Login</p>
+                            <input name="login" type="text">
+                        </div>
+                        <div>
+                            <p>Senha</p>
+                            <input name="senha" type="password">
+                        </div>
+                    </div>
+                </form>
+                <div class="btnsAdd">
+                    <button class="btnCriar" onclick="adicionar()">CRIAR</button>
+                    <button class="btnCancelarAdd" onclick="cancelarAdd()">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="remUsu"></div>
+    <div id="editUsu"></div>
 </body>
 
 </html>
@@ -359,6 +390,12 @@
     let proximaAtualizacao;
     window.onload = verificar_autenticacao();
     var cont = 0;
+    function cancelarAdd() {
+        addUsu.style.display = "none";
+    }
+    function abrirAdd() {
+        addUsu.style.display = "flex";
+    }
     function obterFuncionarios() {
         var idEmpresa = sessionStorage.idEmpresa;
         fetch(`/funcionarios/${idEmpresa}`)
