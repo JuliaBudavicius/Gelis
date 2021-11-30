@@ -43,6 +43,11 @@ public class ViewController {
         db.makeUpdateQuery(query);
     }
 
+    public void InsereProcessos(String fkMaquinas, String nomeProcesso, String usoCPU, String PID) {
+        String query = String.format("INSERT INTO Processos (fkMaquinas, nomeProcesso, usoCPU, PID) values (%s,'%s',%s,%s);", fkMaquinas, nomeProcesso, usoCPU, PID);
+        db.makeUpdateQuery(query);
+    }
+
     public void init() {
         db.initializer();
     }
@@ -63,7 +68,7 @@ public class ViewController {
             cpuTemp = looca.getTemperatura().toString();
             String qntMem = Conversor.formatarBytes(memRam.getEmUso());
             cpuTemp = cpuTemp.replace("Temperatura: ", "");
-            cpuTemp = cpuTemp.replace(",",".");
+            cpuTemp = cpuTemp.replace(",", ".");
             qntMem = qntMem.replace(" GiB", "");
             qntMem = qntMem.replace(",", ".");
             String query = String.format("INSERT INTO dadosMaquinas values (%s,%s,%s,'%s',GETDATE());",

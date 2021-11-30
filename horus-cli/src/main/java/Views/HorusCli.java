@@ -28,8 +28,6 @@ public class HorusCli {
         Components components = JSensors.get.components();
         DiscosGroup grupoDeDiscos = looca.getGrupoDeDiscos();
         ViewController vc = new ViewController();
-        // Variaveis
-        Integer menu = 0;
         String login = "";
         String senha = "";
         Memoria memRam = looca.getMemoria();
@@ -47,9 +45,14 @@ public class HorusCli {
         Map map = vc.login(login, senha);
         if (!map.isEmpty()) {
             System.out.println("\n(!) Login Realizado com sucesso!\n");
+            System.out.println("Sistema Operacional:");
+            System.out.println(sistema.getSistemaOperacional());
+            System.out.println("Processador:");
+            System.out.println(processador.getNome());
+            System.out.println("Quantidade de memória RAM:");
+            System.out.println(memRam.getTotal());
             System.out.println("Sua máquina está sendo verificada!");
             String idMaquina = map.get("idMaquina").toString();
-            modCPU = processador.getNome();
             if (gpus != null) {
                 for (final Gpu gpu : gpus) {
                     modGpu = gpu.name;

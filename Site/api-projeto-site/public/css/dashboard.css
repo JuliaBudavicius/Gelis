@@ -32,6 +32,7 @@ p {
     justify-content: center;
     text-align: center;
     float: left;
+    position: fixed;
     width: 200px;
     height: 100vh;
     background-color: #0c0b10;
@@ -105,7 +106,7 @@ p {
 }
 
 .ladoEsquerdo {
-    float: left;
+    float: right;
 }
 
 .pesquisa {
@@ -182,7 +183,10 @@ p {
 }
 
 .boxes {
+    width: calc(100vw - 250px);
     display: flex;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .box {
@@ -240,7 +244,7 @@ p {
 }
 
 .computadores {
-    margin: 50px 0 0 0;
+    margin: 50px 0 0;
     display: flex;
     flex-direction: column;
 }
@@ -319,7 +323,7 @@ p {
 }
 
 .absolute {
-    position: absolute;
+    position: fixed;
     z-index: 3;
     height: 100vh;
     width: 100vw;
@@ -474,6 +478,7 @@ p {
 .infoProc {
     font-size: 1.1;
     color: #7d828f;
+    min-width: 125px;
 }
 
 .titulosProc {
@@ -484,12 +489,18 @@ p {
     justify-content: space-between;
 }
 
+.painelProc {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
 .linha {
     display: flex;
-    margin: 0 auto;
+    width: 100%;
+    margin-left: 20px;
     margin-top: 10px;
     justify-content: space-between;
-    width: 90%;
 }
 
 .funcUsuarios {
@@ -615,7 +626,7 @@ p {
     font-weight: bold;
     color: white;
     position: absolute;
-    top: 15%;
+    top: 11%;
 }
 
 #form_atualizar {
@@ -631,11 +642,10 @@ p {
 
 .forms input {
     border: none;
-    width: 270px;
+    width: 300px;
     height: 25px;
-    margin-left: 25px;
+    margin-right: 15px;
     color: rgb(0, 0, 0);
-    text-align: center;
     outline: none;
     border: 2px solid white;
 }
@@ -647,8 +657,7 @@ p {
 
 .forms p {
     color: white;
-    text-align: center;
-    font-size: 1.3em;
+    font-size: 1.2em;
 }
 
 .btnSave {
@@ -739,7 +748,7 @@ p {
     background-color: #818181;
 }
 
-.slack {    
+.slack {
     text-align: center;
 }
 
@@ -761,4 +770,73 @@ p {
 .slack input:focus {
     border: 2px solid #ee1e46;
     transition: 0.2s;
+}
+
+.absolutoAdd {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: none;
+    z-index: 3;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
+}
+
+
+.agrupa {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.esquerdaAdd {
+    margin-right: 20px;
+}
+
+.fundoAdd {
+    width: 700px;
+    height: 400px;
+    border-radius: 1%;
+    box-shadow: 0px 0px 9px 5px rgba(0, 0, 0, 0.44);
+    background-color: #131218;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloAdd {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+}
+
+.tituloAdd i {
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.btnsAdd {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btnCancelarAdd {
+    background-color: white;
+    border: 0;
+    width: 90px;
+    height: 25px;
+    color: #EE1E46;
+    font-weight: 700;
+}
+.formAdd input {
+    width: 250px;
+}
+.btnCriar {
+    background-color: #EE1E46;
+    border: 0;
+    width: 90px;
+    height: 25px;
+    color: white;
+    font-weight: 700;
 }

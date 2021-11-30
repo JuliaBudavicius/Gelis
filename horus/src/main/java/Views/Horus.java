@@ -40,7 +40,7 @@ public class Horus extends javax.swing.JFrame {
     /**
      * Creates new form Horus
      */
-    List<Object> listaMap = new ArrayList<>();
+    public List<Object> listaMap = new ArrayList<>();
 
     public Horus(Map map) {
         initComponents();
@@ -48,6 +48,10 @@ public class Horus extends javax.swing.JFrame {
         listaMap.add(map.get("Hostname"));
         Color cor = new Color(255, 255, 255);
         getContentPane().setBackground(cor);
+    }
+
+    Horus() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -448,6 +452,7 @@ public class Horus extends javax.swing.JFrame {
                         }
                     }
                 }
+<<<<<<< HEAD
                 Double teste = 5.7;
                 if (teste < 80.5) {                    
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
@@ -466,6 +471,28 @@ public class Horus extends javax.swing.JFrame {
                         Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
 
                     }
+=======
+                Double teste = 5.7;               
+
+                    if (teste < 30.5) {
+
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                        String dataHora = dtf.format(LocalDateTime.now()).toString();
+                        String usoRam = Conversor.formatarBytes(memRam.getEmUso());
+                        String freqCPU = Conversor.formatarBytes(processador.getFrequencia());
+                        String dadosLog = String.format("Data e Hora: %s\nHostname: %s\nMensagem: Temperatura muito alta\nTemperatura da GPU: %sºC\nUso da RAM: %s\nFrequência CPU: %s\n\n", dataHora, hostname, gpuTemp, usoRam, freqCPU);
+                        Log.criarLog("LOG.txt", dadosLog);
+                        json.put("text", "Uso RAM: " + usoRam + "\n Temperatura GPU: " + gpuTemp);
+                        json.put("text", "Alerta de temperatura muito alta, por favor realizar contenções! "
+                                + "\nTemperatura: " + gpuTemp);
+                        try {
+                            Slack.sendMessage(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Horus.class.getName()).log(Level.SEVERE, null, ex);
+                        }                    
+>>>>>>> 17727c8cfea4501d9813261350f23eb06c9c6604
                 }
             }
         };

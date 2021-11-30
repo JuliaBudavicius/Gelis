@@ -163,7 +163,7 @@ public class Login extends javax.swing.JFrame {
         Map map = vc.login(user, password);
         if (!map.isEmpty()) {
             new Horus(map).setVisible(true);
-            new Processos().setVisible(true);
+            new Processos(map).setVisible(true);
             dispose();
             
             json.put("text", "Olá, " + user + ", eu sou a Veronica sua assistente pessoal!\nEstou ansiosa para te ajudar"
