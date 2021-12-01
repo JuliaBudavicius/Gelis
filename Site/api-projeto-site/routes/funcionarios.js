@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var funcionario = require('../models').funcionario;
+var Maquinas = require('../models').Maquinas;
+
 var env = process.env.NODE_ENV || 'development';
 
 router.get('/dashboard/:idSensor', function (req, res, next) {
@@ -170,6 +172,52 @@ router.get('/media/:idMaquina', function (req, res, next) {
 			console.error(erro);
 			res.status(500).send(erro.message);
 		});
+});
+
+router.delete('/deletar/:idUsuario', function (req, res, next) {
+	console.log('Deletando usuario');
+	var idMaquina = req.params.idUsuario;
+	let instrucaoSql = "";
+
+	if (env == 'dev') {
+
+	} else if (env == 'production') {
+		instrucaoSql = `update [dbo].[dadosMaquinas] set fkMaquinas = null where fkMaquinas = ${idMaquina}
+		update [dbo].[Processos] set fkMaquinas = null where fkMaquinas = ${idMaquina}
+		delete from Maquinas where idMaquinas = ${idMaquina}`;
+	} else {
+		console.log("\n\n\n\nVERIFIQUE O VALOR DE LINHA 1 EM APP.JS!\n\n\n\n")
+	}
+
+	console.log(instrucaoSql);
+
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.DELETE })
+		.then(resultado => {
+			window.location.href = 'dashboard.html';
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
+});
+router.post('/cadastrar/:idEmpresa', function (req, res, next) {
+	console.log('Cadastrando novo usuario');
+	var idEmpresa = req.params.idEmpresa;
+	Maquinas.create({
+		fkEmpresa: idEmpresa,
+		hostname: req.body.hostname,
+		senhaMaquina: req.body.senhaMaquina,
+		nomeResp: req.body.nomeResp,
+		sobrenomeResp: req.body.sobrenomeResp,
+		emailFunc: req.body.emailFunc,
+		loginMaquina: req.body.loginMaquina
+
+	}).then(resultado => {
+		console.log(`Registro criado: ${resultado}`)
+		res.send(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
 });
 
 module.exports = router;

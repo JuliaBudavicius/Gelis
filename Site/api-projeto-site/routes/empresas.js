@@ -92,7 +92,7 @@ router.post('/cadastrar', function (req, res, next) {
 	console.log('Cadastrando uma nova empresa');
 
 	Empresa.create({
-		nomeEmpresa: req.body.nomeEmpresa,
+		nomeEmpresa: req.body.Maquinas,
 		CNPJ: req.body.cnpj,
 		CEP: req.body.cep,
 		logradouro: req.body.logradouro,
