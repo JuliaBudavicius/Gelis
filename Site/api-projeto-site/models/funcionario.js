@@ -26,17 +26,17 @@ module.exports = (sequelize, DataTypes) => {
 		modCPU: {
 			field: 'modCPU',
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		},
 		modGPU: {
 			field: 'modGPU',
 			type: DataTypes.STRING,
-			allowNull: false
+			allowNull: true
 		},
 		qntRAM: {
 			field: 'qntRAM',
 			type: DataTypes.DOUBLE,
-			allowNull: false
+			allowNull: true
 		},
 		senhaMaquina: {
 			field: 'senhaMaquina',

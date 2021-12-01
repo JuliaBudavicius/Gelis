@@ -317,8 +317,10 @@
                 <div class="funcUsuarios">
                     <div class="txtCentr">
                         <p onclick="abrirAdd()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Novo Usuário</p>
-                        <p><i class="fa fa-minus-circle" aria-hidden="true"></i>Remover Usuário</p>
-                        <p><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar Usuário</p>
+                        <p onclick="abrirDelet()"><i class="fa fa-minus-circle" aria-hidden="true"></i>Remover Usuário
+                        </p>
+                        <p onclick="abrirEdit()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Editar Usuário
+                        </p>
                     </div>
                 </div>
                 <div class="tituloUsuarios">
@@ -343,6 +345,52 @@
             </p>
             <div>
                 <form class="formAdd" id="form_add">
+                    <div class="agrupa">
+                        <div class="esquerdaAdd">
+                            <p>Primeiro nome</p>
+                            <input name="nomeResp" type="text">
+                        </div>
+                        <div>
+                            <p>Sobrenome</p>
+                            <input name="sobrenomeResp" type="text">
+                        </div>
+                    </div>
+                    <div class="agrupa">
+                        <div class="esquerdaAdd">
+                            <p>E-mail</p>
+                            <input name="emailFunc" type="text">
+                        </div>
+                        <div>
+                            <p>Hostname</p>
+                            <input name="hostname" type="text">
+                        </div>
+                    </div>
+                    <div class="agrupa">
+                        <div class="esquerdaAdd">
+                            <p>Login</p>
+                            <input name="loginMaquina" type="text">
+                        </div>
+                        <div>
+                            <p>Senha</p>
+                            <input name="senhaMaquina" type="password">
+                        </div>
+                    </div>
+                </form>
+                <div class="btnsAdd">
+                    <button class="btnCriar" onclick="adicionar()">CRIAR</button>
+                    <button class="btnCancelarAdd" onclick="cancelarAdd()">CANCELAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editUsu" class="absolutoAdd">
+        <div class="fundoAdd">
+            <p class="tituloAdd">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                Editar Usuário
+            </p>
+            <div>
+                <form class="formAdd" id="form_edit">
                     <div class="agrupa">
                         <div class="esquerdaAdd">
                             <p>Primeiro nome</p>
@@ -375,14 +423,12 @@
                     </div>
                 </form>
                 <div class="btnsAdd">
-                    <button class="btnCriar" onclick="adicionar()">CRIAR</button>
-                    <button class="btnCancelarAdd" onclick="cancelarAdd()">CANCELAR</button>
+                    <button class="btnCriar" onclick="editar()">EDITAR</button>
+                    <button class="btnCancelarAdd" onclick="cancelarEdit()">CANCELAR</button>
                 </div>
             </div>
         </div>
     </div>
-    <div id="remUsu"></div>
-    <div id="editUsu"></div>
 </body>
 
 </html>
@@ -390,480 +436,523 @@
     let proximaAtualizacao;
     window.onload = verificar_autenticacao();
     var cont = 0;
-    function cancelarAdd() {
-        addUsu.style.display = "none";
-    }
-    function abrirAdd() {
-        addUsu.style.display = "flex";
-    }
-    function obterFuncionarios() {
-        var idEmpresa = sessionStorage.idEmpresa;
-        fetch(`/funcionarios/${idEmpresa}`)
-            .then(resposta => {
-                if (resposta.ok) {
-                    resposta.json().then(function (resposta) {
-                        console.log(`Dados dos funcionarios recebidos: ${JSON.stringify(resposta)}`);
-                        atualizarFuncionarios(resposta);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção das publicações: ${error.message}`);
-            });
-    }
-    function medias(tempCP, tempGP, usoRamP, id, iconEstado) {
-        fetch(`/funcionarios/media/${id}`)
-            .then(resposta => {
-                if (resposta.ok) {
-                    resposta.json().then(function (medias) {
-                        caio = JSON.parse(JSON.stringify(medias[0]));
-                        console.log(caio.mediaCPU);
-                        console.log(caio.mediaGPU);
-                        console.log(caio.mediaRAM);
-                        tempCP.innerHTML = caio.mediaCPU;
-                        tempGP.innerHTML = caio.mediaGPU
-                        usoRamP.innerHTML = caio.mediaRAM;
-                        cores(usoRamP, tempGP, tempCP, iconEstado);
-                        tempCP.innerHTML += "°C";
-                        tempGP.innerHTML += "°C";
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-
-            })
-
-            .catch(function (error) {
-                console.error(`Erro na obtenção das publicações: ${error.message}`);
-            });
-
-    }
-    function atualizarFuncionarios(funcionarios) {
-        var painel = document.getElementById("linhasUsuarios");
-        var painelBoxes = document.getElementById("boxes")
-        for (let i = 0; i < funcionarios.length; i++) {
-            var funcionario = funcionarios[i];
-            var hostname = funcionario.Hostname;
-            var nome = funcionario.Nome;
-            var sobrenome = funcionario.Sobrenome;
-            var email = funcionario.email;
-            var id = funcionario.idMaquina;
-
-            var divAux = document.createElement("div")
-            var divLinha = document.createElement("div")
-            var checkbox = document.createElement("input")
-            var NomeP = document.createElement("p")
-            var emailP = document.createElement("p")
-            var HostnameP = document.createElement("p")
-
-            var box = document.createElement("div");
-            var computadorP = document.createElement("p");
-            var responsavelP = document.createElement("p");
-            var estadoP = document.createElement("p");
-            var iconEstado = document.createElement("i");
-            var divHoriz = document.createElement("div");
-            var divVert = document.createElement("div");
-            var divVert2 = document.createElement("div");
-            var divVert3 = document.createElement("div");
-            var CPUP = document.createElement("p");
-            var RAMP = document.createElement("p");
-            var GPUP = document.createElement("p");
-            var tempCP = document.createElement("p");
-            var tempGP = document.createElement("p");
-            var usoRamP = document.createElement("p");
-            tempCP.setAttribute('id', 'tempCP');
-            usoRamP.setAttribute('id', 'usoRamP');
-            tempGP.setAttribute('id', 'tempGP');
-            medias(tempCP, tempGP, usoRamP, id, iconEstado);
-            checkbox.type = "radio";
-            checkbox.value = funcionario.idMaquina;
-            checkbox.name = "group";
-            NomeP.innerHTML = nome + " " + sobrenome;
-            emailP.innerHTML = email;
-            HostnameP.innerHTML = hostname;
-            var numPC = i + 1;
-            computadorP.innerHTML = "Computador " + numPC;
-            responsavelP.innerHTML = nome;
-            CPUP.innerHTML = "CPU";
-            RAMP.innerHTML = "RAM";
-            GPUP.innerHTML = "GPU";
-
-            box.setAttribute("onclick", `show(${funcionario.idMaquina})`)
-            divAux.className = "divAux";
-            checkbox.className = "checkbox";
-            divLinha.className = "linhaUsuarios";
-            NomeP.className = "nome";
-            emailP.className = "email";
-
-            box.className = "boxComp";
-            computadorP.className = "nomeComp";
-            responsavelP.className = "nomeResponsavel";
-            CPUP.className = "txtHard";
-            RAMP.className = "txtHard";
-            GPUP.className = "txtHard";
-            divVert.className = "vert";
-            divVert2.className = "vert";
-            divVert3.className = "vert";
-            divHoriz.className = "horiz";
-            tempCP.className = "temp";
-            tempGP.className = "temp";
-            usoRamP.className = "ram";
-
-            divVert.appendChild(GPUP);
-            divVert2.appendChild(CPUP);
-            divVert3.appendChild(RAMP);
-            divVert.appendChild(tempGP);
-            divVert2.appendChild(tempCP);
-            divVert3.appendChild(usoRamP);
-
-            divHoriz.appendChild(divVert);
-            divHoriz.appendChild(divVert2);
-            divHoriz.appendChild(divVert3);
-            box.appendChild(computadorP);
-            box.appendChild(responsavelP);
-            box.appendChild(estadoP);
-            box.appendChild(iconEstado);
-            box.appendChild(divHoriz);
-            painelBoxes.appendChild(box);
-
-            divAux.appendChild(NomeP);
-            divAux.appendChild(emailP);
-            divAux.appendChild(HostnameP);
-            divLinha.appendChild(checkbox);
-            divLinha.appendChild(divAux);
-            painel.appendChild(divLinha);
-
-        }
-        total();
-    }
-    function sair() {
-        absoluto.style = "display: flex;";
-    }
-    function fechar() {
-        absoluto.style = "display: none;";
-    }
-    function dashboard() {
-        configSec.classList.add('none');
-        novoUsu.classList.add('none');
-        dashboardSec.classList.remove('none');
-    }
-    function config() {
-        configSec.classList.remove('none');
-        dashboardSec.classList.add('none');
-        novoUsu.classList.add('none');
-    }
-    function usuario() {
-        configSec.classList.add('none');
-        dashboardSec.classList.add('none');
-        novoUsu.classList.remove('none');
-    }
-    function chart() {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        window.myChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [0.0, 0.0],
-                    backgroundColor: [
-                        'rgb(255, 0, 0)',
-                        'rgba(255, 255, 255, 0)'
-                    ],
-                    hoverOffset: 1
-                }]
-            },
-            radius: 50
-        });
-    }
-    function update(numero) {
-        fetch(`/funcionarios/ram/${numero}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (Registro) {
-                    myChart.data.datasets[0].data.shift();
-                    myChart.data.datasets[0].data.shift();
-                    var resto = Registro.qntRAM - Registro.usoRAM;
-                    myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
-                    myChart.data.datasets[0].data.push(resto.toFixed(1));
-                    myChart.update();
-                    console.log("O id é: " + numero);
-                    obterDadosGraficoPrimeiraVez(numero);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-    function processos(numero) {
-        fetch(`/funcionarios/processos/${numero}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (processos) {
-                    var painelProc = document.getElementById("painelProc");
-                    for (let i = 0; i < processos.length; i++) {
-                        var processo = processos[i];
-                        var nome = processo.nomeProcesso;
-                        var usoCPU = processo.usoCPU;
-                        var pid = processo.PID;
-                        var linha = document.createElement("div");
-                        var nomeProc = document.createElement("p");
-                        var usoCPUP = document.createElement("p");
-                        var pidP = document.createElement("p");
-                        nomeProc.innerHTML = nome;
-                        usoCPUP.innerHTML = usoCPU + "%";
-                        pidP.innerHTML = pid;
-                        linha.setAttribute('id', 'linha');
-                        linha.className = "linha";
-                        nomeProc.className = "infoProc";
-                        usoCPUP.className = "infoProc";
-                        pidP.className = "infoProc";
-                        linha.appendChild(nomeProc);
-                        linha.appendChild(usoCPUP);
-                        linha.appendChild(pidP);
-                        painelProc.appendChild(linha);
+    function abrirDelet() {
+        var group = document.getElementsByName('group');
+        for (var i = 0; i < group.length; i++) {
+            if (group[i].checked) {
+                var idFuncionario = group[i].value;
+                fetch(`/funcionarios/deletar/${idFuncionario}`, {
+                    method: 'DELETE'
+                })
+                .then(function (response) {
+                    if (response.ok) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        console.log('Erro ao deletar!');
+                        response.text().then(function (resposta) {
+                        });
                     }
                 });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-    function remove() {
-        for (let i = 0; i < 3; i++) {
-            var linha = document.getElementById("linha");
-            if (linha != null) {
-                linha.remove();
             }
         }
     }
-    function verificar_autenticacao() {
-        var nome = document.getElementById('nomeEmpresaInput');
-        var email = document.getElementById('emailEmpresaInput');
-        var cnpj = document.getElementById('cnpjEmpresaInput');
-        var whats = document.getElementById('whatsEmpresaInput');
-        var cep = document.getElementById('cepEmpresaInput');
-        var estado = document.getElementById('estadoEmpresaInput');
-        var cidade = document.getElementById('cidadeEmpresaInput');
-        var logradouro = document.getElementById('logradouroEmpresaInput');
-        var urlSlack = document.getElementById('urlSlackInput');
-        chart();
-        let nomeEmpresa;
-        let cnpjEmpresa;
-        let emailEmpresa;
-        let whatsEmpresa;
-        let cepEmpresa;
-        let estadoEmpresa;
-        let cidadeEmpresa;
-        let logradouroEmpresa;
-        let urlSlackEmpresa;
-
-        nomeEmpresa = sessionStorage.nomeEmpresa;
-        cnpjEmpresa = sessionStorage.cnpjEmpresa;
-        emailEmpresa = sessionStorage.emailEmpresa;
-        whatsEmpresa = sessionStorage.whatsEmpresa;
-        cepEmpresa = sessionStorage.cepEmpresa;
-        estadoEmpresa = sessionStorage.estadoEmpresa;
-        cidadeEmpresa = sessionStorage.cidadeEmpresa;
-        logradouroEmpresa = sessionStorage.logradouroEmpresa;
-        urlSlackEmpresa = sessionStorage.urlSlack;
-
-        if (nomeEmpresa == undefined) {
-            redirecionar_email();
-        } else {
-            obterFuncionarios();
-            nome.value += `${nomeEmpresa}`;
-            email.value += `${emailEmpresa}`;
-            cnpj.value += `${cnpjEmpresa}`;
-            whats.value += `${whatsEmpresa}`;
-            cep.value += `${cepEmpresa}`;
-            estado.value += `${estadoEmpresa}`;
-            cidade.value += `${cidadeEmpresa}`;
-            logradouro.value += `${logradouroEmpresa}`;
-            urlSlack.value += `${urlSlackEmpresa}`;
-            nome_EmpresaD.innerHTML += `${nomeEmpresa}`;
-            nome_EmpresaC.innerHTML += `${nomeEmpresa}`;
-            nome_EmpresaN.innerHTML += `${nomeEmpresa}`;
-            cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
-            cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
-            cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
-
-        }
-        validar_sessao()
-    }
-    function validar_sessao() {
-        var emailEmpresa = sessionStorage.emailEmpresa;
-        fetch(`/empresas/sessao/${emailEmpresa}`, { cache: 'no-store' })
-            .then(resposta => {
-                if (resposta.ok) {
-                    resposta.text().then(texto => {
-                        console.log('Sessão :) ', texto);
+            function adicionar() {
+                var idEmpresa = sessionStorage.idEmpresa;
+                var addUser = new URLSearchParams(new FormData(form_add));
+                fetch(`/funcionarios/cadastrar/${idEmpresa}`, {
+                    method: "POST",
+                    body: addUser
+                }).then(function (response) {
+                    if (response.ok) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        console.log('Erro de cadastro!');
+                        response.text().then(function (resposta) {
+                        });
+                    }
+                });
+                return false;
+            }
+            function cancelarAdd() {
+                addUsu.style.display = "none";
+            }
+            function abrirAdd() {
+                addUsu.style.display = "flex";
+            }
+            function abrirEdit() {
+                editUsu.style.display = "flex";
+            }
+            function cancelarEdit() {
+                editUsu.style.display = "none";
+            }
+            function obterFuncionarios() {
+                var idEmpresa = sessionStorage.idEmpresa;
+                fetch(`/funcionarios/${idEmpresa}`)
+                    .then(resposta => {
+                        if (resposta.ok) {
+                            resposta.json().then(function (resposta) {
+                                console.log(`Dados dos funcionarios recebidos: ${JSON.stringify(resposta)}`);
+                                atualizarFuncionarios(resposta);
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                        }
+                    })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção das publicações: ${error.message}`);
                     });
-                } else {
-                    console.error('Sessão :.( ');
-                    logoff();
-                }
-            });
-    }
-    function atualizar() {
-        var nome = document.getElementById('nomeEmpresaInput');
-        var cnpj = document.getElementById('cnpjEmpresaInput');
-        var idEmpresa = sessionStorage.idEmpresa;
-        var formulario1 = new URLSearchParams(new FormData(form_atualizar));
-        fetch(`/empresas/atualizar/${idEmpresa}`, {
-            method: "POST",
-            body: formulario1
-        }).then(function (resultado) {
-            if (resultado.ok) {
-                console.log('Atualizado com sucesso');
-                nome_EmpresaD.innerHTML = `${nome.value}`;
-                nome_EmpresaC.innerHTML = `${nome.value}`;
-                nome_EmpresaN.innerHTML = `${nome.value}`;
-                cnpj_EmpresaD.innerHTML = `CNPJ: ${cnpj.value}`;
-                cnpj_EmpresaC.innerHTML = `CNPJ: ${cnpj.value}`;
-                cnpj_EmpresaN.innerHTML = `CNPJ: ${cnpj.value}`;
-                sessionStorage.nomeEmpresa = nome.value;
-                sessionStorage.cnpjEmpresa = cnpj.value;
+            }
+            function medias(tempCP, tempGP, usoRamP, id, iconEstado) {
+                fetch(`/funcionarios/media/${id}`)
+                    .then(resposta => {
+                        if (resposta.ok) {
+                            resposta.json().then(function (medias) {
+                                caio = JSON.parse(JSON.stringify(medias[0]));
+                                console.log(caio.mediaCPU);
+                                console.log(caio.mediaGPU);
+                                console.log(caio.mediaRAM);
+                                tempCP.innerHTML = caio.mediaCPU;
+                                tempGP.innerHTML = caio.mediaGPU
+                                usoRamP.innerHTML = caio.mediaRAM;
+                                cores(usoRamP, tempGP, tempCP, iconEstado);
+                                tempCP.innerHTML += "°C";
+                                tempGP.innerHTML += "°C";
+                            });
+                        } else {
+                            console.error('Nenhum dado encontrado ou erro na API');
+                        }
 
-            } else {
-                console.log('Erro de atualização!');
-                response.text().then(function (resultado) {
+                    })
+
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção das publicações: ${error.message}`);
+                    });
+
+            }
+            function atualizarFuncionarios(funcionarios) {
+                var painel = document.getElementById("linhasUsuarios");
+                var painelBoxes = document.getElementById("boxes")
+                for (let i = 0; i < funcionarios.length; i++) {
+                    var funcionario = funcionarios[i];
+                    var hostname = funcionario.Hostname;
+                    var nome = funcionario.Nome;
+                    var sobrenome = funcionario.Sobrenome;
+                    var email = funcionario.email;
+                    var id = funcionario.idMaquina;
+
+                    var divAux = document.createElement("div")
+                    var divLinha = document.createElement("div")
+                    var checkbox = document.createElement("input")
+                    var NomeP = document.createElement("p")
+                    var emailP = document.createElement("p")
+                    var HostnameP = document.createElement("p")
+
+                    var box = document.createElement("div");
+                    var computadorP = document.createElement("p");
+                    var responsavelP = document.createElement("p");
+                    var estadoP = document.createElement("p");
+                    var iconEstado = document.createElement("i");
+                    var divHoriz = document.createElement("div");
+                    var divVert = document.createElement("div");
+                    var divVert2 = document.createElement("div");
+                    var divVert3 = document.createElement("div");
+                    var CPUP = document.createElement("p");
+                    var RAMP = document.createElement("p");
+                    var GPUP = document.createElement("p");
+                    var tempCP = document.createElement("p");
+                    var tempGP = document.createElement("p");
+                    var usoRamP = document.createElement("p");
+                    tempCP.setAttribute('id', 'tempCP');
+                    usoRamP.setAttribute('id', 'usoRamP');
+                    tempGP.setAttribute('id', 'tempGP');
+                    medias(tempCP, tempGP, usoRamP, id, iconEstado);
+                    checkbox.type = "radio";
+                    checkbox.value = funcionario.idMaquina;
+                    checkbox.name = "group";
+                    NomeP.innerHTML = nome + " " + sobrenome;
+                    emailP.innerHTML = email;
+                    HostnameP.innerHTML = hostname;
+                    var numPC = i + 1;
+                    computadorP.innerHTML = "Computador " + numPC;
+                    responsavelP.innerHTML = nome;
+                    CPUP.innerHTML = "CPU";
+                    RAMP.innerHTML = "RAM";
+                    GPUP.innerHTML = "GPU";
+
+                    box.setAttribute("onclick", `show(${funcionario.idMaquina})`)
+                    divAux.className = "divAux";
+                    checkbox.className = "checkbox";
+                    divLinha.className = "linhaUsuarios";
+                    NomeP.className = "nome";
+                    emailP.className = "email";
+
+                    box.className = "boxComp";
+                    computadorP.className = "nomeComp";
+                    responsavelP.className = "nomeResponsavel";
+                    CPUP.className = "txtHard";
+                    RAMP.className = "txtHard";
+                    GPUP.className = "txtHard";
+                    divVert.className = "vert";
+                    divVert2.className = "vert";
+                    divVert3.className = "vert";
+                    divHoriz.className = "horiz";
+                    tempCP.className = "temp";
+                    tempGP.className = "temp";
+                    usoRamP.className = "ram";
+
+                    divVert.appendChild(GPUP);
+                    divVert2.appendChild(CPUP);
+                    divVert3.appendChild(RAMP);
+                    divVert.appendChild(tempGP);
+                    divVert2.appendChild(tempCP);
+                    divVert3.appendChild(usoRamP);
+
+                    divHoriz.appendChild(divVert);
+                    divHoriz.appendChild(divVert2);
+                    divHoriz.appendChild(divVert3);
+                    box.appendChild(computadorP);
+                    box.appendChild(responsavelP);
+                    box.appendChild(estadoP);
+                    box.appendChild(iconEstado);
+                    box.appendChild(divHoriz);
+                    painelBoxes.appendChild(box);
+
+                    divAux.appendChild(NomeP);
+                    divAux.appendChild(emailP);
+                    divAux.appendChild(HostnameP);
+                    divLinha.appendChild(checkbox);
+                    divLinha.appendChild(divAux);
+                    painel.appendChild(divLinha);
+
+                }
+                total();
+            }
+            function sair() {
+                absoluto.style = "display: flex;";
+            }
+            function fechar() {
+                absoluto.style = "display: none;";
+            }
+            function dashboard() {
+                configSec.classList.add('none');
+                novoUsu.classList.add('none');
+                dashboardSec.classList.remove('none');
+            }
+            function config() {
+                configSec.classList.remove('none');
+                dashboardSec.classList.add('none');
+                novoUsu.classList.add('none');
+            }
+            function usuario() {
+                configSec.classList.add('none');
+                dashboardSec.classList.add('none');
+                novoUsu.classList.remove('none');
+            }
+            function chart() {
+                var ctx = document.getElementById('myChart').getContext('2d');
+                window.myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [{
+                            data: [0.0, 0.0],
+                            backgroundColor: [
+                                'rgb(255, 0, 0)',
+                                'rgba(255, 255, 255, 0)'
+                            ],
+                            hoverOffset: 1
+                        }]
+                    },
+                    radius: 50
                 });
             }
-        });
-
-        return false;
-    }
-    function obterDadosGraficoPrimeiraVez(idSensor) {
-        console.log("executei obterDadosGraficoPrimeiraVez" + idSensor)
-        if (proximaAtualizacao != undefined) {
-            clearTimeout(proximaAtualizacao);
-        }
-        fetch(`/funcionarios/ultimas/${idSensor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    var dados = {
-                        labels: [],
-                        datasets: [
-                            {
-                                yAxisID: 'y-temperatura',
-                                label: 'Temperatura',
-                                borderColor: 'rgba(255,0,0,1)',
-                                backgroundColor: 'rgba(255,0,0,1)',
-                                fill: false,
-                                data: []
+            function update(numero) {
+                fetch(`/funcionarios/ram/${numero}`, { cache: 'no-store' }).then(function (response) {
+                    if (response.ok) {
+                        response.json().then(function (Registro) {
+                            myChart.data.datasets[0].data.shift();
+                            myChart.data.datasets[0].data.shift();
+                            var resto = Registro.qntRAM - Registro.usoRAM;
+                            myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
+                            myChart.data.datasets[0].data.push(resto.toFixed(1));
+                            myChart.update();
+                            console.log("O id é: " + numero);
+                            obterDadosGraficoPrimeiraVez(numero);
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                    });
+            }
+            function processos(numero) {
+                fetch(`/funcionarios/processos/${numero}`, { cache: 'no-store' }).then(function (response) {
+                    if (response.ok) {
+                        response.json().then(function (processos) {
+                            var painelProc = document.getElementById("painelProc");
+                            for (let i = 0; i < processos.length; i++) {
+                                var processo = processos[i];
+                                var nome = processo.nomeProcesso;
+                                var usoCPU = processo.usoCPU;
+                                var pid = processo.PID;
+                                var linha = document.createElement("div");
+                                var nomeProc = document.createElement("p");
+                                var usoCPUP = document.createElement("p");
+                                var pidP = document.createElement("p");
+                                nomeProc.innerHTML = nome;
+                                usoCPUP.innerHTML = usoCPU + "%";
+                                pidP.innerHTML = pid;
+                                linha.setAttribute('id', 'linha');
+                                linha.className = "linha";
+                                nomeProc.className = "infoProc";
+                                usoCPUP.className = "infoProc";
+                                pidP.className = "infoProc";
+                                linha.appendChild(nomeProc);
+                                linha.appendChild(usoCPUP);
+                                linha.appendChild(pidP);
+                                painelProc.appendChild(linha);
                             }
-                        ]
-                    };
-
-                    for (i = 0; i >= 7; i++) {
-                        dados.labels.shift();
-                        dados.datasets[0].data.shift();
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
                     }
-                    for (i = 0; i < resposta.length; i++) {
-                        var registro = resposta[i];
-                        hostname.innerHTML = registro.Hostname;
-                        dados.labels.push(registro.momento_grafico);
-                        dados.datasets[0].data.push(registro.temperatura);
+                })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                    });
+            }
+            function remove() {
+                for (let i = 0; i < 3; i++) {
+                    var linha = document.getElementById("linha");
+                    if (linha != null) {
+                        linha.remove();
                     }
-                    console.log(JSON.stringify(dados));
-                    plotarGrafico(dados, idSensor);
+                }
+            }
+            function verificar_autenticacao() {
+                var nome = document.getElementById('nomeEmpresaInput');
+                var email = document.getElementById('emailEmpresaInput');
+                var cnpj = document.getElementById('cnpjEmpresaInput');
+                var whats = document.getElementById('whatsEmpresaInput');
+                var cep = document.getElementById('cepEmpresaInput');
+                var estado = document.getElementById('estadoEmpresaInput');
+                var cidade = document.getElementById('cidadeEmpresaInput');
+                var logradouro = document.getElementById('logradouroEmpresaInput');
+                var urlSlack = document.getElementById('urlSlackInput');
+                chart();
+                let nomeEmpresa;
+                let cnpjEmpresa;
+                let emailEmpresa;
+                let whatsEmpresa;
+                let cepEmpresa;
+                let estadoEmpresa;
+                let cidadeEmpresa;
+                let logradouroEmpresa;
+                let urlSlackEmpresa;
+
+                nomeEmpresa = sessionStorage.nomeEmpresa;
+                cnpjEmpresa = sessionStorage.cnpjEmpresa;
+                emailEmpresa = sessionStorage.emailEmpresa;
+                whatsEmpresa = sessionStorage.whatsEmpresa;
+                cepEmpresa = sessionStorage.cepEmpresa;
+                estadoEmpresa = sessionStorage.estadoEmpresa;
+                cidadeEmpresa = sessionStorage.cidadeEmpresa;
+                logradouroEmpresa = sessionStorage.logradouroEmpresa;
+                urlSlackEmpresa = sessionStorage.urlSlack;
+
+                if (nomeEmpresa == undefined) {
+                    redirecionar_email();
+                } else {
+                    obterFuncionarios();
+                    nome.value += `${nomeEmpresa}`;
+                    email.value += `${emailEmpresa}`;
+                    cnpj.value += `${cnpjEmpresa}`;
+                    whats.value += `${whatsEmpresa}`;
+                    cep.value += `${cepEmpresa}`;
+                    estado.value += `${estadoEmpresa}`;
+                    cidade.value += `${cidadeEmpresa}`;
+                    logradouro.value += `${logradouroEmpresa}`;
+                    urlSlack.value += `${urlSlackEmpresa}`;
+                    nome_EmpresaD.innerHTML += `${nomeEmpresa}`;
+                    nome_EmpresaC.innerHTML += `${nomeEmpresa}`;
+                    nome_EmpresaN.innerHTML += `${nomeEmpresa}`;
+                    cnpj_EmpresaD.innerHTML += `${cnpjEmpresa}`;
+                    cnpj_EmpresaC.innerHTML += `${cnpjEmpresa}`;
+                    cnpj_EmpresaN.innerHTML += `${cnpjEmpresa}`;
+
+                }
+                validar_sessao()
+            }
+            function validar_sessao() {
+                var emailEmpresa = sessionStorage.emailEmpresa;
+                fetch(`/empresas/sessao/${emailEmpresa}`, { cache: 'no-store' })
+                    .then(resposta => {
+                        if (resposta.ok) {
+                            resposta.text().then(texto => {
+                                console.log('Sessão :) ', texto);
+                            });
+                        } else {
+                            console.error('Sessão :.( ');
+                            logoff();
+                        }
+                    });
+            }
+            function atualizar() {
+                var nome = document.getElementById('nomeEmpresaInput');
+                var cnpj = document.getElementById('cnpjEmpresaInput');
+                var idEmpresa = sessionStorage.idEmpresa;
+                var formulario1 = new URLSearchParams(new FormData(form_atualizar));
+                fetch(`/empresas/atualizar/${idEmpresa}`, {
+                    method: "POST",
+                    body: formulario1
+                }).then(function (resultado) {
+                    if (resultado.ok) {
+                        console.log('Atualizado com sucesso');
+                        nome_EmpresaD.innerHTML = `${nome.value}`;
+                        nome_EmpresaC.innerHTML = `${nome.value}`;
+                        nome_EmpresaN.innerHTML = `${nome.value}`;
+                        cnpj_EmpresaD.innerHTML = `CNPJ: ${cnpj.value}`;
+                        cnpj_EmpresaC.innerHTML = `CNPJ: ${cnpj.value}`;
+                        cnpj_EmpresaN.innerHTML = `CNPJ: ${cnpj.value}`;
+                        sessionStorage.nomeEmpresa = nome.value;
+                        sessionStorage.cnpjEmpresa = cnpj.value;
+
+                    } else {
+                        console.log('Erro de atualização!');
+                        response.text().then(function (resultado) {
+                        });
+                    }
                 });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+
+                return false;
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+            function obterDadosGraficoPrimeiraVez(idSensor) {
+                console.log("executei obterDadosGraficoPrimeiraVez" + idSensor)
+                if (proximaAtualizacao != undefined) {
+                    clearTimeout(proximaAtualizacao);
+                }
+                fetch(`/funcionarios/ultimas/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+                    if (response.ok) {
+                        response.json().then(function (resposta) {
+                            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                            resposta.reverse();
 
-    }
-    function atualizarGrafico(idSensor, dados) {
-        fetch(`/funcionarios/dashboard/${idSensor}`, { cache: 'no-store' }).then(function (response) {
-            console.log("Estou tentando pegar idSensor = ", idSensor)
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+                            var dados = {
+                                labels: [],
+                                datasets: [
+                                    {
+                                        yAxisID: 'y-temperatura',
+                                        label: 'Temperatura',
+                                        borderColor: 'rgba(255,0,0,1)',
+                                        backgroundColor: 'rgba(255,0,0,1)',
+                                        fill: false,
+                                        data: []
+                                    }
+                                ]
+                            };
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`, dados);
-                    tempGpu.innerHTML = novoRegistro.temperatura + "°C";
-                    tempCpu.innerHTML = novoRegistro.tempC + "°C";
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
-                    dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
-                    dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
-                    window.lineChart.update();
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+                            for (i = 0; i >= 7; i++) {
+                                dados.labels.shift();
+                                dados.datasets[0].data.shift();
+                            }
+                            for (i = 0; i < resposta.length; i++) {
+                                var registro = resposta[i];
+                                hostname.innerHTML = registro.Hostname;
+                                dados.labels.push(registro.momento_grafico);
+                                dados.datasets[0].data.push(registro.temperatura);
+                            }
+                            console.log(JSON.stringify(dados));
+                            plotarGrafico(dados, idSensor);
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                    }
+                })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                    });
 
+            }
+            function atualizarGrafico(idSensor, dados) {
+                fetch(`/funcionarios/dashboard/${idSensor}`, { cache: 'no-store' }).then(function (response) {
+                    console.log("Estou tentando pegar idSensor = ", idSensor)
+                    if (response.ok) {
+                        response.json().then(function (novoRegistro) {
+
+                            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                            console.log(`Dados atuais do gráfico:`, dados);
+                            tempGpu.innerHTML = novoRegistro.temperatura + "°C";
+                            tempCpu.innerHTML = novoRegistro.tempC + "°C";
+                            dados.labels.shift(); // apagar o primeiro
+                            dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                            dados.datasets[0].data.shift();  // apagar o primeiro de temperatura
+                            dados.datasets[0].data.push(novoRegistro.temperatura); // incluir uma nova leitura de temperatura
+                            window.lineChart.update();
+                            proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+
+                        });
+                    } else {
+                        console.error('Nenhum dado encontrado ou erro na API');
+                        proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+                    }
+                })
+                    .catch(function (error) {
+                        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                    });
+
+            }
+            function plotarGrafico(dados, idSensor) {
+                console.log("executei plotarGrafico")
+                if (cont > 0) {
+                    lineChart.destroy();
+                }
+                var ctx2 = document.getElementById('lineChart').getContext('2d');
+                window.lineChart = new Chart(ctx2, {
+                    type: 'line',
+                    data: dados,
+                    options: configurarGrafico()
                 });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+                cont++;
+                atualizarGrafico(idSensor, dados);
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+            function configurarGrafico() {
+                console.log("executei configurarGrafico")
+                var configuracoes = {
+                    responsive: true,
+                    animation: { duration: 500 },
+                    hoverMode: 'index',
+                    stacked: false,
+                    title: {
+                        display: true,
+                        text: 'Histórico de temperatura'
+                    },
+                    scales: {
+                        yAxes: [{
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            ticks: {
+                                min: 0,
+                                max: 50,
+                                stepsize: 1
+                            },
+                            id: 'y-temperatura',
+                        }, {
+                            gridLines: {
+                                drawOnChartArea: false,
+                            },
+                        }],
+                    }
+                };
 
-    }
-    function plotarGrafico(dados, idSensor) {
-        console.log("executei plotarGrafico")
-        if (cont > 0) {
-            lineChart.destroy();
-        }
-        var ctx2 = document.getElementById('lineChart').getContext('2d');
-        window.lineChart = new Chart(ctx2, {
-            type: 'line',
-            data: dados,
-            options: configurarGrafico()
-        });
-        cont++;
-        atualizarGrafico(idSensor, dados);
-    }
-    function configurarGrafico() {
-        console.log("executei configurarGrafico")
-        var configuracoes = {
-            responsive: true,
-            animation: { duration: 500 },
-            hoverMode: 'index',
-            stacked: false,
-            title: {
-                display: true,
-                text: 'Histórico de temperatura'
-            },
-            scales: {
-                yAxes: [{
-                    type: 'linear',
-                    display: true,
-                    position: 'right',
-                    ticks: {
-                        min: 0,
-                        max: 50,
-                        stepsize: 1
-                    },
-                    id: 'y-temperatura',
-                }, {
-                    gridLines: {
-                        drawOnChartArea: false,
-                    },
-                }],
+                return configuracoes;
             }
-        };
-
-        return configuracoes;
-    }
-    function redirecionar_email() {
-        window.location.href = 'login.html';
-    }
-    function logoff() {
-        sessionStorage.clear();
-        window.location.href = 'index.html';
-    }
+            function redirecionar_email() {
+                window.location.href = 'login.html';
+            }
+            function logoff() {
+                sessionStorage.clear();
+                window.location.href = 'index.html';
+            }
 </script>
