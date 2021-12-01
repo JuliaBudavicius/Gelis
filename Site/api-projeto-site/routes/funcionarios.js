@@ -148,6 +148,34 @@ router.get('/:idEmpresa', function (req, res, next) {
 		});
 });
 
+router.get('/editar/:idFunc', function (req, res, next) {
+	let idFunc = req.params.idFunc;
+	let instrucaoSql = "";
+
+	if (env == "dev") {
+	} else {
+		instrucaoSql = `SELECT
+        hostname,
+        nomeResp,
+        sobrenomeResp, 
+        senhaMaquina,
+		emailFunc,
+		loginMaquina
+        FROM maquinas where idMaquinas = ${idFunc}`;
+	}
+	sequelize.query(instrucaoSql, {
+		model: funcionario,
+		mapToModel: true
+	})
+		.then(resultado => {
+			console.log(`Encontrados: ${resultado.length}`);
+			res.json(resultado[0]);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
+});
+
 router.get('/media/:idMaquina', function (req, res, next) {
 	let idMaquina = req.params.idMaquina;
 	let instrucaoSql = "";
