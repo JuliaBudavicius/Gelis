@@ -67,3 +67,6 @@ package-lock.json
 database.js
 /horus-cli/target/
 /horus/target/
+
+# Ignorando a classe com o slack
+/Gelis/horus/src/main/java/Views/Slack.java
