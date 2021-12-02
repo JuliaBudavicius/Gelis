@@ -148,7 +148,7 @@ router.get('/:idEmpresa', function (req, res, next) {
 		});
 });
 
-router.get('/editar/:idFunc', function (req, res, next) {
+router.get('/cons-editar/:idFunc', function (req, res, next) {
 	let idFunc = req.params.idFunc;
 	let instrucaoSql = "";
 
@@ -246,6 +246,36 @@ router.post('/cadastrar/:idEmpresa', function (req, res, next) {
 		console.error(erro);
 		res.status(500).send(erro.message);
 	});
+});
+
+router.post('/atualizar/:idFuncionario', function (req, res, next) {
+	console.log('atualizando informações');
+	var idFuncionario = req.params.idFuncionario;
+	var nomeEdit = req.body.nomeEdit;
+	var sobrenomeEdit = req.body.sobrenomeEdit;
+	var emailEdit = req.body.emailEdit;
+	var hostnameEdit = req.body.hostnameEdit;
+	var loginEdit = req.body.loginEdit;
+	var senhaEdit = req.body.senhaEdit;
+	var instrucaoSql;
+	if (env == "dev") {
+	} else {
+		instrucaoSql = `update Maquinas set nomeResp ='${nomeEdit}',
+		sobrenomeResp='${sobrenomeEdit}',
+		emailFunc='${emailEdit}',
+		hostname='${hostnameEdit}',
+		loginMaquina='${loginEdit}',
+		senhaMaquina='${senhaEdit}'
+		where idMaquinas = ${idFuncionario};`;
+	}
+	console.log(instrucaoSql);
+	sequelize.query(instrucaoSql, { type: sequelize.QueryTypes.UPDATE })
+		.then(resultado => {
+			res.json(resultado[0]);
+		}).catch(erro => {
+			console.error(erro);
+			res.status(500).send(erro.message);
+		});
 });
 
 module.exports = router;

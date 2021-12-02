@@ -437,8 +437,30 @@
     window.onload = verificar_autenticacao();
     var cont = 0;
     function editar() {
-        
+        var group = document.getElementsByName('group');
+        for (var i = 0; i < group.length; i++) {
+            if (group[i].checked) {
+                var idFuncionario = group[i].value;
+                var formEdit = new URLSearchParams(new FormData(form_edit));
+                fetch(`/funcionarios/atualizar/${idFuncionario}`, {
+                    method: "POST",
+                    body: formEdit
+                }).then(function (resultado) {
+                    if (resultado.ok) {
+                        console.log('Atualizado com sucesso');
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        console.log('Erro de atualização!');
+                        response.text().then(function (resultado) {
+                        });
+                    }
+                });
+
+                return false;
+            }
+        }
     }
+
     function abrirDelet() {
         var group = document.getElementsByName('group');
         for (var i = 0; i < group.length; i++) {
@@ -488,7 +510,7 @@
         for (var i = 0; i < group.length; i++) {
             if (group[i].checked) {
                 var idFuncionario = group[i].value;
-                fetch(`/funcionarios/editar/${idFuncionario}`)
+                fetch(`/funcionarios/cons-editar/${idFuncionario}`)
                     .then(resposta => {
                         if (resposta.ok) {
                             resposta.json().then(function (resposta) {
@@ -505,28 +527,28 @@
         }
     }
     function atualizarEditar(resposta) {
-            caio = JSON.parse(JSON.stringify(resposta[0]));
-            var hostname = caio.hostname;
-            var nomeResp = caio.nomeResp;
-            var sobrenome = caio.sobrenomeResp;
-            var email = caio.emailFunc;
-            var loginMaquina = caio.loginMaquina;
-            var senhaMaquina = caio.senhaMaquina;
+        caio = JSON.parse(JSON.stringify(resposta[0]));
+        var hostname = caio.hostname;
+        var nomeResp = caio.nomeResp;
+        var sobrenome = caio.sobrenomeResp;
+        var email = caio.emailFunc;
+        var loginMaquina = caio.loginMaquina;
+        var senhaMaquina = caio.senhaMaquina;
 
-            var nomeInput = document.getElementById("nomeEdit");
-            var sobrenomeInput = document.getElementById("sobrenomeEdit");
-            var emailInput = document.getElementById("emailEdit");
-            var hostnameInput = document.getElementById("hostnameEdit");
-            var loginInput = document.getElementById("loginEdit");
-            var senhaInput = document.getElementById("senhaEdit");
+        var nomeInput = document.getElementById("nomeEdit");
+        var sobrenomeInput = document.getElementById("sobrenomeEdit");
+        var emailInput = document.getElementById("emailEdit");
+        var hostnameInput = document.getElementById("hostnameEdit");
+        var loginInput = document.getElementById("loginEdit");
+        var senhaInput = document.getElementById("senhaEdit");
 
-            nomeInput.value = `${nomeResp}`;
-            sobrenomeInput.value = `${sobrenome}`;
-            emailInput.value = `${email}`;
-            hostnameInput.value = `${hostname}`;
-            loginInput.value = `${loginMaquina}`;
-            senhaInput.value = `${senhaMaquina}`;
-        }
+        nomeInput.value = `${nomeResp}`;
+        sobrenomeInput.value = `${sobrenome}`;
+        emailInput.value = `${email}`;
+        hostnameInput.value = `${hostname}`;
+        loginInput.value = `${loginMaquina}`;
+        senhaInput.value = `${senhaMaquina}`;
+    }
     function cancelarEdit() {
         editUsu.style.display = "none";
     }

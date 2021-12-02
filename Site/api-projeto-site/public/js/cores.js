@@ -47,23 +47,50 @@ function cores(usoRamP, tempGP, tempCP, iconEstado) {
         normal++;
     }
 
-    if (normal > critico && normal > alerta) {
+    if(normal == 1 && alerta == 1 && critico == 1){
+        icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
+        totalAlerta++;
+    }
+    if(normal == 3 && critico == 0 && alerta == 0){
         icon.classList.add("fas", "fa-check-circle", "fa-3x");
         totalNormal++;
     }
-    if (alerta > critico && alerta > normal) {
+    if(normal == 2 && critico == 1 && alerta == 1){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
     }
-    if (critico >= alerta && critico >= normal) {
+    if(normal == 2 && critico == 1 && alerta == 0){
+        icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
+        totalAlerta++;
+    }
+    if(normal == 2 && critico == 0 && alerta == 1){
+        icon.classList.add("fas", "fa-check-circle", "fa-3x");
+        totalNormal++;
+    }
+    if(normal == 0 && critico == 3 && alerta == 0){
         icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
         totalCritico++;
     }
-    if (normal == critico && normal == alerta) {
+    if(normal == 0 && critico == 2 && alerta == 1){
+        icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
+        totalCritico++;
+    }
+    if(normal == 1 && critico == 2 && alerta == 0){
+        icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
+        totalCritico++;
+    }
+    if(normal == 0 && critico == 0 && alerta == 3){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
     }
-    
+    if(normal == 0 && critico == 1 && alerta == 2){
+        icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
+        totalCritico++;
+    }
+    if(normal == 1 && critico == 0 && alerta == 2){
+        icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
+        totalAlerta++;
+    }
     qtdNormal.innerHTML = totalNormal + " Computadores";
     qtdAlerta.innerHTML = totalAlerta + " Computadores";
     qtdCritico.innerHTML = totalCritico + " Computadores";
