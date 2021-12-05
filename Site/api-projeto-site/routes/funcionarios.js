@@ -15,7 +15,11 @@ router.get('/dashboard/:idSensor', function (req, res, next) {
 	if (env == 'dev') {
 
 	} else if (env == 'production') {
-		instrucaoSql = `select top 1 tempGPU as temperatura,
+		instrucaoSql = `select top 1 
+		usoCPU,
+		usoRAM,
+		usoHD,
+		tempGPU as temperatura,
 		tempCPU as tempC,
 		idDadosMaquinas,
 		FORMAT(dataHora,'HH:mm:ss') as momento_grafico
@@ -56,7 +60,6 @@ router.get('/processos/:idSensor', function (req, res, next) {
 			res.status(500).send(erro.message);
 		});
 });
-
 router.get('/ram/:idSensor', function (req, res, next) {
 	var idSensor = req.params.idSensor;
 	let instrucaoSql = "";
@@ -93,7 +96,9 @@ router.get('/ultimas/:idSensor', function (req, res, next) {
 		instrucaoSql = `select top ${limite_linhas}
 		idDadosMaquinas,
 		hostname as Hostname,
-		tempGPU as temperatura,
+		usoCPU,
+		usoRAM,
+		usoHD,
 		FORMAT(dataHora,'HH:mm:ss') as momento_grafico
 		from [dbo].[dadosMaquinas] INNER JOIN [dbo].[Maquinas]
 		ON fkMaquinas = idMaquinas and fkMaquinas = ${idSensor}

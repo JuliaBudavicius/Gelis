@@ -36,6 +36,7 @@ public class Processos extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
 
         for (Processo p : processos) {
+            if(p != processos.get(0)){
             if (maior == null) {
                 maior = processos.get(12);
                 SegMaior = processos.get(12);
@@ -53,6 +54,7 @@ public class Processos extends javax.swing.JFrame {
             String nome = p.getNome();
             modelo.addRow(new String[]{nome, cpu, pid});
             tableProcessos.setModel(modelo);
+            }
         }
 
         vc.InsereProcessos(idMaquina, maior.getNome(), maior.getUsoCpu().toString(), maior.getPid().toString());
