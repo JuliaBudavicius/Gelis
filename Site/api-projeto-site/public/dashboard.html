@@ -150,66 +150,6 @@
                 <div class="computadores">
                     <p class="tituloStatus">Computadores</p>
                     <div id="boxes" class="boxes">
-                        <!-- <div class="boxComp" onclick="'show(1)'">
-                            <p class="nomeComp">Computador 1</p>
-                            <p class="nomeResponsavel">Responsavel</p>
-                            <p class="txtEstado Alerta">Alerta</p>
-                            <i class="fas fa-exclamation-triangle fa-3x"></i>
-                            <div class="horiz">
-                                <div class="vert">
-                                    <p class="txtHard">GPU</p>
-                                    <p id="gpu1" class="temp">65°C</p>
-                                </div>
-                                <div class="vert">
-                                    <p class="txtHard">CPU</p>
-                                    <p id="cpu1" class="temp">54°C</p>
-                                </div>
-                                <div class="vert">
-                                    <p class="txtHard">RAM</p>
-                                    <p id="ram1" class="ram">5.4GB</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxComp" onclick="show(2)">
-                            <p class="nomeComp">Computador 2</p>
-                            <p class="nomeResponsavel">Responsavel</p>
-                            <p class="txtEstado Critico">Critico</p>
-                            <i class="fas fa-exclamation-circle fa-3x"></i>
-                            <div class="horiz">
-                                <div class="vert">
-                                    <p class="txtHard">GPU</p>
-                                    <p id="gpu2" class="temp">94°C</p>
-                                </div>
-                                <div class="vert">
-                                    <p class="txtHard">CPU</p>
-                                    <p id="cpu2" class="temp">96°C</p>
-                                </div>
-                                <div class="vert">
-                                    <p class="txtHard">RAM</p>
-                                    <p id="ram2" class="ram">7.4GB</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="boxComp" onclick="show(3)">
-                            <p class="nomeComp">Computador 3</p>
-                            <p class="nomeResponsavel">Responsavel</p>
-                            <p class="txtEstado Normal">Normal</p>
-                            <i class="fas fa-check-circle fa-3x"></i>
-                            <div class="horiz">
-                                <div class="vert">
-                                    <p class="txtHard">GPU</p>
-                                    <p id="gpu3" class="temp">52°C</p>
-                                </div>
-                                <div class="vert">
-                                    <p class="txtHard">CPU</p>
-                                    <p id="cpu3" class="temp">47°C</p>
-                                </div>
-                                <div class="vert">
-                                    <p class="txtHard">RAM</p>
-                                    <p id="ram3" class="ram">3.0GB</p>
-                                </div>
-                            </div> 
-                        </div>-->
                     </div>
                 </div>
             </div>
@@ -452,7 +392,7 @@
                         window.location.href = 'dashboard.html';
                     } else {
                         console.log('Erro de atualização!');
-                        response.text().then(function (resultado) {});
+                        response.text().then(function (resultado) { });
                     }
                 });
 
@@ -467,14 +407,14 @@
             if (group[i].checked) {
                 var idFuncionario = group[i].value;
                 fetch(`/funcionarios/deletar/${idFuncionario}`, {
-                        method: 'DELETE'
-                    })
+                    method: 'DELETE'
+                })
                     .then(function (response) {
                         if (response.ok) {
                             window.location.href = 'dashboard.html';
                         } else {
                             console.log('Erro ao deletar!');
-                            response.text().then(function (resposta) {});
+                            response.text().then(function (resposta) { });
                         }
                     });
             }
@@ -492,7 +432,7 @@
                 window.location.href = 'dashboard.html';
             } else {
                 console.log('Erro de cadastro!');
-                response.text().then(function (resposta) {});
+                response.text().then(function (resposta) { });
             }
         });
         return false;
@@ -748,23 +688,23 @@
 
     function update(numero) {
         fetch(`/funcionarios/ram/${numero}`, {
-                cache: 'no-store'
-            }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (Registro) {
-                        myChart.data.datasets[0].data.shift();
-                        myChart.data.datasets[0].data.shift();
-                        var resto = Registro.qntRAM - Registro.usoRAM;
-                        myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
-                        myChart.data.datasets[0].data.push(resto.toFixed(1));
-                        myChart.update();
-                        console.log("O id é: " + numero);
-                        obterDadosGraficoPrimeiraVez(numero);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (Registro) {
+                    myChart.data.datasets[0].data.shift();
+                    myChart.data.datasets[0].data.shift();
+                    var resto = Registro.qntRAM - Registro.usoRAM;
+                    myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
+                    myChart.data.datasets[0].data.push(resto.toFixed(1));
+                    myChart.update();
+                    console.log("O id é: " + numero);
+                    obterDadosGraficoPrimeiraVez(numero);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -772,38 +712,38 @@
 
     function processos(numero) {
         fetch(`/funcionarios/processos/${numero}`, {
-                cache: 'no-store'
-            }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (processos) {
-                        var painelProc = document.getElementById("painelProc");
-                        for (let i = 0; i < processos.length; i++) {
-                            var processo = processos[i];
-                            var nome = processo.nomeProcesso;
-                            var usoCPU = processo.usoCPU;
-                            var pid = processo.PID;
-                            var linha = document.createElement("div");
-                            var nomeProc = document.createElement("p");
-                            var usoCPUP = document.createElement("p");
-                            var pidP = document.createElement("p");
-                            nomeProc.innerHTML = nome;
-                            usoCPUP.innerHTML = usoCPU + "%";
-                            pidP.innerHTML = pid;
-                            linha.setAttribute('id', 'linha');
-                            linha.className = "linha";
-                            nomeProc.className = "infoProc";
-                            usoCPUP.className = "infoProc";
-                            pidP.className = "infoProc";
-                            linha.appendChild(nomeProc);
-                            linha.appendChild(usoCPUP);
-                            linha.appendChild(pidP);
-                            painelProc.appendChild(linha);
-                        }
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (processos) {
+                    var painelProc = document.getElementById("painelProc");
+                    for (let i = 0; i < processos.length; i++) {
+                        var processo = processos[i];
+                        var nome = processo.nomeProcesso;
+                        var usoCPU = processo.usoCPU;
+                        var pid = processo.PID;
+                        var linha = document.createElement("div");
+                        var nomeProc = document.createElement("p");
+                        var usoCPUP = document.createElement("p");
+                        var pidP = document.createElement("p");
+                        nomeProc.innerHTML = nome;
+                        usoCPUP.innerHTML = usoCPU + "%";
+                        pidP.innerHTML = pid;
+                        linha.setAttribute('id', 'linha');
+                        linha.className = "linha";
+                        nomeProc.className = "infoProc";
+                        usoCPUP.className = "infoProc";
+                        pidP.className = "infoProc";
+                        linha.appendChild(nomeProc);
+                        linha.appendChild(usoCPUP);
+                        linha.appendChild(pidP);
+                        painelProc.appendChild(linha);
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -876,8 +816,8 @@
     function validar_sessao() {
         var emailEmpresa = sessionStorage.emailEmpresa;
         fetch(`/empresas/sessao/${emailEmpresa}`, {
-                cache: 'no-store'
-            })
+            cache: 'no-store'
+        })
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.text().then(texto => {
@@ -912,7 +852,7 @@
 
             } else {
                 console.log('Erro de atualização!');
-                response.text().then(function (resultado) {});
+                response.text().then(function (resultado) { });
             }
         });
 
@@ -925,63 +865,63 @@
             clearTimeout(proximaAtualizacao);
         }
         fetch(`/funcionarios/ultimas/${idSensor}`, {
-                cache: 'no-store'
-            }).then(function (response) {
-                if (response.ok) {
-                    response.json().then(function (resposta) {
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        resposta.reverse();
+            cache: 'no-store'
+        }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
-                        var dados = {
-                            labels: [],
-                            datasets: [{
-                                    yAxisID: 'usoHD',
-                                    label: 'Uso da CPU',
-                                    borderColor: 'rgba(255,0,0,1)',
-                                    backgroundColor: 'rgba(255,0,0,1)',
-                                    fill: false,
-                                    data: []
-                                },
-                                {
-                                    yAxisID: 'usoHD',
-                                    label: 'Uso da RAM',
-                                    borderColor: 'yellow',
-                                    backgroundColor: 'yellow',
-                                    fill: false,
-                                    data: []
-                                },
-                                {
-                                    yAxisID: 'usoHD',
-                                    label: 'Uso do Disco',
-                                    borderColor: 'orange',
-                                    backgroundColor: 'orange',
-                                    fill: false,
-                                    data: []
-                                }
-                            ]
-                        };
+                    var dados = {
+                        labels: [],
+                        datasets: [{
+                            yAxisID: 'usoHD',
+                            label: 'CPU',
+                            borderColor: 'rgb(238, 32, 73)',
+                            backgroundColor: 'rgb(238, 32, 73)',
+                            fill: false,
+                            data: []
+                        },
+                        {
+                            yAxisID: 'usoHD',
+                            label: 'RAM',
+                            borderColor: 'rgb(30,144,255)',
+                            backgroundColor: 'rgb(30,144,255)',
+                            fill: false,
+                            data: []
+                        },
+                        {
+                            yAxisID: 'usoHD',
+                            label: 'Disco',
+                            borderColor: 'white',
+                            backgroundColor: 'white',
+                            fill: false,
+                            data: []
+                        }
+                        ]
+                    };
 
-                        for (i = 0; i >= 7; i++) {
-                            dados.labels.shift();
-                            dados.datasets[0].data.shift();
-                            dados.datasets[1].data.shift();
-                            dados.datasets[2].data.shift();
-                        }
-                        for (i = 0; i < resposta.length; i++) {
-                            var registro = resposta[i];
-                            hostname.innerHTML = registro.Hostname;
-                            dados.labels.push(registro.momento_grafico);
-                            dados.datasets[0].data.push(registro.usoCPU);
-                            dados.datasets[1].data.push(registro.usoRAM);
-                            dados.datasets[2].data.push(registro.usoHD);
-                        }
-                        console.log(JSON.stringify(dados));
-                        plotarGrafico(dados, idSensor);
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
+                    for (i = 0; i >= 7; i++) {
+                        dados.labels.shift();
+                        dados.datasets[0].data.shift();
+                        dados.datasets[1].data.shift();
+                        dados.datasets[2].data.shift();
+                    }
+                    for (i = 0; i < resposta.length; i++) {
+                        var registro = resposta[i];
+                        hostname.innerHTML = registro.Hostname;
+                        dados.labels.push(registro.momento_grafico);
+                        dados.datasets[0].data.push(registro.usoCPU);
+                        dados.datasets[1].data.push(registro.usoRAM);
+                        dados.datasets[2].data.push(registro.usoHD);
+                    }
+                    console.log(JSON.stringify(dados));
+                    plotarGrafico(dados, idSensor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -990,33 +930,33 @@
 
     function atualizarGrafico(idSensor, dados) {
         fetch(`/funcionarios/dashboard/${idSensor}`, {
-                cache: 'no-store'
-            }).then(function (response) {
-                console.log("Estou tentando pegar idSensor = ", idSensor)
-                if (response.ok) {
-                    response.json().then(function (novoRegistro) {
+            cache: 'no-store'
+        }).then(function (response) {
+            console.log("Estou tentando pegar idSensor = ", idSensor)
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                        console.log(`Dados atuais do gráfico:`, dados);
-                        tempGpu.innerHTML = novoRegistro.temperatura + "°C";
-                        tempCpu.innerHTML = novoRegistro.tempC + "°C";
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
-                        dados.datasets[0].data.shift();
-                        dados.datasets[0].data.push(novoRegistro.usoCPU);
-                        dados.datasets[1].data.shift();
-                        dados.datasets[1].data.push(novoRegistro.usoRAM);
-                        dados.datasets[2].data.shift();
-                        dados.datasets[2].data.push(novoRegistro.usoHD);
-                        window.lineChart.update();
-                        proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
-
-                    });
-                } else {
-                    console.error('Nenhum dado encontrado ou erro na API');
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    console.log(`Dados atuais do gráfico:`, dados);
+                    tempGpu.innerHTML = novoRegistro.temperatura + "°C";
+                    tempCpu.innerHTML = novoRegistro.tempC + "°C";
+                    dados.labels.shift(); // apagar o primeiro
+                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                    dados.datasets[0].data.shift();
+                    dados.datasets[0].data.push(novoRegistro.usoCPU);
+                    dados.datasets[1].data.shift();
+                    dados.datasets[1].data.push(novoRegistro.usoRAM);
+                    dados.datasets[2].data.shift();
+                    dados.datasets[2].data.push(novoRegistro.usoHD);
+                    window.lineChart.update();
                     proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
-                }
-            })
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+            }
+        })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
