@@ -9,7 +9,7 @@ function cores(usoRamP, tempGP, tempCP, iconEstado) {
     var critico = 0;
     var alerta = 0;
     var normal = 0;
-
+    var estado = "";
     if (ram >= 7.9) {
         usoRamP.classList.add('Critico');
         critico++;
@@ -50,49 +50,60 @@ function cores(usoRamP, tempGP, tempCP, iconEstado) {
     if(normal == 1 && alerta == 1 && critico == 1){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
+        estado = "Alerta";
     }
     if(normal == 3 && critico == 0 && alerta == 0){
         icon.classList.add("fas", "fa-check-circle", "fa-3x");
         totalNormal++;
+        estado = "Normal";
     }
     if(normal == 2 && critico == 1 && alerta == 1){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
+        estado = "Alerta";
     }
     if(normal == 2 && critico == 1 && alerta == 0){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
+        estado = "Alerta";
     }
     if(normal == 2 && critico == 0 && alerta == 1){
         icon.classList.add("fas", "fa-check-circle", "fa-3x");
         totalNormal++;
+        estado = "Normal";
     }
     if(normal == 0 && critico == 3 && alerta == 0){
         icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
         totalCritico++;
+        estado = "Critico";
     }
     if(normal == 0 && critico == 2 && alerta == 1){
         icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
         totalCritico++;
+        estado = "Critico";
     }
     if(normal == 1 && critico == 2 && alerta == 0){
         icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
         totalCritico++;
+        estado = "Critico";
     }
     if(normal == 0 && critico == 0 && alerta == 3){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
+        estado = "Alerta";
     }
     if(normal == 0 && critico == 1 && alerta == 2){
         icon.classList.add("fas", "fa-exclamation-circle", "fa-3x");
         totalCritico++;
+        estado = "Critico";
     }
     if(normal == 1 && critico == 0 && alerta == 2){
         icon.classList.add("fas", "fa-exclamation-triangle", "fa-3x");
         totalAlerta++;
+        estado = "Alerta";
     }
     qtdNormal.innerHTML = totalNormal + " Computadores";
     qtdAlerta.innerHTML = totalAlerta + " Computadores";
     qtdCritico.innerHTML = totalCritico + " Computadores";
-
+    return estado;
 }

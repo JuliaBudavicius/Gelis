@@ -68,7 +68,7 @@
                             <p class="txtInfo">Status da máquina</p>
                         </div>
                         <div class="divstatus">
-                            <i id="icon" class="fas fa-3x"></i>
+                            <i id="iconeaAlert" class="fas fa-3x"></i>
                             <p id="txtAlert" class="txtAlerta"></p>
                         </div>
                     </div>
@@ -376,7 +376,7 @@
     let proximaAtualizacao;
     window.onload = verificar_autenticacao();
     var cont = 0;
-
+    var estado3 = "";
     function editar() {
         var group = document.getElementsByName('group');
         for (var i = 0; i < group.length; i++) {
@@ -392,7 +392,7 @@
                         window.location.href = 'dashboard.html';
                     } else {
                         console.log('Erro de atualização!');
-                        response.text().then(function (resultado) { });
+                        response.text().then(function (resultado) {});
                     }
                 });
 
@@ -407,14 +407,14 @@
             if (group[i].checked) {
                 var idFuncionario = group[i].value;
                 fetch(`/funcionarios/deletar/${idFuncionario}`, {
-                    method: 'DELETE'
-                })
+                        method: 'DELETE'
+                    })
                     .then(function (response) {
                         if (response.ok) {
                             window.location.href = 'dashboard.html';
                         } else {
                             console.log('Erro ao deletar!');
-                            response.text().then(function (resposta) { });
+                            response.text().then(function (resposta) {});
                         }
                     });
             }
@@ -432,7 +432,7 @@
                 window.location.href = 'dashboard.html';
             } else {
                 console.log('Erro de cadastro!');
-                response.text().then(function (resposta) { });
+                response.text().then(function (resposta) {});
             }
         });
         return false;
@@ -515,28 +515,25 @@
             });
     }
 
-    function medias(tempCP, tempGP, usoRamP, id, iconEstado) {
+    function medias(tempCP, tempGP, usoRamP, id, iconEstado, box) {
         fetch(`/funcionarios/media/${id}`)
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.json().then(function (medias) {
                         caio = JSON.parse(JSON.stringify(medias[0]));
-                        console.log(caio.mediaCPU);
-                        console.log(caio.mediaGPU);
-                        console.log(caio.mediaRAM);
                         tempCP.innerHTML = caio.mediaCPU;
                         tempGP.innerHTML = caio.mediaGPU
                         usoRamP.innerHTML = caio.mediaRAM;
-                        cores(usoRamP, tempGP, tempCP, iconEstado);
+                        var estado3 = cores(usoRamP, tempGP, tempCP, iconEstado);
+                        console.log(estado3);
                         tempCP.innerHTML += "°C";
                         tempGP.innerHTML += "°C";
+                        box.setAttribute("onclick", `show(${id}, "${estado3}")`)
                     });
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
                 }
-
             })
-
             .catch(function (error) {
                 console.error(`Erro na obtenção das publicações: ${error.message}`);
             });
@@ -579,7 +576,7 @@
             tempCP.setAttribute('id', 'tempCP');
             usoRamP.setAttribute('id', 'usoRamP');
             tempGP.setAttribute('id', 'tempGP');
-            medias(tempCP, tempGP, usoRamP, id, iconEstado);
+            medias(tempCP, tempGP, usoRamP, id, iconEstado, box);
             checkbox.type = "radio";
             checkbox.value = funcionario.idMaquina;
             checkbox.name = "group";
@@ -592,8 +589,6 @@
             CPUP.innerHTML = "CPU";
             RAMP.innerHTML = "RAM";
             GPUP.innerHTML = "GPU";
-
-            box.setAttribute("onclick", `show(${funcionario.idMaquina})`)
             divAux.className = "divAux";
             checkbox.className = "checkbox";
             divLinha.className = "linhaUsuarios";
@@ -639,7 +634,6 @@
             painel.appendChild(divLinha);
 
         }
-        total();
     }
 
     function sair() {
@@ -688,23 +682,23 @@
 
     function update(numero) {
         fetch(`/funcionarios/ram/${numero}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (Registro) {
-                    myChart.data.datasets[0].data.shift();
-                    myChart.data.datasets[0].data.shift();
-                    var resto = Registro.qntRAM - Registro.usoRAM;
-                    myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
-                    myChart.data.datasets[0].data.push(resto.toFixed(1));
-                    myChart.update();
-                    console.log("O id é: " + numero);
-                    obterDadosGraficoPrimeiraVez(numero);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+                cache: 'no-store'
+            }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (Registro) {
+                        myChart.data.datasets[0].data.shift();
+                        myChart.data.datasets[0].data.shift();
+                        var resto = Registro.qntRAM - Registro.usoRAM;
+                        myChart.data.datasets[0].data.push(Registro.usoRAM.toFixed(1));
+                        myChart.data.datasets[0].data.push(resto.toFixed(1));
+                        myChart.update();
+                        console.log("O id é: " + numero);
+                        obterDadosGraficoPrimeiraVez(numero);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -712,38 +706,38 @@
 
     function processos(numero) {
         fetch(`/funcionarios/processos/${numero}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (processos) {
-                    var painelProc = document.getElementById("painelProc");
-                    for (let i = 0; i < processos.length; i++) {
-                        var processo = processos[i];
-                        var nome = processo.nomeProcesso;
-                        var usoCPU = processo.usoCPU;
-                        var pid = processo.PID;
-                        var linha = document.createElement("div");
-                        var nomeProc = document.createElement("p");
-                        var usoCPUP = document.createElement("p");
-                        var pidP = document.createElement("p");
-                        nomeProc.innerHTML = nome;
-                        usoCPUP.innerHTML = usoCPU + "%";
-                        pidP.innerHTML = pid;
-                        linha.setAttribute('id', 'linha');
-                        linha.className = "linha";
-                        nomeProc.className = "infoProc";
-                        usoCPUP.className = "infoProc";
-                        pidP.className = "infoProc";
-                        linha.appendChild(nomeProc);
-                        linha.appendChild(usoCPUP);
-                        linha.appendChild(pidP);
-                        painelProc.appendChild(linha);
-                    }
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+                cache: 'no-store'
+            }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (processos) {
+                        var painelProc = document.getElementById("painelProc");
+                        for (let i = 0; i < processos.length; i++) {
+                            var processo = processos[i];
+                            var nome = processo.nomeProcesso;
+                            var usoCPU = processo.usoCPU;
+                            var pid = processo.PID;
+                            var linha = document.createElement("div");
+                            var nomeProc = document.createElement("p");
+                            var usoCPUP = document.createElement("p");
+                            var pidP = document.createElement("p");
+                            nomeProc.innerHTML = nome;
+                            usoCPUP.innerHTML = usoCPU + "%";
+                            pidP.innerHTML = pid;
+                            linha.setAttribute('id', 'linha');
+                            linha.className = "linha";
+                            nomeProc.className = "infoProc";
+                            usoCPUP.className = "infoProc";
+                            pidP.className = "infoProc";
+                            linha.appendChild(nomeProc);
+                            linha.appendChild(usoCPUP);
+                            linha.appendChild(pidP);
+                            painelProc.appendChild(linha);
+                        }
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -816,8 +810,8 @@
     function validar_sessao() {
         var emailEmpresa = sessionStorage.emailEmpresa;
         fetch(`/empresas/sessao/${emailEmpresa}`, {
-            cache: 'no-store'
-        })
+                cache: 'no-store'
+            })
             .then(resposta => {
                 if (resposta.ok) {
                     resposta.text().then(texto => {
@@ -852,7 +846,7 @@
 
             } else {
                 console.log('Erro de atualização!');
-                response.text().then(function (resultado) { });
+                response.text().then(function (resultado) {});
             }
         });
 
@@ -865,63 +859,63 @@
             clearTimeout(proximaAtualizacao);
         }
         fetch(`/funcionarios/ultimas/${idSensor}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+                cache: 'no-store'
+            }).then(function (response) {
+                if (response.ok) {
+                    response.json().then(function (resposta) {
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        resposta.reverse();
 
-                    var dados = {
-                        labels: [],
-                        datasets: [{
-                            yAxisID: 'usoHD',
-                            label: 'CPU',
-                            borderColor: 'rgb(238, 32, 73)',
-                            backgroundColor: 'rgb(238, 32, 73)',
-                            fill: false,
-                            data: []
-                        },
-                        {
-                            yAxisID: 'usoHD',
-                            label: 'RAM',
-                            borderColor: 'rgb(30,144,255)',
-                            backgroundColor: 'rgb(30,144,255)',
-                            fill: false,
-                            data: []
-                        },
-                        {
-                            yAxisID: 'usoHD',
-                            label: 'Disco',
-                            borderColor: 'white',
-                            backgroundColor: 'white',
-                            fill: false,
-                            data: []
+                        var dados = {
+                            labels: [],
+                            datasets: [{
+                                    yAxisID: 'usoHD',
+                                    label: 'CPU',
+                                    borderColor: 'rgb(238, 32, 73)',
+                                    backgroundColor: 'rgb(238, 32, 73)',
+                                    fill: false,
+                                    data: []
+                                },
+                                {
+                                    yAxisID: 'usoHD',
+                                    label: 'RAM',
+                                    borderColor: 'rgb(30,144,255)',
+                                    backgroundColor: 'rgb(30,144,255)',
+                                    fill: false,
+                                    data: []
+                                },
+                                {
+                                    yAxisID: 'usoHD',
+                                    label: 'Disco',
+                                    borderColor: 'white',
+                                    backgroundColor: 'white',
+                                    fill: false,
+                                    data: []
+                                }
+                            ]
+                        };
+
+                        for (i = 0; i >= 7; i++) {
+                            dados.labels.shift();
+                            dados.datasets[0].data.shift();
+                            dados.datasets[1].data.shift();
+                            dados.datasets[2].data.shift();
                         }
-                        ]
-                    };
-
-                    for (i = 0; i >= 7; i++) {
-                        dados.labels.shift();
-                        dados.datasets[0].data.shift();
-                        dados.datasets[1].data.shift();
-                        dados.datasets[2].data.shift();
-                    }
-                    for (i = 0; i < resposta.length; i++) {
-                        var registro = resposta[i];
-                        hostname.innerHTML = registro.Hostname;
-                        dados.labels.push(registro.momento_grafico);
-                        dados.datasets[0].data.push(registro.usoCPU);
-                        dados.datasets[1].data.push(registro.usoRAM);
-                        dados.datasets[2].data.push(registro.usoHD);
-                    }
-                    console.log(JSON.stringify(dados));
-                    plotarGrafico(dados, idSensor);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
+                        for (i = 0; i < resposta.length; i++) {
+                            var registro = resposta[i];
+                            hostname.innerHTML = registro.Hostname;
+                            dados.labels.push(registro.momento_grafico);
+                            dados.datasets[0].data.push(registro.usoCPU);
+                            dados.datasets[1].data.push(registro.usoRAM);
+                            dados.datasets[2].data.push(registro.usoHD);
+                        }
+                        console.log(JSON.stringify(dados));
+                        plotarGrafico(dados, idSensor);
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
@@ -930,33 +924,33 @@
 
     function atualizarGrafico(idSensor, dados) {
         fetch(`/funcionarios/dashboard/${idSensor}`, {
-            cache: 'no-store'
-        }).then(function (response) {
-            console.log("Estou tentando pegar idSensor = ", idSensor)
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+                cache: 'no-store'
+            }).then(function (response) {
+                console.log("Estou tentando pegar idSensor = ", idSensor)
+                if (response.ok) {
+                    response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`, dados);
-                    tempGpu.innerHTML = novoRegistro.temperatura + "°C";
-                    tempCpu.innerHTML = novoRegistro.tempC + "°C";
-                    dados.labels.shift(); // apagar o primeiro
-                    dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
-                    dados.datasets[0].data.shift();
-                    dados.datasets[0].data.push(novoRegistro.usoCPU);
-                    dados.datasets[1].data.shift();
-                    dados.datasets[1].data.push(novoRegistro.usoRAM);
-                    dados.datasets[2].data.shift();
-                    dados.datasets[2].data.push(novoRegistro.usoHD);
-                    window.lineChart.update();
+                        console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                        console.log(`Dados atuais do gráfico:`, dados);
+                        tempGpu.innerHTML = novoRegistro.temperatura + "°C";
+                        tempCpu.innerHTML = novoRegistro.tempC + "°C";
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro.momento_grafico); // incluir um novo momento
+                        dados.datasets[0].data.shift();
+                        dados.datasets[0].data.push(novoRegistro.usoCPU);
+                        dados.datasets[1].data.shift();
+                        dados.datasets[1].data.push(novoRegistro.usoRAM);
+                        dados.datasets[2].data.shift();
+                        dados.datasets[2].data.push(novoRegistro.usoHD);
+                        window.lineChart.update();
+                        proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
+
+                    });
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
                     proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idSensor, dados), 5000);
-            }
-        })
+                }
+            })
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
